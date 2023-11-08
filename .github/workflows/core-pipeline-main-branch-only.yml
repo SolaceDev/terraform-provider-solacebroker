@@ -27,7 +27,7 @@ jobs:
         run: |
           go mod tidy
           go fmt
-          go install .
+          make install
           ~/go/bin/terraform-provider-solacebroker version
           ~/go/bin/terraform-provider-solacebroker help
 
