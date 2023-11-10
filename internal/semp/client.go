@@ -40,6 +40,8 @@ var (
 
 var cookieJar, _ = cookiejar.New(nil)
 
+var firstRequest = true
+
 type Client struct {
 	*http.Client
 	url                string
@@ -132,8 +134,13 @@ func (c *Client) RequestWithBody(ctx context.Context, method, url string, body a
 }
 
 func (c *Client) doRequest(request *http.Request) ([]byte, error) {
-	// the value doesn't matter, it is waiting for the value that matters
-	<-c.rateLimiter
+	if !firstRequest {
+		// the value doesn't matter, it is waiting for the value that matters
+		<-c.rateLimiter
+	} else {
+		// only skip rate limiter for the first request
+		firstRequest = false
+	}
 	if request.Method != http.MethodGet {
 		request.Header.Set("Content-Type", "application/json")
 	}
