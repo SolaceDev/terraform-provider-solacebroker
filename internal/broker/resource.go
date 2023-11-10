@@ -254,23 +254,19 @@ func (r *brokerResource) Configure(_ context.Context, request resource.Configure
 	if request.ProviderData == nil {
 		return
 	}
-	config, ok := request.ProviderData.(*providerData)
+	client, ok := request.ProviderData.(*semp.Client)
 	if !ok {
-		d := diag.NewErrorDiagnostic("Unexpected resource configuration", fmt.Sprintf("Unexpected type %T for provider data; expected %T.", request.ProviderData, config))
-		response.Diagnostics.Append(d)
+		response.Diagnostics.AddError(
+			"Unexpected datasource configuration",
+			fmt.Sprintf("Unexpected type %T for provider data; expected %T.", request.ProviderData, client),
+		)
 		return
 	}
-	r.providerData = config
+	r.client = client
 }
 
 func (r *brokerResource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
-	client, d := client(r.providerData)
-	if d != nil {
-		response.Diagnostics.Append(d)
-		if response.Diagnostics.HasError() {
-			return
-		}
-	}
+	client := r.client
 	if err := checkBrokerRequirements(ctx, client); err != nil {
 		addErrorToDiagnostics(&response.Diagnostics, "Broker check failed", err)
 		return
@@ -327,13 +323,7 @@ func (r *brokerResource) Create(ctx context.Context, request resource.CreateRequ
 }
 
 func (r *brokerResource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
-	client, d := client(r.providerData)
-	if d != nil {
-		response.Diagnostics.Append(d)
-		if response.Diagnostics.HasError() {
-			return
-		}
-	}
+	client := r.client
 	if err := checkBrokerRequirements(ctx, client); err != nil {
 		addErrorToDiagnostics(&response.Diagnostics, "Broker check failed", err)
 		return
@@ -389,13 +379,7 @@ func (r *brokerResource) Read(ctx context.Context, request resource.ReadRequest,
 }
 
 func (r *brokerResource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
-	client, d := client(r.providerData)
-	if d != nil {
-		response.Diagnostics.Append(d)
-		if response.Diagnostics.HasError() {
-			return
-		}
-	}
+	client := r.client
 	if err := checkBrokerRequirements(ctx, client); err != nil {
 		addErrorToDiagnostics(&response.Diagnostics, "Broker check failed", err)
 		return
@@ -443,13 +427,7 @@ func (r *brokerResource) Update(ctx context.Context, request resource.UpdateRequ
 }
 
 func (r *brokerResource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
-	client, d := client(r.providerData)
-	if d != nil {
-		response.Diagnostics.Append(d)
-		if response.Diagnostics.HasError() {
-			return
-		}
-	}
+	client := r.client
 	if err := checkBrokerRequirements(ctx, client); err != nil {
 		addErrorToDiagnostics(&response.Diagnostics, "Broker check failed", err)
 		return
