@@ -19,6 +19,7 @@ import (
 	"bytes"
 	"embed"
 	"os"
+	"strings"
 	"text/template"
 )
 
@@ -33,7 +34,14 @@ func init() {
 	var err error
 	terraformTemplateString, _ := templatefiles.ReadFile("templates/terraform.template")
 	terraformVarsTemplateString, _ := templatefiles.ReadFile("templates/variables.template")
-	terraformTemplate, err = template.New("Object Template").Parse(string(terraformTemplateString))
+	terraformTemplate, err = template.New("Object Template").Funcs(template.FuncMap{
+		"splitHCLResourceName": func(value string) []string {
+			return strings.Split(value, " ")
+		},
+		"readHCLResourceName": func(slice []string, index int) string {
+			return slice[index]
+		},
+	}).Parse(string(terraformTemplateString))
 	terraformVariableTemplate, err = template.New("Variable Template").Parse(string(terraformVarsTemplateString))
 	if err != nil {
 		panic(err)
