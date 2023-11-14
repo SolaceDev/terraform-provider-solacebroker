@@ -618,6 +618,30 @@ resource "solacebroker_msg_vpn_mqtt_session_subscription" "msg_vpn_mqtt_session_
   subscription_qos            = 1
 }
 
+resource "solacebroker_msg_vpn_mqtt_session_subscription" "msg_vpn_mqtt_session_subscription_1" {
+  msg_vpn_name                = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  mqtt_session_client_id      = solacebroker_msg_vpn_mqtt_session.msg_vpn_mqtt_session.mqtt_session_client_id
+  mqtt_session_virtual_router = solacebroker_msg_vpn_mqtt_session.msg_vpn_mqtt_session.mqtt_session_virtual_router
+  subscription_topic          = "\""
+  subscription_qos            = 1
+}
+
+resource "solacebroker_msg_vpn_mqtt_session_subscription" "msg_vpn_mqtt_session_subscription_2" {
+  msg_vpn_name                = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  mqtt_session_client_id      = solacebroker_msg_vpn_mqtt_session.msg_vpn_mqtt_session.mqtt_session_client_id
+  mqtt_session_virtual_router = solacebroker_msg_vpn_mqtt_session.msg_vpn_mqtt_session.mqtt_session_virtual_router
+  subscription_topic          = "\\"
+  subscription_qos            = 1
+}
+
+resource "solacebroker_msg_vpn_mqtt_session_subscription" "msg_vpn_mqtt_session_subscription_3" {
+  msg_vpn_name                = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  mqtt_session_client_id      = solacebroker_msg_vpn_mqtt_session.msg_vpn_mqtt_session.mqtt_session_client_id
+  mqtt_session_virtual_router = solacebroker_msg_vpn_mqtt_session.msg_vpn_mqtt_session.mqtt_session_virtual_router
+  subscription_topic          = " "
+  subscription_qos            = 1
+}
+
 resource "solacebroker_msg_vpn_proxy" "msg_vpn_proxy" {
   msg_vpn_name                  = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
   proxy_name                    = "test"
@@ -670,6 +694,96 @@ resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription" 
   msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
   queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
   subscription_topic = "test"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_1" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = " "
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_2" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "\""
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_3" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "\\"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_4" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "$${topic()}"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_5" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "$${urlEncode(topic(), \"/\")}"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_6" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "$${urlEncode(topic())}"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_7" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "global/landing/solace/$${topic(5)}/$${topic(7)}/$${topic(8)}/$${ts()}"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_8" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "$${utcDate()}/$${utcTime()}/$${base32(randomBytes(15))}"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_10" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "$${userPropertyAsString(\"author\")}"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_11" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "$${\"$${\"}text in the delimiters}"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_12" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "A number:  $${5}"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_13" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "$${\"$${This is a valid substitution expression.}\"}"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_14" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "$${\"This is also a valid substitution expression!  :-}\"}"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_15" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "This is a valid attribute value with no substitution expression. :-}"
+}
+
+resource "solacebroker_msg_vpn_queue_subscription" "msg_vpn_queue_subscription_16" {
+  msg_vpn_name       = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  queue_name         = solacebroker_msg_vpn_queue.msg_vpn_queue.queue_name
+  subscription_topic = "$${base64(\"Strings can be used where bytes are specified.\")}"
 }
 
 resource "solacebroker_msg_vpn_queue_template" "msg_vpn_queue_template" {

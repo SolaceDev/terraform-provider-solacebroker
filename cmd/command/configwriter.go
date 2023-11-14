@@ -27,11 +27,14 @@ var (
 	templatefiles embed.FS
 )
 var terraformTemplate *template.Template
+var terraformVariableTemplate *template.Template
 
 func init() {
 	var err error
 	terraformTemplateString, _ := templatefiles.ReadFile("templates/terraform.template")
+	terraformVarsTemplateString, _ := templatefiles.ReadFile("templates/variables.template")
 	terraformTemplate, err = template.New("Object Template").Parse(string(terraformTemplateString))
+	terraformVariableTemplate, err = template.New("Variable Template").Parse(string(terraformVarsTemplateString))
 	if err != nil {
 		panic(err)
 	}
@@ -44,5 +47,16 @@ func GenerateTerraformFile(terraformObjectInfo *ObjectInfo) error {
 		LogCLIError("\nError: Templating error : " + err.Error() + "\n\n")
 		os.Exit(1)
 	}
+	GenerateTerraformVariableFile(terraformObjectInfo)
 	return os.WriteFile(terraformObjectInfo.FileName, codeStream.Bytes(), 0664)
+}
+
+func GenerateTerraformVariableFile(terraformObjectInfo *ObjectInfo) error {
+	var codeStreamVariables bytes.Buffer
+	err := terraformVariableTemplate.Execute(&codeStreamVariables, terraformObjectInfo)
+	if err != nil {
+		LogCLIError("\nError: Templating error : " + err.Error() + "\n\n")
+		os.Exit(1)
+	}
+	return os.WriteFile("variables"+terraformObjectInfo.FileName, codeStreamVariables.Bytes(), 0664)
 }

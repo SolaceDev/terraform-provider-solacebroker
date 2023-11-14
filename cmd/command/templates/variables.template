@@ -1,0 +1,9 @@
+variable "username" {
+  description = "Username for PubSubPlus Software Event Broker"
+  default     = "admin"                                     # This is a placeholder
+}
+
+variable "password" {
+  description = "Password for PubSubPlus Software Event Broker"
+  default     = "admin"                                     # This is a placeholder
+}
