@@ -23,14 +23,13 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-go/tftypes"
-	"regexp"
 	"terraform-provider-solacebroker/internal/broker"
 )
 
 func init() {
 	info := broker.EntityInputs{
 		TerraformName:       "broker",
-		MarkdownDescription: "This object contains global configuration for the message broker.\n\n\nAttribute|Identifying|Write-Only|Deprecated|Opaque\n:---|:---:|:---:|:---:|:---:\ntls_server_cert_content||x||x\ntls_server_cert_password||x||\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"global/none\" is required to perform this operation. Requests which include the following attributes require greater access scope/level:\n\n\nAttribute|Access Scope/Level\n:---|:---:\nauth_client_cert_revocation_check_mode|global/read-only\nconfig_sync_authentication_client_cert_max_chain_depth|global/read-only\nconfig_sync_authentication_client_cert_validate_date_enabled|global/read-only\nconfig_sync_client_profile_tcp_initial_congestion_window|global/read-only\nconfig_sync_client_profile_tcp_keepalive_count|global/read-only\nconfig_sync_client_profile_tcp_keepalive_idle|global/read-only\nconfig_sync_client_profile_tcp_keepalive_interval|global/read-only\nconfig_sync_client_profile_tcp_max_window|global/read-only\nconfig_sync_client_profile_tcp_mss|global/read-only\nconfig_sync_enabled|global/read-only\nconfig_sync_synchronize_username_enabled|global/read-only\nconfig_sync_tls_enabled|global/read-only\nguaranteed_msging_defragmentation_schedule_day_list|global/read-only\nguaranteed_msging_defragmentation_schedule_enabled|global/read-only\nguaranteed_msging_defragmentation_schedule_time_list|global/read-only\nguaranteed_msging_defragmentation_threshold_enabled|global/read-only\nguaranteed_msging_defragmentation_threshold_fragmentation_percentage|global/read-only\nguaranteed_msging_defragmentation_threshold_min_interval|global/read-only\nguaranteed_msging_defragmentation_threshold_usage_percentage|global/read-only\nguaranteed_msging_enabled|global/read-only\nguaranteed_msging_event_cache_usage_threshold.clear_percent|global/read-only\nguaranteed_msging_event_cache_usage_threshold.clear_value|global/read-only\nguaranteed_msging_event_cache_usage_threshold.set_percent|global/read-only\nguaranteed_msging_event_cache_usage_threshold.set_value|global/read-only\nguaranteed_msging_event_delivered_unacked_threshold.clear_percent|global/read-only\nguaranteed_msging_event_delivered_unacked_threshold.set_percent|global/read-only\nguaranteed_msging_event_disk_usage_threshold.clear_percent|global/read-only\nguaranteed_msging_event_disk_usage_threshold.set_percent|global/read-only\nguaranteed_msging_event_egress_flow_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_egress_flow_count_threshold.clear_value|global/read-only\nguaranteed_msging_event_egress_flow_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_egress_flow_count_threshold.set_value|global/read-only\nguaranteed_msging_event_endpoint_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_endpoint_count_threshold.clear_value|global/read-only\nguaranteed_msging_event_endpoint_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_endpoint_count_threshold.set_value|global/read-only\nguaranteed_msging_event_ingress_flow_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_ingress_flow_count_threshold.clear_value|global/read-only\nguaranteed_msging_event_ingress_flow_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_ingress_flow_count_threshold.set_value|global/read-only\nguaranteed_msging_event_msg_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_msg_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_msg_spool_file_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_msg_spool_file_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_msg_spool_usage_threshold.clear_percent|global/read-only\nguaranteed_msging_event_msg_spool_usage_threshold.clear_value|global/read-only\nguaranteed_msging_event_msg_spool_usage_threshold.set_percent|global/read-only\nguaranteed_msging_event_msg_spool_usage_threshold.set_value|global/read-only\nguaranteed_msging_event_transacted_session_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_transacted_session_count_threshold.clear_value|global/read-only\nguaranteed_msging_event_transacted_session_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_transacted_session_count_threshold.set_value|global/read-only\nguaranteed_msging_event_transacted_session_resource_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_transacted_session_resource_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_transaction_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_transaction_count_threshold.clear_value|global/read-only\nguaranteed_msging_event_transaction_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_transaction_count_threshold.set_value|global/read-only\nguaranteed_msging_max_cache_usage|global/read-only\nguaranteed_msging_max_msg_spool_usage|global/read-only\nguaranteed_msging_msg_spool_sync_mirrored_msg_ack_timeout|global/read-only\nguaranteed_msging_msg_spool_sync_mirrored_spool_file_ack_timeout|global/read-only\nguaranteed_msging_transaction_replication_compatibility_mode|global/read-only\noauth_profile_default|global/read-only\nservice_amqp_enabled|global/read-only\nservice_amqp_tls_listen_port|global/read-only\nservice_event_connection_count_threshold.clear_percent|global/read-only\nservice_event_connection_count_threshold.clear_value|global/read-only\nservice_event_connection_count_threshold.set_percent|global/read-only\nservice_event_connection_count_threshold.set_value|global/read-only\nservice_health_check_enabled|global/read-only\nservice_health_check_listen_port|global/read-only\nservice_health_check_tls_enabled|global/read-only\nservice_health_check_tls_listen_port|global/read-only\nservice_mate_link_enabled|global/read-only\nservice_mate_link_listen_port|global/read-only\nservice_mqtt_enabled|global/read-only\nservice_msg_backbone_enabled|global/read-only\nservice_redundancy_enabled|global/read-only\nservice_redundancy_first_listen_port|global/read-only\nservice_rest_event_outgoing_connection_count_threshold.clear_percent|global/read-only\nservice_rest_event_outgoing_connection_count_threshold.clear_value|global/read-only\nservice_rest_event_outgoing_connection_count_threshold.set_percent|global/read-only\nservice_rest_event_outgoing_connection_count_threshold.set_value|global/read-only\nservice_rest_incoming_enabled|global/read-only\nservice_rest_outgoing_enabled|global/read-only\nservice_semp_cors_allow_any_host_enabled|global/read-only\nservice_semp_legacy_timeout_enabled|global/read-only\nservice_semp_plain_text_enabled|global/read-only\nservice_semp_plain_text_listen_port|global/read-only\nservice_semp_session_idle_timeout|global/read-only\nservice_semp_session_max_lifetime|global/read-only\nservice_semp_tls_enabled|global/read-only\nservice_semp_tls_listen_port|global/read-only\nservice_smf_compression_listen_port|global/read-only\nservice_smf_enabled|global/read-only\nservice_smf_event_connection_count_threshold.clear_percent|global/read-only\nservice_smf_event_connection_count_threshold.clear_value|global/read-only\nservice_smf_event_connection_count_threshold.set_percent|global/read-only\nservice_smf_event_connection_count_threshold.set_value|global/read-only\nservice_smf_plain_text_listen_port|global/read-only\nservice_smf_routing_control_listen_port|global/read-only\nservice_smf_tls_listen_port|global/read-only\nservice_tls_event_connection_count_threshold.clear_percent|global/read-only\nservice_tls_event_connection_count_threshold.clear_value|global/read-only\nservice_tls_event_connection_count_threshold.set_percent|global/read-only\nservice_tls_event_connection_count_threshold.set_value|global/read-only\nservice_web_transport_enabled|global/read-only\nservice_web_transport_plain_text_listen_port|global/read-only\nservice_web_transport_tls_listen_port|global/read-only\nservice_web_transport_web_url_suffix|global/read-only\ntls_block_version11_enabled|global/read-only\ntls_cipher_suite_management_list|global/read-only\ntls_cipher_suite_msg_backbone_list|global/read-only\ntls_cipher_suite_secure_shell_list|global/read-only\ntls_crime_exploit_protection_enabled|global/read-only\ntls_server_cert_content|global/read-only\ntls_standard_domain_certificate_authorities_enabled|vpn/read-only\ntls_ticket_lifetime|global/read-only\nweb_manager_allow_unencrypted_wizards_enabled|vpn/read-only\nweb_manager_customization|vpn/read-only\nweb_manager_redirect_http_enabled|vpn/read-only\nweb_manager_redirect_http_override_tls_port|vpn/read-only\n\n\n\nThis has been available since SEMP API version 2.13.",
+		MarkdownDescription: "This object contains global configuration for the message broker.\n\n\nAttribute|Identifying|Write-Only|Deprecated|Opaque\n:---|:---:|:---:|:---:|:---:\ntls_server_cert_content||x||x\ntls_server_cert_password||x||\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"global/none\" is required to perform this operation. Requests which include the following attributes require greater access scope/level:\n\n\nAttribute|Access Scope/Level\n:---|:---:\nconfig_sync_authentication_client_cert_max_chain_depth|global/read-only\nconfig_sync_authentication_client_cert_validate_date_enabled|global/read-only\nconfig_sync_client_profile_tcp_initial_congestion_window|global/read-only\nconfig_sync_client_profile_tcp_keepalive_count|global/read-only\nconfig_sync_client_profile_tcp_keepalive_idle|global/read-only\nconfig_sync_client_profile_tcp_keepalive_interval|global/read-only\nconfig_sync_client_profile_tcp_max_window|global/read-only\nconfig_sync_client_profile_tcp_mss|global/read-only\nconfig_sync_enabled|global/read-only\nconfig_sync_synchronize_username_enabled|global/read-only\nconfig_sync_tls_enabled|global/read-only\nguaranteed_msging_defragmentation_schedule_day_list|global/read-only\nguaranteed_msging_defragmentation_schedule_enabled|global/read-only\nguaranteed_msging_defragmentation_schedule_time_list|global/read-only\nguaranteed_msging_defragmentation_threshold_enabled|global/read-only\nguaranteed_msging_defragmentation_threshold_fragmentation_percentage|global/read-only\nguaranteed_msging_defragmentation_threshold_min_interval|global/read-only\nguaranteed_msging_defragmentation_threshold_usage_percentage|global/read-only\nguaranteed_msging_enabled|global/read-only\nguaranteed_msging_event_cache_usage_threshold.clear_percent|global/read-only\nguaranteed_msging_event_cache_usage_threshold.clear_value|global/read-only\nguaranteed_msging_event_cache_usage_threshold.set_percent|global/read-only\nguaranteed_msging_event_cache_usage_threshold.set_value|global/read-only\nguaranteed_msging_event_delivered_unacked_threshold.clear_percent|global/read-only\nguaranteed_msging_event_delivered_unacked_threshold.set_percent|global/read-only\nguaranteed_msging_event_disk_usage_threshold.clear_percent|global/read-only\nguaranteed_msging_event_disk_usage_threshold.set_percent|global/read-only\nguaranteed_msging_event_egress_flow_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_egress_flow_count_threshold.clear_value|global/read-only\nguaranteed_msging_event_egress_flow_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_egress_flow_count_threshold.set_value|global/read-only\nguaranteed_msging_event_endpoint_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_endpoint_count_threshold.clear_value|global/read-only\nguaranteed_msging_event_endpoint_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_endpoint_count_threshold.set_value|global/read-only\nguaranteed_msging_event_ingress_flow_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_ingress_flow_count_threshold.clear_value|global/read-only\nguaranteed_msging_event_ingress_flow_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_ingress_flow_count_threshold.set_value|global/read-only\nguaranteed_msging_event_msg_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_msg_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_msg_spool_file_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_msg_spool_file_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_msg_spool_usage_threshold.clear_percent|global/read-only\nguaranteed_msging_event_msg_spool_usage_threshold.clear_value|global/read-only\nguaranteed_msging_event_msg_spool_usage_threshold.set_percent|global/read-only\nguaranteed_msging_event_msg_spool_usage_threshold.set_value|global/read-only\nguaranteed_msging_event_transacted_session_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_transacted_session_count_threshold.clear_value|global/read-only\nguaranteed_msging_event_transacted_session_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_transacted_session_count_threshold.set_value|global/read-only\nguaranteed_msging_event_transacted_session_resource_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_transacted_session_resource_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_transaction_count_threshold.clear_percent|global/read-only\nguaranteed_msging_event_transaction_count_threshold.clear_value|global/read-only\nguaranteed_msging_event_transaction_count_threshold.set_percent|global/read-only\nguaranteed_msging_event_transaction_count_threshold.set_value|global/read-only\nguaranteed_msging_max_cache_usage|global/read-only\nguaranteed_msging_max_msg_spool_usage|global/read-only\nguaranteed_msging_msg_spool_sync_mirrored_msg_ack_timeout|global/read-only\nguaranteed_msging_msg_spool_sync_mirrored_spool_file_ack_timeout|global/read-only\nguaranteed_msging_transaction_replication_compatibility_mode|global/read-only\noauth_profile_default|global/read-only\nservice_amqp_enabled|global/read-only\nservice_amqp_tls_listen_port|global/read-only\nservice_event_connection_count_threshold.clear_percent|global/read-only\nservice_event_connection_count_threshold.clear_value|global/read-only\nservice_event_connection_count_threshold.set_percent|global/read-only\nservice_event_connection_count_threshold.set_value|global/read-only\nservice_health_check_enabled|global/read-only\nservice_health_check_listen_port|global/read-only\nservice_health_check_tls_enabled|global/read-only\nservice_health_check_tls_listen_port|global/read-only\nservice_mate_link_enabled|global/read-only\nservice_mate_link_listen_port|global/read-only\nservice_mqtt_enabled|global/read-only\nservice_msg_backbone_enabled|global/read-only\nservice_redundancy_enabled|global/read-only\nservice_redundancy_first_listen_port|global/read-only\nservice_rest_event_outgoing_connection_count_threshold.clear_percent|global/read-only\nservice_rest_event_outgoing_connection_count_threshold.clear_value|global/read-only\nservice_rest_event_outgoing_connection_count_threshold.set_percent|global/read-only\nservice_rest_event_outgoing_connection_count_threshold.set_value|global/read-only\nservice_rest_incoming_enabled|global/read-only\nservice_rest_outgoing_enabled|global/read-only\nservice_semp_cors_allow_any_host_enabled|global/read-only\nservice_semp_legacy_timeout_enabled|global/read-only\nservice_semp_plain_text_enabled|global/read-only\nservice_semp_plain_text_listen_port|global/read-only\nservice_semp_session_idle_timeout|global/read-only\nservice_semp_session_max_lifetime|global/read-only\nservice_semp_tls_enabled|global/read-only\nservice_semp_tls_listen_port|global/read-only\nservice_smf_compression_listen_port|global/read-only\nservice_smf_enabled|global/read-only\nservice_smf_event_connection_count_threshold.clear_percent|global/read-only\nservice_smf_event_connection_count_threshold.clear_value|global/read-only\nservice_smf_event_connection_count_threshold.set_percent|global/read-only\nservice_smf_event_connection_count_threshold.set_value|global/read-only\nservice_smf_plain_text_listen_port|global/read-only\nservice_smf_routing_control_listen_port|global/read-only\nservice_smf_tls_listen_port|global/read-only\nservice_tls_event_connection_count_threshold.clear_percent|global/read-only\nservice_tls_event_connection_count_threshold.clear_value|global/read-only\nservice_tls_event_connection_count_threshold.set_percent|global/read-only\nservice_tls_event_connection_count_threshold.set_value|global/read-only\nservice_web_transport_enabled|global/read-only\nservice_web_transport_plain_text_listen_port|global/read-only\nservice_web_transport_tls_listen_port|global/read-only\nservice_web_transport_web_url_suffix|global/read-only\ntls_block_version11_enabled|global/read-only\ntls_cipher_suite_management_list|global/read-only\ntls_cipher_suite_msg_backbone_list|global/read-only\ntls_cipher_suite_secure_shell_list|global/read-only\ntls_crime_exploit_protection_enabled|global/read-only\ntls_server_cert_content|global/read-only\ntls_standard_domain_certificate_authorities_enabled|vpn/read-only\ntls_ticket_lifetime|global/read-only\nweb_manager_allow_unencrypted_wizards_enabled|vpn/read-only\nweb_manager_customization|vpn/read-only\nweb_manager_redirect_http_enabled|vpn/read-only\nweb_manager_redirect_http_override_tls_port|vpn/read-only\n\n\n\nThis has been available since SEMP API version 2.13.",
 		ObjectType:          broker.SingletonObject,
 		PathTemplate:        "/",
 		Version:             0,
@@ -123,7 +122,7 @@ func init() {
 				BaseType:            broker.Int64,
 				SempName:            "configSyncClientProfileTcpKeepaliveInterval",
 				TerraformName:       "config_sync_client_profile_tcp_keepalive_interval",
-				MarkdownDescription: "The amount of time between TCP keepalive retransmissions to a client using the Client Profile when no acknowledgment is received, in seconds. The default value is `1`. Available since SEMP API version 2.22.",
+				MarkdownDescription: "The amount of time between TCP keepalive retransmissions to a client using the Client Profile when no acknowledgement is received, in seconds. The default value is `1`. Available since SEMP API version 2.22.",
 				Type:                types.Int64Type,
 				TerraformType:       tftypes.Number,
 				Converter:           broker.IntegerConverter{},
@@ -136,7 +135,7 @@ func init() {
 				BaseType:            broker.Int64,
 				SempName:            "configSyncClientProfileTcpMaxWindow",
 				TerraformName:       "config_sync_client_profile_tcp_max_window",
-				MarkdownDescription: "The TCP maximum window size for clients using the Client Profile, in kilobytes. Changes are applied to all existing connections. This setting is ignored on the software broker. The default value is `256`. Available since SEMP API version 2.22.",
+				MarkdownDescription: "The TCP maximum window size for clients using the Client Profile, in kilobytes. Changes are applied to all existing connections. The default value is `256`. Available since SEMP API version 2.22.",
 				Type:                types.Int64Type,
 				TerraformType:       tftypes.Number,
 				Converter:           broker.IntegerConverter{},
@@ -309,7 +308,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -352,7 +350,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -398,7 +395,6 @@ func init() {
 							),
 							int64validator.Between(0, 100),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -415,7 +411,6 @@ func init() {
 							),
 							int64validator.Between(0, 100),
 						},
-						Default: 80,
 					},
 				},
 			},
@@ -440,7 +435,6 @@ func init() {
 							),
 							int64validator.Between(0, 100),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -457,7 +451,6 @@ func init() {
 							),
 							int64validator.Between(0, 100),
 						},
-						Default: 80,
 					},
 				},
 			},
@@ -487,7 +480,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -530,7 +522,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -581,7 +572,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -624,7 +614,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -675,7 +664,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -718,7 +706,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -764,7 +751,6 @@ func init() {
 							),
 							int64validator.Between(0, 100),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -781,7 +767,6 @@ func init() {
 							),
 							int64validator.Between(0, 100),
 						},
-						Default: 80,
 					},
 				},
 			},
@@ -806,7 +791,6 @@ func init() {
 							),
 							int64validator.Between(0, 100),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -823,7 +807,6 @@ func init() {
 							),
 							int64validator.Between(0, 100),
 						},
-						Default: 80,
 					},
 				},
 			},
@@ -853,7 +836,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -896,7 +878,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -947,7 +928,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -990,7 +970,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1036,7 +1015,6 @@ func init() {
 							),
 							int64validator.Between(0, 100),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1053,7 +1031,6 @@ func init() {
 							),
 							int64validator.Between(0, 100),
 						},
-						Default: 80,
 					},
 				},
 			},
@@ -1083,7 +1060,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1126,7 +1102,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1181,7 +1156,7 @@ func init() {
 				BaseType:            broker.Int64,
 				SempName:            "guaranteedMsgingMsgSpoolSyncMirroredMsgAckTimeout",
 				TerraformName:       "guaranteed_msging_msg_spool_sync_mirrored_msg_ack_timeout",
-				MarkdownDescription: "The maximum time, in milliseconds, that can be tolerated for remote acknowledgment of synchronization messages before which the remote system will be considered out of sync. The default value is `10000`. Available since SEMP API version 2.18.",
+				MarkdownDescription: "The maximum time, in milliseconds, that can be tolerated for remote acknowledgement of synchronization messages before which the remote system will be considered out of sync. The default value is `10000`. Available since SEMP API version 2.18.",
 				Type:                types.Int64Type,
 				TerraformType:       tftypes.Number,
 				Converter:           broker.IntegerConverter{},
@@ -1207,7 +1182,7 @@ func init() {
 				BaseType:            broker.String,
 				SempName:            "guaranteedMsgingTransactionReplicationCompatibilityMode",
 				TerraformName:       "guaranteed_msging_transaction_replication_compatibility_mode",
-				MarkdownDescription: "The replication compatibility mode for the broker. The default value is `\"legacy\"`. The allowed values and their meaning are:\"legacy\" - All transactions originated by clients are replicated to the standby site without using transactions.\"transacted\" - All transactions originated by clients are replicated to the standby site using transactions. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"legacy\"`. The allowed values and their meaning are:\n\n<pre>\n\"legacy\" - All transactions originated by clients are replicated to the standby site without using transactions.\n\"transacted\" - All transactions originated by clients are replicated to the standby site using transactions.\n</pre>\n Available since SEMP API version 2.18.",
+				MarkdownDescription: "The replication compatibility mode for the router. The default value is `\"legacy\"`. The allowed values and their meaning are:\"legacy\" - All transactions originated by clients are replicated to the standby site without using transactions.\"transacted\" - All transactions originated by clients are replicated to the standby site using transactions. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"legacy\"`. The allowed values and their meaning are:\n\n<pre>\n\"legacy\" - All transactions originated by clients are replicated to the standby site without using transactions.\n\"transacted\" - All transactions originated by clients are replicated to the standby site using transactions.\n</pre>\n Available since SEMP API version 2.18.",
 				Type:                types.StringType,
 				TerraformType:       tftypes.String,
 				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
@@ -1226,7 +1201,6 @@ func init() {
 				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
 				StringValidators: []validator.String{
 					stringvalidator.LengthBetween(0, 32),
-					stringvalidator.RegexMatches(regexp.MustCompile("^[A-Za-z0-9_]*$"), ""),
 				},
 				Default: "",
 			},
@@ -1279,7 +1253,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1322,7 +1295,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1455,7 +1427,7 @@ func init() {
 				TerraformType:       tftypes.Number,
 				Converter:           broker.IntegerConverter{},
 				Int64Validators: []validator.Int64{
-					int64validator.Between(1, 65533),
+					int64validator.Between(1, 65535),
 				},
 				Default: 8300,
 			},
@@ -1485,7 +1457,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1528,7 +1499,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1557,7 +1527,7 @@ func init() {
 				BaseType:            broker.Bool,
 				SempName:            "serviceRestIncomingEnabled",
 				TerraformName:       "service_rest_incoming_enabled",
-				MarkdownDescription: "Enable or disable the REST service incoming connections on the broker. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`. Available since SEMP API version 2.17.",
+				MarkdownDescription: "Enable or disable the REST service incoming connections on the router. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`. Available since SEMP API version 2.17.",
 				Type:                types.BoolType,
 				TerraformType:       tftypes.Bool,
 				Converter:           broker.SimpleConverter[bool]{TerraformType: tftypes.Bool},
@@ -1567,7 +1537,7 @@ func init() {
 				BaseType:            broker.Bool,
 				SempName:            "serviceRestOutgoingEnabled",
 				TerraformName:       "service_rest_outgoing_enabled",
-				MarkdownDescription: "Enable or disable the REST service outgoing connections on the broker. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`. Available since SEMP API version 2.17.",
+				MarkdownDescription: "Enable or disable the REST service outgoing connections on the router. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`. Available since SEMP API version 2.17.",
 				Type:                types.BoolType,
 				TerraformType:       tftypes.Bool,
 				Converter:           broker.SimpleConverter[bool]{TerraformType: tftypes.Bool},
@@ -1587,7 +1557,7 @@ func init() {
 				BaseType:            broker.Bool,
 				SempName:            "serviceSempLegacyTimeoutEnabled",
 				TerraformName:       "service_semp_legacy_timeout_enabled",
-				MarkdownDescription: "Enable or disable extended SEMP timeouts for paged responses. When a request times out, it returns the current page of content, even if the page is not full.  When enabled, the timeout is 60 seconds. When disabled, the timeout is 5 seconds.  The recommended setting is disabled (no legacy-timeout).  This parameter is intended as a temporary workaround to be used until SEMP clients can handle short pages.  This setting will be removed in a future release. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`. Available since SEMP API version 2.18.",
+				MarkdownDescription: "Enable or disable extended SEMP timeouts for paged GETs. When a request times out, it returns the current page of content, even if the page is not full.  When enabled, the timeout is 60 seconds. When disabled, the timeout is 5 seconds.  The recommended setting is disabled (no legacy-timeout).  This parameter is intended as a temporary workaround to be used until SEMP clients can handle short pages.  This setting will be removed in a future release. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`. Available since SEMP API version 2.18.",
 				Type:                types.BoolType,
 				TerraformType:       tftypes.Bool,
 				Converter:           broker.SimpleConverter[bool]{TerraformType: tftypes.Bool},
@@ -1688,7 +1658,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1731,7 +1700,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1821,7 +1789,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1864,7 +1831,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -2001,7 +1967,7 @@ func init() {
 				BaseType:            broker.String,
 				SempName:            "tlsServerCertContent",
 				TerraformName:       "tls_server_cert_content",
-				MarkdownDescription: "The PEM formatted content for the server certificate used for TLS connections. It must consist of a private key and between one and three certificates comprising the certificate trust chain. This attribute is absent from a GET and not updated when absent in a PUT, subject to the exceptions in note 4 (refer to the `Notes` section in the SEMP API `Config reference`). The default value is `\"\"`.",
+				MarkdownDescription: "The PEM formatted content for the server certificate used for TLS connections. It must consist of a private key and between one and three certificates comprising the certificate trust chain. This attribute is absent from a GET and not updated when absent in a PUT, subject to the exceptions in note 4 (refer to the `Notes` section in the SEMP API `Config reference`). Changing this attribute requires an HTTPS connection. The default value is `\"\"`.",
 				Sensitive:           true,
 				Type:                types.StringType,
 				TerraformType:       tftypes.String,
@@ -2015,7 +1981,7 @@ func init() {
 				BaseType:            broker.String,
 				SempName:            "tlsServerCertPassword",
 				TerraformName:       "tls_server_cert_password",
-				MarkdownDescription: "The password for the server certificate used for TLS connections. This attribute is absent from a GET and not updated when absent in a PUT, subject to the exceptions in note 4 (refer to the `Notes` section in the SEMP API `Config reference`). The default value is `\"\"`.",
+				MarkdownDescription: "The password for the server certificate used for TLS connections. This attribute is absent from a GET and not updated when absent in a PUT, subject to the exceptions in note 4 (refer to the `Notes` section in the SEMP API `Config reference`). Changing this attribute requires an HTTPS connection. The default value is `\"\"`.",
 				Sensitive:           true,
 				Requires:            []string{"tls_server_cert_content"},
 				Type:                types.StringType,
@@ -2025,7 +1991,7 @@ func init() {
 					stringvalidator.AlsoRequires(
 						path.MatchRelative().AtParent().AtName("tls_server_cert_content"),
 					),
-					stringvalidator.LengthBetween(0, 512),
+					stringvalidator.LengthBetween(0, 32768),
 				},
 				Default: "",
 			},

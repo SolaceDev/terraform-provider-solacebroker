@@ -83,7 +83,7 @@ func init() {
 						path.MatchRelative().AtParent().AtName("authentication_basic_type"),
 					),
 					stringvalidator.LengthBetween(0, 32),
-					stringvalidator.RegexMatches(regexp.MustCompile("^[A-Za-z0-9_]*$"), ""),
+					stringvalidator.RegexMatches(regexp.MustCompile("^([a-zA-Z0-9_]+|)$"), ""),
 				},
 			},
 			{
@@ -221,7 +221,6 @@ func init() {
 				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
 				StringValidators: []validator.String{
 					stringvalidator.LengthBetween(0, 32),
-					stringvalidator.RegexMatches(regexp.MustCompile("^[A-Za-z0-9_]*$"), ""),
 				},
 				Default: "",
 			},
@@ -252,7 +251,7 @@ func init() {
 				BaseType:            broker.Bool,
 				SempName:            "authorizationLdapTrimClientUsernameDomainEnabled",
 				TerraformName:       "authorization_ldap_trim_client_username_domain_enabled",
-				MarkdownDescription: "Enable or disable client-username domain trimming for LDAP lookups of client connections. When enabled, the value of $CLIENT_USERNAME (when used for searching) will be truncated at the first occurrence of the @ character. For example, if the client-username is in the form of an email address, then the domain portion will be removed. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`. Available since SEMP API version 2.13.",
+				MarkdownDescription: "Enable or disable client-username domain trimming for LDAP lookups of client connections. When enabled, the value of $CLIENT_USERNAME (when used for searching) will be truncated at the first occurance of the @ character. For example, if the client-username is in the form of an email address, then the domain portion will be removed. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`. Available since SEMP API version 2.13.",
 				Type:                types.BoolType,
 				TerraformType:       tftypes.Bool,
 				Converter:           broker.SimpleConverter[bool]{TerraformType: tftypes.Bool},
@@ -272,7 +271,7 @@ func init() {
 						path.MatchRelative().AtParent().AtName("authorization_type"),
 					),
 					stringvalidator.LengthBetween(0, 32),
-					stringvalidator.RegexMatches(regexp.MustCompile("^[A-Za-z0-9_]*$"), ""),
+					stringvalidator.RegexMatches(regexp.MustCompile("^([a-zA-Z0-9_]+|)$"), ""),
 				},
 				Default: "",
 			},
@@ -316,7 +315,7 @@ func init() {
 				BaseType:            broker.Bool,
 				SempName:            "bridgingTlsServerCertValidateNameEnabled",
 				TerraformName:       "bridging_tls_server_cert_validate_name_enabled",
-				MarkdownDescription: "Enable or disable the standard TLS authentication mechanism of verifying the name used to connect to the bridge. If enabled, the name used to connect to the bridge is checked against the names specified in the certificate returned by the remote broker. Legacy Common Name validation is not performed if Server Certificate Name Validation is enabled, even if Common Name validation is also enabled. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `true`. Available since SEMP API version 2.18.",
+				MarkdownDescription: "Enable or disable the standard TLS authentication mechanism of verifying the name used to connect to the bridge. If enabled, the name used to connect to the bridge is checked against the names specified in the certificate returned by the remote router. Legacy Common Name validation is not performed if Server Certificate Name Validation is enabled, even if Common Name validation is also enabled. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `true`. Available since SEMP API version 2.18.",
 				Type:                types.BoolType,
 				TerraformType:       tftypes.Bool,
 				Converter:           broker.SimpleConverter[bool]{TerraformType: tftypes.Bool},
@@ -368,7 +367,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -411,7 +409,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -462,7 +459,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -505,7 +501,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -551,7 +546,6 @@ func init() {
 							),
 							int64validator.Between(0, 4294967295),
 						},
-						Default: 3e+06,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -568,7 +562,6 @@ func init() {
 							),
 							int64validator.Between(0, 4294967295),
 						},
-						Default: 4e+06,
 					},
 				},
 			},
@@ -598,7 +591,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -641,7 +633,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -692,7 +683,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -735,7 +725,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -781,7 +770,6 @@ func init() {
 							),
 							int64validator.Between(0, 4294967295),
 						},
-						Default: 3e+06,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -798,7 +786,6 @@ func init() {
 							),
 							int64validator.Between(0, 4294967295),
 						},
-						Default: 4e+06,
 					},
 				},
 			},
@@ -854,7 +841,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -897,7 +883,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1013,7 +998,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1056,7 +1040,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1107,7 +1090,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1150,7 +1132,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1201,7 +1182,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1244,7 +1224,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1295,7 +1274,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1338,7 +1316,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1389,7 +1366,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1432,7 +1408,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1483,7 +1458,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1526,7 +1500,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1577,7 +1550,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1620,7 +1592,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1671,7 +1642,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1714,7 +1684,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1892,7 +1861,7 @@ func init() {
 				BaseType:            broker.Int64,
 				SempName:            "replicationAckPropagationIntervalMsgCount",
 				TerraformName:       "replication_ack_propagation_interval_msg_count",
-				MarkdownDescription: "The acknowledgment (ACK) propagation interval for the replication Bridge, in number of replicated messages. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `20`.",
+				MarkdownDescription: "The acknowledgement (ACK) propagation interval for the replication Bridge, in number of replicated messages. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `20`.",
 				Type:                types.Int64Type,
 				TerraformType:       tftypes.Number,
 				Converter:           broker.IntegerConverter{},
@@ -1941,7 +1910,7 @@ func init() {
 				BaseType:            broker.String,
 				SempName:            "replicationBridgeAuthenticationClientCertContent",
 				TerraformName:       "replication_bridge_authentication_client_cert_content",
-				MarkdownDescription: "The PEM formatted content for the client certificate used by this bridge to login to the Remote Message VPN. It must consist of a private key and between one and three certificates comprising the certificate trust chain. This attribute is absent from a GET and not updated when absent in a PUT, subject to the exceptions in note 4 (refer to the `Notes` section in the SEMP API `Config reference`). The default value is `\"\"`. Available since SEMP API version 2.9.",
+				MarkdownDescription: "The PEM formatted content for the client certificate used by this bridge to login to the Remote Message VPN. It must consist of a private key and between one and three certificates comprising the certificate trust chain. This attribute is absent from a GET and not updated when absent in a PUT, subject to the exceptions in note 4 (refer to the `Notes` section in the SEMP API `Config reference`). Changing this attribute requires an HTTPS connection. The default value is `\"\"`. Available since SEMP API version 2.9.",
 				Sensitive:           true,
 				Type:                types.StringType,
 				TerraformType:       tftypes.String,
@@ -1955,7 +1924,7 @@ func init() {
 				BaseType:            broker.String,
 				SempName:            "replicationBridgeAuthenticationClientCertPassword",
 				TerraformName:       "replication_bridge_authentication_client_cert_password",
-				MarkdownDescription: "The password for the client certificate. This attribute is absent from a GET and not updated when absent in a PUT, subject to the exceptions in note 4 (refer to the `Notes` section in the SEMP API `Config reference`). The default value is `\"\"`. Available since SEMP API version 2.9.",
+				MarkdownDescription: "The password for the client certificate. This attribute is absent from a GET and not updated when absent in a PUT, subject to the exceptions in note 4 (refer to the `Notes` section in the SEMP API `Config reference`). Changing this attribute requires an HTTPS connection. The default value is `\"\"`. Available since SEMP API version 2.9.",
 				Sensitive:           true,
 				Requires:            []string{"replication_bridge_authentication_client_cert_content"},
 				Type:                types.StringType,
@@ -1965,7 +1934,7 @@ func init() {
 					stringvalidator.AlsoRequires(
 						path.MatchRelative().AtParent().AtName("replication_bridge_authentication_client_cert_content"),
 					),
-					stringvalidator.LengthBetween(0, 512),
+					stringvalidator.LengthBetween(0, 32768),
 				},
 				Default: "",
 			},
@@ -2156,7 +2125,7 @@ func init() {
 				BaseType:            broker.Bool,
 				SempName:            "restTlsServerCertValidateNameEnabled",
 				TerraformName:       "rest_tls_server_cert_validate_name_enabled",
-				MarkdownDescription: "Enable or disable the standard TLS authentication mechanism of verifying the name used to connect to the remote REST Consumer. If enabled, the name used to connect to the remote REST Consumer is checked against the names specified in the certificate returned by the remote broker. Legacy Common Name validation is not performed if Server Certificate Name Validation is enabled, even if Common Name validation is also enabled. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `true`. Available since SEMP API version 2.17.",
+				MarkdownDescription: "Enable or disable the standard TLS authentication mechanism of verifying the name used to connect to the remote REST Consumer. If enabled, the name used to connect to the remote REST Consumer is checked against the names specified in the certificate returned by the remote router. Legacy Common Name validation is not performed if Server Certificate Name Validation is enabled, even if Common Name validation is also enabled. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `true`. Available since SEMP API version 2.17.",
 				Type:                types.BoolType,
 				TerraformType:       tftypes.Bool,
 				Converter:           broker.SimpleConverter[bool]{TerraformType: tftypes.Bool},

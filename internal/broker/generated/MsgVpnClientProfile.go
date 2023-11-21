@@ -71,7 +71,7 @@ func init() {
 				BaseType:            broker.Bool,
 				SempName:            "allowGuaranteedEndpointCreateEnabled",
 				TerraformName:       "allow_guaranteed_endpoint_create_enabled",
-				MarkdownDescription: "Enable or disable allowing clients using the Client Profile to create topic endpoints or queues. Changing this value does not affect existing client connections. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`.",
+				MarkdownDescription: "Enable or disable allowing clients using the Client Profile to create topic endponts or queues. Changing this value does not affect existing client connections. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`.",
 				Type:                types.BoolType,
 				TerraformType:       tftypes.Bool,
 				Converter:           broker.SimpleConverter[bool]{TerraformType: tftypes.Bool},
@@ -275,7 +275,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -318,7 +317,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -369,7 +367,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -412,7 +409,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -463,7 +459,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -506,7 +501,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -557,7 +551,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -600,7 +593,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -651,7 +643,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -694,7 +685,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -745,7 +735,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -788,7 +777,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -839,7 +827,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -882,7 +869,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -933,7 +919,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -976,7 +961,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1027,7 +1011,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 60,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1070,7 +1053,6 @@ func init() {
 								path.MatchRelative().AtParent().AtName("set_value"),
 							),
 						},
-						Default: 80,
 					},
 					{
 						BaseType:            broker.Int64,
@@ -1347,7 +1329,7 @@ func init() {
 				BaseType:            broker.Bool,
 				SempName:            "rejectMsgToSenderOnNoSubscriptionMatchEnabled",
 				TerraformName:       "reject_msg_to_sender_on_no_subscription_match_enabled",
-				MarkdownDescription: "Enable or disable the sending of a negative acknowledgment (NACK) to a client using the Client Profile when discarding a guaranteed message due to no matching subscription found. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`. Available since SEMP API version 2.2.",
+				MarkdownDescription: "Enable or disable the sending of a negative acknowledgement (NACK) to a client using the Client Profile when discarding a guaranteed message due to no matching subscription found. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`. Available since SEMP API version 2.2.",
 				Type:                types.BoolType,
 				TerraformType:       tftypes.Bool,
 				Converter:           broker.SimpleConverter[bool]{TerraformType: tftypes.Bool},
@@ -1479,7 +1461,7 @@ func init() {
 				BaseType:            broker.Int64,
 				SempName:            "tcpKeepaliveInterval",
 				TerraformName:       "tcp_keepalive_interval",
-				MarkdownDescription: "The amount of time between TCP keepalive retransmissions to a client using the Client Profile when no acknowledgment is received, in seconds. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `1`.",
+				MarkdownDescription: "The amount of time between TCP keepalive retransmissions to a client using the Client Profile when no acknowledgement is received, in seconds. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `1`.",
 				Type:                types.Int64Type,
 				TerraformType:       tftypes.Number,
 				Converter:           broker.IntegerConverter{},
@@ -1505,7 +1487,7 @@ func init() {
 				BaseType:            broker.Int64,
 				SempName:            "tcpMaxWindowSize",
 				TerraformName:       "tcp_max_window_size",
-				MarkdownDescription: "The TCP maximum window size for clients using the Client Profile, in kilobytes. Changes are applied to all existing connections. This setting is ignored on the software broker. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `256`.",
+				MarkdownDescription: "The TCP maximum window size for clients using the Client Profile, in kilobytes. Changes are applied to all existing connections. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `256`.",
 				Type:                types.Int64Type,
 				TerraformType:       tftypes.Number,
 				Converter:           broker.IntegerConverter{},
