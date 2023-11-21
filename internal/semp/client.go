@@ -126,14 +126,14 @@ func (c *Client) RequestWithBody(ctx context.Context, method, url string, body a
 		return nil, err
 	}
 	dumpData(ctx, fmt.Sprintf("%v to %v", request.Method, request.URL), data)
-	rawBody, err := c.doRequest(request)
+	rawBody, err := c.doRequest(ctx, request)
 	if err != nil {
 		return nil, err
 	}
 	return parseResponseAsObject(ctx, request, rawBody)
 }
 
-func (c *Client) doRequest(request *http.Request) ([]byte, error) {
+func (c *Client) doRequest(ctx context.Context, request *http.Request) ([]byte, error) {
 	if !firstRequest {
 		// the value doesn't matter, it is waiting for the value that matters
 		<-c.rateLimiter
@@ -157,6 +157,11 @@ func (c *Client) doRequest(request *http.Request) ([]byte, error) {
 	retryWait := c.retryMinInterval
 	var response *http.Response
 	var err error
+
+	// https://gosamples.dev/connection-reset-by-peer/
+	// Also, remove unnecessary wait after attempts remaining elapsed
+	// https://medium.com/@nate510/don-t-use-go-s-default-http-client-4804cb19f779
+
 loop:
 	for attemptsRemaining != 0 {
 		response, err = c.Do(request)
@@ -178,6 +183,7 @@ loop:
 				return nil, fmt.Errorf("unexpected status %v (%v) during %v to %v, body:\n%s", response.StatusCode, response.Status, request.Method, request.URL, body)
 			}
 		}
+		tflog.Debug(ctx, fmt.Sprintf("===== Request failed, retrying in %v. Attempts remaining: %v =====", retryWait, attemptsRemaining))
 		time.Sleep(retryWait)
 		retryWait *= 2
 		if retryWait > c.retryMaxInterval {
@@ -286,7 +292,7 @@ func (c *Client) RequestWithoutBody(ctx context.Context, method, url string) (ma
 		return nil, err
 	}
 	tflog.Debug(ctx, fmt.Sprintf("===== %v to %v =====", request.Method, request.URL))
-	rawBody, err := c.doRequest(request)
+	rawBody, err := c.doRequest(ctx, request)
 	if err != nil {
 		return nil, err
 	}
@@ -298,7 +304,7 @@ func (c *Client) RequestWithoutBodyForGenerator(ctx context.Context, basePath st
 	if err != nil {
 		return nil, err
 	}
-	rawBody, err := c.doRequest(request)
+	rawBody, err := c.doRequest(ctx, request)
 	if err != nil {
 		return nil, err
 	}
