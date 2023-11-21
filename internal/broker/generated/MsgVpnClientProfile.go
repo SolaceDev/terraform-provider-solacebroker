@@ -30,7 +30,7 @@ import (
 func init() {
 	info := broker.EntityInputs{
 		TerraformName:       "msg_vpn_client_profile",
-		MarkdownDescription: "Client Profiles are used to assign common configuration properties to clients that have been successfully authorized.\n\n\nAttribute|Identifying|Write-Only|Deprecated|Opaque\n:---|:---:|:---:|:---:|:---:\nallow_cut_through_forwarding_enabled|||x|\napi_queue_management_copy_from_on_create_name|||x|\napi_topic_endpoint_management_copy_from_on_create_name|||x|\nclient_profile_name|x|||\nmsg_vpn_name|x|||\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"vpn/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.0.",
+		MarkdownDescription: "Client Profiles are used to assign common configuration properties to clients that have been successfully authorized.\n\n\nAttribute|Identifying|Deprecated\n:---|:---:|:---:\nallow_cut_through_forwarding_enabled||x\napi_queue_management_copy_from_on_create_name||x\napi_topic_endpoint_management_copy_from_on_create_name||x\nclient_profile_name|x|\nmsg_vpn_name|x|\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"vpn/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.0.",
 		ObjectType:          broker.StandardObject,
 		PathTemplate:        "/msgVpns/{msgVpnName}/clientProfiles/{clientProfileName}",
 		Version:             0,
@@ -1334,7 +1334,7 @@ func init() {
 				BaseType:            broker.Int64,
 				SempName:            "queueGuaranteed1MinMsgBurst",
 				TerraformName:       "queue_guaranteed1_min_msg_burst",
-				MarkdownDescription: "The number of messages that are always allowed entry into the \"Guaranteed 1\" (G-3) priority queue, regardless of the `queue_guaranteed1_max_depth` value. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `255`.",
+				MarkdownDescription: "The number of messages that are always allowed entry into the \"Guaranteed 1\" (G-1) priority queue, regardless of the `queue_guaranteed1_max_depth` value. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `255`.",
 				Type:                types.Int64Type,
 				TerraformType:       tftypes.Number,
 				Converter:           broker.IntegerConverter{},
@@ -1438,19 +1438,6 @@ func init() {
 			},
 			{
 				BaseType:            broker.Int64,
-				SempName:            "tcpCongestionWindowSize",
-				TerraformName:       "tcp_congestion_window_size",
-				MarkdownDescription: "The TCP initial congestion window size for clients using the Client Profile, in multiples of the TCP Maximum Segment Size (MSS). Changing the value from its default of 2 results in non-compliance with RFC 2581. Contact support before changing this value. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `2`.",
-				Type:                types.Int64Type,
-				TerraformType:       tftypes.Number,
-				Converter:           broker.IntegerConverter{},
-				Int64Validators: []validator.Int64{
-					int64validator.Between(2, 7826),
-				},
-				Default: 2,
-			},
-			{
-				BaseType:            broker.Int64,
 				SempName:            "tcpKeepaliveCount",
 				TerraformName:       "tcp_keepalive_count",
 				MarkdownDescription: "The number of TCP keepalive retransmissions to a client using the Client Profile before declaring that it is not available. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `5`.",
@@ -1500,19 +1487,6 @@ func init() {
 					int64validator.Between(256, 1460),
 				},
 				Default: 1460,
-			},
-			{
-				BaseType:            broker.Int64,
-				SempName:            "tcpMaxWindowSize",
-				TerraformName:       "tcp_max_window_size",
-				MarkdownDescription: "The TCP maximum window size for clients using the Client Profile, in kilobytes. Changes are applied to all existing connections. This setting is ignored on the software broker. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `256`.",
-				Type:                types.Int64Type,
-				TerraformType:       tftypes.Number,
-				Converter:           broker.IntegerConverter{},
-				Int64Validators: []validator.Int64{
-					int64validator.Between(16, 65536),
-				},
-				Default: 256,
 			},
 			{
 				BaseType:            broker.Bool,

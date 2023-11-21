@@ -30,7 +30,7 @@ import (
 func init() {
 	info := broker.EntityInputs{
 		TerraformName:       "dmr_cluster_link",
-		MarkdownDescription: "A Link connects nodes (either within a Cluster or between two different Clusters) and allows them to exchange topology information, subscriptions and data.\n\n\nAttribute|Identifying|Write-Only|Deprecated|Opaque\n:---|:---:|:---:|:---:|:---:\nauthentication_basic_password||x||x\ndmr_cluster_name|x|||\nremote_node_name|x|||\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"global/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.11.",
+		MarkdownDescription: "A Link connects nodes (either within a Cluster or between two different Clusters) and allows them to exchange topology information, subscriptions and data.\n\n\nAttribute|Identifying|Write-Only|Opaque\n:---|:---:|:---:|:---:\nauthentication_basic_password||x|x\ndmr_cluster_name|x||\nremote_node_name|x||\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"global/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.11.",
 		ObjectType:          broker.StandardObject,
 		PathTemplate:        "/dmrClusters/{dmrClusterName}/links/{remoteNodeName}",
 		Version:             0,
@@ -192,7 +192,7 @@ func init() {
 				BaseType:            broker.Int64,
 				SempName:            "clientProfileQueueGuaranteed1MinMsgBurst",
 				TerraformName:       "client_profile_queue_guaranteed1_min_msg_burst",
-				MarkdownDescription: "The number of messages that are always allowed entry into the \"Guaranteed 1\" (G-3) priority queue, regardless of the `client_profile_queue_guaranteed1_max_depth` value. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `255`.",
+				MarkdownDescription: "The number of messages that are always allowed entry into the \"Guaranteed 1\" (G-1) priority queue, regardless of the `client_profile_queue_guaranteed1_max_depth` value. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `255`.",
 				Type:                types.Int64Type,
 				TerraformType:       tftypes.Number,
 				Converter:           broker.IntegerConverter{},
@@ -200,19 +200,6 @@ func init() {
 					int64validator.Between(0, 262144),
 				},
 				Default: 255,
-			},
-			{
-				BaseType:            broker.Int64,
-				SempName:            "clientProfileTcpCongestionWindowSize",
-				TerraformName:       "client_profile_tcp_congestion_window_size",
-				MarkdownDescription: "The TCP initial congestion window size, in multiples of the TCP Maximum Segment Size (MSS). Changing the value from its default of 2 results in non-compliance with RFC 2581. Contact support before changing this value. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `2`.",
-				Type:                types.Int64Type,
-				TerraformType:       tftypes.Number,
-				Converter:           broker.IntegerConverter{},
-				Int64Validators: []validator.Int64{
-					int64validator.Between(2, 7826),
-				},
-				Default: 2,
 			},
 			{
 				BaseType:            broker.Int64,
@@ -265,19 +252,6 @@ func init() {
 					int64validator.Between(256, 1460),
 				},
 				Default: 1460,
-			},
-			{
-				BaseType:            broker.Int64,
-				SempName:            "clientProfileTcpMaxWindowSize",
-				TerraformName:       "client_profile_tcp_max_window_size",
-				MarkdownDescription: "The TCP maximum window size, in kilobytes. Changes are applied to all existing connections. This setting is ignored on the software broker. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `256`.",
-				Type:                types.Int64Type,
-				TerraformType:       tftypes.Number,
-				Converter:           broker.IntegerConverter{},
-				Int64Validators: []validator.Int64{
-					int64validator.Between(16, 65536),
-				},
-				Default: 256,
 			},
 			{
 				BaseType:            broker.String,
