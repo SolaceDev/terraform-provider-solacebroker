@@ -16,4 +16,4 @@
 
 package main
 
-const version = "2.34.0"
+const version = "2.34.1"
