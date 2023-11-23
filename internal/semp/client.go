@@ -19,11 +19,11 @@ package semp
 import (
 	"bytes"
 	"context"
-	"crypto/tls"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
+	"math"
 	"net/http"
 	"net/http/cookiejar"
 	"strings"
@@ -41,6 +41,12 @@ var (
 var cookieJar, _ = cookiejar.New(nil)
 
 var firstRequest = true
+
+type retryableTransport struct {
+	transport http.RoundTripper
+}
+
+const RetryCount = 6
 
 type Client struct {
 	*http.Client
@@ -87,14 +93,82 @@ func RequestLimits(requestTimeoutDuration, requestMinInterval time.Duration) Opt
 	}
 }
 
+func backoff(retries int) time.Duration {
+	return time.Duration(math.Pow(2, float64(retries))) * time.Second
+}
+
+func shouldRetry(err error, resp *http.Response) bool {
+	if err != nil {
+		return true
+	}
+
+	if resp.StatusCode == http.StatusBadGateway ||
+		resp.StatusCode == http.StatusServiceUnavailable ||
+		resp.StatusCode == http.StatusGatewayTimeout {
+		return true
+	}
+
+	return false
+}
+
+func drainBody(resp *http.Response) {
+	if resp.Body != nil {
+		io.Copy(io.Discard, resp.Body)
+		resp.Body.Close()
+	}
+}
+
+func (t *retryableTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	// Clone the request body
+	var bodyBytes []byte
+	if req.Body != nil {
+		bodyBytes, _ = io.ReadAll(req.Body)
+		req.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
+	}
+
+	// Send the request
+	resp, err := t.transport.RoundTrip(req)
+
+	// Retry logic
+	retries := 0
+	for shouldRetry(err, resp) && retries < RetryCount {
+		// Wait for the specified backoff period
+		tm := backoff(retries)
+		fmt.Println("Retrying after sleeping for " + tm.String())
+		time.Sleep(tm)
+
+		// We're going to retry, consume any response to reuse the connection.
+		if resp != nil {
+			drainBody(resp)
+		}
+
+		// Clone the request body again
+		if req.Body != nil {
+			req.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
+		}
+
+		// Retry the request
+		resp, err = t.transport.RoundTrip(req)
+
+		retries++
+	}
+
+	// Return the response
+	return resp, err
+}
+
 func NewClient(url string, insecure_skip_verify bool, cookiejar http.CookieJar, options ...Option) *Client {
-	customTransport := http.DefaultTransport.(*http.Transport)
-	customTransport.TLSClientConfig = &tls.Config{InsecureSkipVerify: insecure_skip_verify}
+	transport := &retryableTransport{
+		transport: http.DefaultTransport,
+	}
+	// transport := http.DefaultTransport.(*http.Transport)
+	// transport.transport.TLSClientConfig = &tls.Config{InsecureSkipVerify: insecure_skip_verify}
+	httpClient := http.DefaultClient
+	httpClient.Transport = transport
+	httpClient.Jar = cookiejar
+	httpClient.Timeout = time.Second * 120
 	client := &Client{
-		Client: &http.Client{
-			Transport: customTransport,
-			Jar:       cookiejar,
-		},
+		Client:           httpClient,
 		url:              url,
 		retries:          3,
 		retryMinInterval: time.Second,
@@ -161,6 +235,7 @@ func (c *Client) doRequest(ctx context.Context, request *http.Request) ([]byte, 
 	// https://gosamples.dev/connection-reset-by-peer/
 	// Also, remove unnecessary wait after attempts remaining elapsed
 	// https://medium.com/@nate510/don-t-use-go-s-default-http-client-4804cb19f779
+	// https://medium.com/@kdthedeveloper/golang-http-retries-fbf7abacbe27
 
 loop:
 	for attemptsRemaining != 0 {
