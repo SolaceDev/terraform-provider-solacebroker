@@ -29,7 +29,7 @@ import (
 func init() {
 	info := broker.EntityInputs{
 		TerraformName:       "msg_vpn_kafka_sender_queue_binding",
-		MarkdownDescription: "A Queue Binding sends messages from a local Solace Queue to a remote Kafka topic.\n\n\nAttribute|Identifying|Write-Only|Deprecated|Opaque\n:---|:---:|:---:|:---:|:---:\nkafka_sender_name|x|||\nmsg_vpn_name|x|||\nqueue_name|x|||\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"vpn/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.36.",
+		MarkdownDescription: "A Queue Binding sends messages from a local Solace Queue to a remote Kafka topic.\n\n\nAttribute|Identifying\n:---|:---:\nkafka_sender_name|x\nmsg_vpn_name|x\nqueue_name|x\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"vpn/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.36.",
 		ObjectType:          broker.StandardObject,
 		PathTemplate:        "/msgVpns/{msgVpnName}/kafkaSenders/{kafkaSenderName}/queueBindings/{queueName}",
 		Version:             0,
@@ -169,7 +169,7 @@ func init() {
 				BaseType:            broker.String,
 				SempName:            "remoteKey",
 				TerraformName:       "remote_key",
-				MarkdownDescription: "The Substitution Expression used to generate the key for each message sent to Kafka. This expression can include fields extracted from the metadata of each individual Solace message as it is taken from the Solace Queue.\n\nIf empty, no key is included for each message as it is published into Kafka. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`.",
+				MarkdownDescription: "The Substitution Expression used to generate the key for each message sent to Kafka. This expression can include fields extracted from the metadata of each individual Solace message as it is taken from the Solace Queue.\n\nIf empty, no key is included for each message as it is published into Kafka.\n\nModifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`.",
 				Type:                types.StringType,
 				TerraformType:       tftypes.String,
 				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
@@ -182,7 +182,7 @@ func init() {
 				BaseType:            broker.String,
 				SempName:            "remoteTopic",
 				TerraformName:       "remote_topic",
-				MarkdownDescription: "The Kafka Topic on the Kafka Cluster to send each message taken from the Solace Queue to.\n\nIf empty, the Queue Binding will not be operational. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`.",
+				MarkdownDescription: "The Kafka Topic on the Kafka Cluster to send each message taken from the Solace Queue to.\n\nIf empty, the Queue Binding will not be operational.\n\nModifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`.",
 				Type:                types.StringType,
 				TerraformType:       tftypes.String,
 				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
