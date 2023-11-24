@@ -19,11 +19,12 @@ package semp
 import (
 	"bytes"
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
-	"math"
+	"github.com/hashicorp/go-retryablehttp"
 	"net/http"
 	"net/http/cookiejar"
 	"strings"
@@ -42,14 +43,8 @@ var cookieJar, _ = cookiejar.New(nil)
 
 var firstRequest = true
 
-type retryableTransport struct {
-	transport http.RoundTripper
-}
-
-const RetryCount = 6
-
 type Client struct {
-	*http.Client
+	*retryablehttp.Client
 	url                string
 	username           string
 	password           string
@@ -88,87 +83,19 @@ func Retries(numRetries uint, retryMinInterval, retryMaxInterval time.Duration) 
 
 func RequestLimits(requestTimeoutDuration, requestMinInterval time.Duration) Option {
 	return func(client *Client) {
-		client.Client.Timeout = requestTimeoutDuration
+		// client.Client.Timeout = requestTimeoutDuration
 		client.requestMinInterval = requestMinInterval
 	}
 }
 
-func backoff(retries int) time.Duration {
-	return time.Duration(math.Pow(2, float64(retries))) * time.Second
-}
-
-func shouldRetry(err error, resp *http.Response) bool {
-	if err != nil {
-		return true
-	}
-
-	if resp.StatusCode == http.StatusBadGateway ||
-		resp.StatusCode == http.StatusServiceUnavailable ||
-		resp.StatusCode == http.StatusGatewayTimeout {
-		return true
-	}
-
-	return false
-}
-
-func drainBody(resp *http.Response) {
-	if resp.Body != nil {
-		io.Copy(io.Discard, resp.Body)
-		resp.Body.Close()
-	}
-}
-
-func (t *retryableTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	// Clone the request body
-	var bodyBytes []byte
-	if req.Body != nil {
-		bodyBytes, _ = io.ReadAll(req.Body)
-		req.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
-	}
-
-	// Send the request
-	resp, err := t.transport.RoundTrip(req)
-
-	// Retry logic
-	retries := 0
-	for shouldRetry(err, resp) && retries < RetryCount {
-		// Wait for the specified backoff period
-		tm := backoff(retries)
-		fmt.Println("Retrying after sleeping for " + tm.String())
-		time.Sleep(tm)
-
-		// We're going to retry, consume any response to reuse the connection.
-		if resp != nil {
-			drainBody(resp)
-		}
-
-		// Clone the request body again
-		if req.Body != nil {
-			req.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
-		}
-
-		// Retry the request
-		resp, err = t.transport.RoundTrip(req)
-
-		retries++
-	}
-
-	// Return the response
-	return resp, err
-}
-
 func NewClient(url string, insecure_skip_verify bool, cookiejar http.CookieJar, options ...Option) *Client {
-	transport := &retryableTransport{
-		transport: http.DefaultTransport,
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: insecure_skip_verify},
 	}
-	// transport := http.DefaultTransport.(*http.Transport)
-	// transport.transport.TLSClientConfig = &tls.Config{InsecureSkipVerify: insecure_skip_verify}
-	httpClient := http.DefaultClient
-	httpClient.Transport = transport
-	httpClient.Jar = cookiejar
-	httpClient.Timeout = time.Second * 120
+	retryClient := retryablehttp.NewClient()
+	retryClient.HTTPClient.Transport = tr
 	client := &Client{
-		Client:           httpClient,
+		Client:           retryClient,
 		url:              url,
 		retries:          3,
 		retryMinInterval: time.Second,
@@ -186,7 +113,7 @@ func NewClient(url string, insecure_skip_verify bool, cookiejar http.CookieJar, 
 		close(ch)
 		client.rateLimiter = ch
 	}
-
+	firstRequest = true
 	return client
 }
 
@@ -195,7 +122,7 @@ func (c *Client) RequestWithBody(ctx context.Context, method, url string, body a
 	if err != nil {
 		return nil, err
 	}
-	request, err := http.NewRequestWithContext(ctx, method, c.url+url, bytes.NewBuffer(data))
+	request, err := retryablehttp.NewRequestWithContext(ctx, method, c.url+url, bytes.NewBuffer(data))
 	if err != nil {
 		return nil, err
 	}
@@ -207,7 +134,7 @@ func (c *Client) RequestWithBody(ctx context.Context, method, url string, body a
 	return parseResponseAsObject(ctx, request, rawBody)
 }
 
-func (c *Client) doRequest(ctx context.Context, request *http.Request) ([]byte, error) {
+func (c *Client) doRequest(ctx context.Context, request *retryablehttp.Request) ([]byte, error) {
 	if !firstRequest {
 		// the value doesn't matter, it is waiting for the value that matters
 		<-c.rateLimiter
@@ -280,7 +207,7 @@ loop:
 	return rawBody, nil
 }
 
-func parseResponseAsObject(ctx context.Context, request *http.Request, dataResponse []byte) (map[string]any, error) {
+func parseResponseAsObject(ctx context.Context, request *retryablehttp.Request, dataResponse []byte) (map[string]any, error) {
 	data := map[string]any{}
 	err := json.Unmarshal(dataResponse, &data)
 	if err != nil {
@@ -314,7 +241,7 @@ func parseResponseAsObject(ctx context.Context, request *http.Request, dataRespo
 	return nil, fmt.Errorf("could not parse response details from %v to %v, response body was:\n%s", request.Method, request.URL, dataResponse)
 }
 
-func parseResponseForGenerator(c *Client, ctx context.Context, basePath string, method string, request *http.Request, dataResponse []byte, appendToResult []map[string]any) ([]map[string]any, error) {
+func parseResponseForGenerator(c *Client, ctx context.Context, basePath string, method string, request *retryablehttp.Request, dataResponse []byte, appendToResult []map[string]any) ([]map[string]any, error) {
 	data := map[string]any{}
 	err := json.Unmarshal(dataResponse, &data)
 	if err != nil {
@@ -362,7 +289,7 @@ func parseResponseForGenerator(c *Client, ctx context.Context, basePath string, 
 }
 
 func (c *Client) RequestWithoutBody(ctx context.Context, method, url string) (map[string]interface{}, error) {
-	request, err := http.NewRequestWithContext(ctx, method, c.url+url, nil)
+	request, err := retryablehttp.NewRequestWithContext(ctx, method, c.url+url, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -375,7 +302,7 @@ func (c *Client) RequestWithoutBody(ctx context.Context, method, url string) (ma
 }
 
 func (c *Client) RequestWithoutBodyForGenerator(ctx context.Context, basePath string, method string, url string, appendToResult []map[string]any) ([]map[string]interface{}, error) {
-	request, err := http.NewRequestWithContext(ctx, method, c.url+url, nil)
+	request, err := retryablehttp.NewRequestWithContext(ctx, method, c.url+url, nil)
 	if err != nil {
 		return nil, err
 	}
