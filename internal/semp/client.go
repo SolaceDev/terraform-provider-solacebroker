@@ -168,22 +168,11 @@ func (c *Client) doRequest(ctx context.Context, request *http.Request) ([]byte, 
 	// https://medium.com/@nate510/don-t-use-go-s-default-http-client-4804cb19f779
 	// https://medium.com/@kdthedeveloper/golang-http-retries-fbf7abacbe27
 
+	// requires error translation
+
 	response, err = c.StandardClient().Do(request)
 	if err != nil {
 		response = nil // make sure response is nil
-	} else {
-		switch response.StatusCode {
-			case http.StatusOK:
-					// Normal case, do npothing
-			case http.StatusTooManyRequests:
-				// ignore the too many requests body and any errors that happen while reading it
-				_, _ = io.ReadAll(response.Body)
-				// just continue
-			default:
-				// ignore errors while reading the error response body
-				body, _ := io.ReadAll(response.Body)
-				return nil, fmt.Errorf("unexpected status %v (%v) during %v to %v, body:\n%s", response.StatusCode, response.Status, request.Method, request.URL, body)
-		}
 	}
 	if response == nil {
 		return nil, err
