@@ -25,6 +25,7 @@ import (
 	"net/url"
 	"path/filepath"
 	"strings"
+	"sync"
 
 	"github.com/hashicorp/go-version"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
@@ -62,6 +63,7 @@ var (
 var (
 	skipApiCheck      = false
 	apiAlreadyChecked = false
+	lock sync.Mutex
 )
 
 func newBrokerResource(inputs EntityInputs) brokerEntity[schema.Schema] {
@@ -85,6 +87,11 @@ func forceBrokerRequirementsCheck() {
 
 func checkBrokerRequirements(ctx context.Context, client *semp.Client) error {
 	if !skipApiCheck && !apiAlreadyChecked {
+		lock.Lock()
+		defer lock.Unlock()
+		if apiAlreadyChecked {
+			return nil
+		}
 		path := "/about/api"
 		result, err := client.RequestWithoutBody(ctx, http.MethodGet, path)
 		if err != nil {

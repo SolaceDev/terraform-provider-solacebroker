@@ -53,6 +53,7 @@ type Client struct {
 	retryMinInterval   time.Duration
 	retryMaxInterval   time.Duration
 	requestMinInterval time.Duration
+	requestTimeout     time.Duration
 	rateLimiter        <-chan time.Time
 }
 
@@ -83,7 +84,7 @@ func Retries(numRetries uint, retryMinInterval, retryMaxInterval time.Duration) 
 
 func RequestLimits(requestTimeoutDuration, requestMinInterval time.Duration) Option {
 	return func(client *Client) {
-		// client.Client.Timeout = requestTimeoutDuration
+		client.requestTimeout = requestTimeoutDuration
 		client.requestMinInterval = requestMinInterval
 	}
 }
@@ -104,6 +105,11 @@ func NewClient(url string, insecure_skip_verify bool, cookiejar http.CookieJar, 
 	for _, o := range options {
 		o(client)
 	}
+	client.Client.RetryMax = int(client.retries)
+	client.Client.RetryWaitMin = client.retryMinInterval
+	client.Client.RetryWaitMax = client.retryMaxInterval
+	client.HTTPClient.Timeout = client.requestTimeout
+	client.HTTPClient.Jar = cookiejar
 	if client.requestMinInterval > 0 {
 		client.rateLimiter = time.NewTicker(client.requestMinInterval).C
 	} else {
@@ -122,7 +128,7 @@ func (c *Client) RequestWithBody(ctx context.Context, method, url string, body a
 	if err != nil {
 		return nil, err
 	}
-	request, err := retryablehttp.NewRequestWithContext(ctx, method, c.url+url, bytes.NewBuffer(data))
+	request, err := http.NewRequestWithContext(ctx, method, c.url+url, bytes.NewBuffer(data))
 	if err != nil {
 		return nil, err
 	}
@@ -134,7 +140,7 @@ func (c *Client) RequestWithBody(ctx context.Context, method, url string, body a
 	return parseResponseAsObject(ctx, request, rawBody)
 }
 
-func (c *Client) doRequest(ctx context.Context, request *retryablehttp.Request) ([]byte, error) {
+func (c *Client) doRequest(ctx context.Context, request *http.Request) ([]byte, error) {
 	if !firstRequest {
 		// the value doesn't matter, it is waiting for the value that matters
 		<-c.rateLimiter
@@ -154,8 +160,6 @@ func (c *Client) doRequest(ctx context.Context, request *retryablehttp.Request) 
 	} else {
 		return nil, fmt.Errorf("either username or bearer token must be provided to access the broker")
 	}
-	attemptsRemaining := c.retries + 1
-	retryWait := c.retryMinInterval
 	var response *http.Response
 	var err error
 
@@ -164,17 +168,13 @@ func (c *Client) doRequest(ctx context.Context, request *retryablehttp.Request) 
 	// https://medium.com/@nate510/don-t-use-go-s-default-http-client-4804cb19f779
 	// https://medium.com/@kdthedeveloper/golang-http-retries-fbf7abacbe27
 
-loop:
-	for attemptsRemaining != 0 {
-		response, err = c.Do(request)
-		if err != nil {
-			response = nil // make sure response is nil
-		} else {
-			switch response.StatusCode {
+	response, err = c.StandardClient().Do(request)
+	if err != nil {
+		response = nil // make sure response is nil
+	} else {
+		switch response.StatusCode {
 			case http.StatusOK:
-				break loop
-			case http.StatusBadRequest:
-				break loop
+					// Normal case, do npothing
 			case http.StatusTooManyRequests:
 				// ignore the too many requests body and any errors that happen while reading it
 				_, _ = io.ReadAll(response.Body)
@@ -183,15 +183,7 @@ loop:
 				// ignore errors while reading the error response body
 				body, _ := io.ReadAll(response.Body)
 				return nil, fmt.Errorf("unexpected status %v (%v) during %v to %v, body:\n%s", response.StatusCode, response.Status, request.Method, request.URL, body)
-			}
 		}
-		tflog.Debug(ctx, fmt.Sprintf("===== Request failed, retrying in %v. Attempts remaining: %v =====", retryWait, attemptsRemaining))
-		time.Sleep(retryWait)
-		retryWait *= 2
-		if retryWait > c.retryMaxInterval {
-			retryWait = c.retryMaxInterval
-		}
-		attemptsRemaining--
 	}
 	if response == nil {
 		return nil, err
@@ -207,7 +199,7 @@ loop:
 	return rawBody, nil
 }
 
-func parseResponseAsObject(ctx context.Context, request *retryablehttp.Request, dataResponse []byte) (map[string]any, error) {
+func parseResponseAsObject(ctx context.Context, request *http.Request, dataResponse []byte) (map[string]any, error) {
 	data := map[string]any{}
 	err := json.Unmarshal(dataResponse, &data)
 	if err != nil {
@@ -241,7 +233,7 @@ func parseResponseAsObject(ctx context.Context, request *retryablehttp.Request, 
 	return nil, fmt.Errorf("could not parse response details from %v to %v, response body was:\n%s", request.Method, request.URL, dataResponse)
 }
 
-func parseResponseForGenerator(c *Client, ctx context.Context, basePath string, method string, request *retryablehttp.Request, dataResponse []byte, appendToResult []map[string]any) ([]map[string]any, error) {
+func parseResponseForGenerator(c *Client, ctx context.Context, basePath string, method string, request *http.Request, dataResponse []byte, appendToResult []map[string]any) ([]map[string]any, error) {
 	data := map[string]any{}
 	err := json.Unmarshal(dataResponse, &data)
 	if err != nil {
@@ -289,7 +281,7 @@ func parseResponseForGenerator(c *Client, ctx context.Context, basePath string, 
 }
 
 func (c *Client) RequestWithoutBody(ctx context.Context, method, url string) (map[string]interface{}, error) {
-	request, err := retryablehttp.NewRequestWithContext(ctx, method, c.url+url, nil)
+	request, err := http.NewRequestWithContext(ctx, method, c.url+url, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -302,7 +294,7 @@ func (c *Client) RequestWithoutBody(ctx context.Context, method, url string) (ma
 }
 
 func (c *Client) RequestWithoutBodyForGenerator(ctx context.Context, basePath string, method string, url string, appendToResult []map[string]any) ([]map[string]interface{}, error) {
-	request, err := retryablehttp.NewRequestWithContext(ctx, method, c.url+url, nil)
+	request, err := http.NewRequestWithContext(ctx, method, c.url+url, nil)
 	if err != nil {
 		return nil, err
 	}
