@@ -69,6 +69,13 @@ jobs:
           rm terraform.tfstate*
           terraform import solacebroker_msg_vpn.newone new
           popd
+          # larger config
+          pushd ci/bigtest
+          terraform plan
+          terraform apply -auto-approve
+          terraform plan
+          terraform destroy -auto-approve
+          popd
 
       # - name: Check changed files
       #   uses: tj-actions/verify-changed-files@v14
