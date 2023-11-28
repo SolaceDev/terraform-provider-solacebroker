@@ -30,7 +30,7 @@ import (
 func init() {
 	info := broker.EntityInputs{
 		TerraformName:       "msg_vpn_kafka_receiver",
-		MarkdownDescription: "A Kafka Receiver receives messages from a Kafka Cluster.\n\nWARNING: This feature is in BETA with limited scalability and no production support. Configuration may change or be eliminated by future upgrades.\n\n\nAttribute|Identifying|Write-Only|Deprecated|Opaque\n:---|:---:|:---:|:---:|:---:\nauthentication_basic_password||x||x\nauthentication_client_cert_content||x||x\nauthentication_client_cert_password||x||\nauthentication_oauth_client_secret||x||x\nauthentication_scram_password||x||x\nkafka_receiver_name|x|||\nmsg_vpn_name|x|||\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"vpn/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.36.",
+		MarkdownDescription: "A Kafka Receiver receives messages from a Kafka Cluster.\n\nWARNING: This feature is in BETA with limited scalability and no production support. Configuration may change or be eliminated by future upgrades.\n\n\nAttribute|Identifying|Write-Only|Opaque\n:---|:---:|:---:|:---:\nauthentication_basic_password||x|x\nauthentication_client_cert_content||x|x\nauthentication_client_cert_password||x|\nauthentication_oauth_client_secret||x|x\nauthentication_scram_password||x|x\nkafka_receiver_name|x||\nmsg_vpn_name|x||\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"vpn/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.36.",
 		ObjectType:          broker.StandardObject,
 		PathTemplate:        "/msgVpns/{msgVpnName}/kafkaReceivers/{kafkaReceiverName}",
 		Version:             0,
