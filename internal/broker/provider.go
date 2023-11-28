@@ -105,13 +105,19 @@ func (p *BrokerProvider) Configure(ctx context.Context, req provider.ConfigureRe
 	if resp.Diagnostics.HasError() {
 		return
 	}
-
 	ctx = tflog.SetField(ctx, "solacebroker_url", strings.Trim(config.Url.String(), "\""))
 	ctx = tflog.SetField(ctx, "solacebroker_provider_version", p.Version)
+	tflog.Debug(ctx, "Creating SEMP client")
+	client, d := client(&config)
+	if d != nil {
+		resp.Diagnostics.Append(d)
+		if resp.Diagnostics.HasError() {
+			return
+		}
+	}
 	tflog.Info(ctx, "Solacebroker provider client config success")
-
-	resp.ResourceData = &config
-	resp.DataSourceData = &config
+	resp.ResourceData = client
+	resp.DataSourceData = client
 	forceBrokerRequirementsCheck()
 }
 
