@@ -345,8 +345,6 @@ func (r *brokerResource) Read(ctx context.Context, request resource.ReadRequest,
 		if errors.Is(err, semp.ErrResourceNotFound) {
 			tflog.Info(ctx, fmt.Sprintf("Detected missing resource %v, removing from state", sempPath))
 			response.State.RemoveResource(ctx)
-		} else if err == semp.ErrAPIUnreachable {
-			addErrorToDiagnostics(&response.Diagnostics, fmt.Sprintf("SEMP call failed. HOST not reachable. %v", sempPath), err)
 		} else {
 			addErrorToDiagnostics(&response.Diagnostics, "SEMP call failed", err)
 		}
@@ -464,10 +462,7 @@ func (r *brokerResource) Delete(ctx context.Context, request resource.DeleteRequ
 	// request delete
 	_, err = client.RequestWithoutBody(ctx, http.MethodDelete, path)
 	if err != nil {
-		if err == semp.ErrAPIUnreachable {
-			addErrorToDiagnostics(&response.Diagnostics, fmt.Sprintf("SEMP call failed. HOST not reachable. %v", path), err)
-			return
-		} else if !errors.Is(err, semp.ErrResourceNotFound) {
+		if !errors.Is(err, semp.ErrResourceNotFound) {
 			addErrorToDiagnostics(&response.Diagnostics, "SEMP call failed", err)
 			return
 		}

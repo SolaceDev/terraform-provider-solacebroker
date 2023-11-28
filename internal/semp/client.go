@@ -36,7 +36,6 @@ import (
 var (
 	ErrResourceNotFound = errors.New("Resource not found")
 	ErrBadRequest       = errors.New("Bad request")
-	ErrAPIUnreachable   = errors.New("SEMP API unreachable")
 )
 
 var cookieJar, _ = cookiejar.New(nil)
@@ -92,6 +91,7 @@ func RequestLimits(requestTimeoutDuration, requestMinInterval time.Duration) Opt
 func NewClient(url string, insecure_skip_verify bool, cookiejar http.CookieJar, options ...Option) *Client {
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: insecure_skip_verify},
+		MaxIdleConnsPerHost: 10,
 	}
 	retryClient := retryablehttp.NewClient()
 	retryClient.HTTPClient.Transport = tr
@@ -162,29 +162,18 @@ func (c *Client) doRequest(ctx context.Context, request *http.Request) ([]byte, 
 	}
 	var response *http.Response
 	var err error
-
-	// https://gosamples.dev/connection-reset-by-peer/
-	// Also, remove unnecessary wait after attempts remaining elapsed
-	// https://medium.com/@nate510/don-t-use-go-s-default-http-client-4804cb19f779
-	// https://medium.com/@kdthedeveloper/golang-http-retries-fbf7abacbe27
-
-	// requires error translation
-
 	response, err = c.StandardClient().Do(request)
-	if err != nil {
-		response = nil // make sure response is nil
-	}
-	if response == nil {
+	if err != nil || response == nil {
 		return nil, err
 	}
-	rawBody, _ := io.ReadAll(response.Body)
-	if response.StatusCode != http.StatusOK && response.StatusCode != http.StatusBadRequest {
+	defer response.Body.Close()
+	rawBody, err := io.ReadAll(response.Body)
+	if err != nil || (response.StatusCode != http.StatusOK && response.StatusCode != http.StatusBadRequest) {
 		return nil, fmt.Errorf("could not perform request: status %v (%v) during %v to %v, response body:\n%s", response.StatusCode, response.Status, request.Method, request.URL, rawBody)
 	}
 	if _, err := io.Copy(io.Discard, response.Body); err != nil {
-		return nil, fmt.Errorf("could not perform request: status %v (%v) during %v to %v, response body:\n%s", response.StatusCode, response.Status, request.Method, request.URL, rawBody)
+		return nil, fmt.Errorf("response processing error: during %v to %v", request.Method, request.URL)
 	}
-	defer response.Body.Close()
 	return rawBody, nil
 }
 
