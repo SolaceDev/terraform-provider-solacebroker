@@ -1812,6 +1812,18 @@ func init() {
 			},
 			{
 				BaseType:            broker.Int64,
+				SempName:            "maxKafkaBrokerConnectionCount",
+				TerraformName:       "max_kafka_broker_connection_count",
+				MarkdownDescription: "The maximum number of simultaneous Kafka broker connections of the Message VPN. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default is the maximum value supported by the platform. Available since SEMP API version 2.39.",
+				Type:                types.Int64Type,
+				TerraformType:       tftypes.Number,
+				Converter:           broker.IntegerConverter{},
+				Int64Validators: []validator.Int64{
+					int64validator.Between(0, 10000),
+				},
+			},
+			{
+				BaseType:            broker.Int64,
 				SempName:            "maxMsgSpoolUsage",
 				TerraformName:       "max_msg_spool_usage",
 				MarkdownDescription: "The maximum message spool usage by the Message VPN, in megabytes. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `0`.",
