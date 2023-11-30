@@ -73,7 +73,3 @@ If empty, no key is included for each message as it is published into Kafka. Mod
 - `remote_topic` (String) The Kafka Topic on the Kafka Cluster to send each message taken from the Solace Queue to.
 
 If empty, the Queue Binding will not be operational. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
-
-### Read-Only
-
-- `id` (String) Identifier attribute, for internal use only.
