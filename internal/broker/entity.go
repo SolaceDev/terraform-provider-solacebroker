@@ -45,7 +45,7 @@ type brokerEntityBase struct {
 	identifyingAttributes []*AttributeInfo
 	attributes            []*AttributeInfo
 	converter             *ObjectConverter
-	client 								*semp.Client
+	client                *semp.Client
 }
 
 func copyMatchingFields(prefix string, in reflect.Value, out reflect.Value) {

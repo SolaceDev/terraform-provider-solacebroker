@@ -23,8 +23,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
 	"github.com/hashicorp/go-retryablehttp"
+	"io"
 	"net/http"
 	"net/http/cookiejar"
 	"strings"
@@ -90,7 +90,7 @@ func RequestLimits(requestTimeoutDuration, requestMinInterval time.Duration) Opt
 
 func NewClient(url string, insecure_skip_verify bool, providerClient bool, options ...Option) *Client {
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: insecure_skip_verify},
+		TLSClientConfig:     &tls.Config{InsecureSkipVerify: insecure_skip_verify},
 		MaxIdleConnsPerHost: 10,
 	}
 	retryClient := retryablehttp.NewClient()

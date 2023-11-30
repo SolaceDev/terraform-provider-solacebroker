@@ -81,7 +81,7 @@ jobs:
         with:
           committer_name: GitHub Actions
           committer_email: actions@github.com
-          message: 'Updating generated source [skip ci]'
+          message: 'Updating generated source'
           add: 'internal/broker/generated/*.go'
           new_branch: GeneratedSourceUpdates-${{ github.ref_name }}
 

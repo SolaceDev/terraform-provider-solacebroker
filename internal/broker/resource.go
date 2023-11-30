@@ -63,7 +63,7 @@ var (
 var (
 	skipApiCheck      = false
 	apiAlreadyChecked = false
-	lock sync.Mutex
+	lock              sync.Mutex
 )
 
 func newBrokerResource(inputs EntityInputs) brokerEntity[schema.Schema] {
