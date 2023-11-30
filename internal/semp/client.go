@@ -88,13 +88,16 @@ func RequestLimits(requestTimeoutDuration, requestMinInterval time.Duration) Opt
 	}
 }
 
-func NewClient(url string, insecure_skip_verify bool, cookiejar http.CookieJar, options ...Option) *Client {
+func NewClient(url string, insecure_skip_verify bool, providerClient bool, options ...Option) *Client {
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: insecure_skip_verify},
 		MaxIdleConnsPerHost: 10,
 	}
 	retryClient := retryablehttp.NewClient()
 	retryClient.HTTPClient.Transport = tr
+	if !providerClient {
+		retryClient.Logger = nil
+	}
 	client := &Client{
 		Client:           retryClient,
 		url:              url,
@@ -109,7 +112,7 @@ func NewClient(url string, insecure_skip_verify bool, cookiejar http.CookieJar, 
 	client.Client.RetryWaitMin = client.retryMinInterval
 	client.Client.RetryWaitMax = client.retryMaxInterval
 	client.HTTPClient.Timeout = client.requestTimeout
-	client.HTTPClient.Jar = cookiejar
+	client.HTTPClient.Jar, _ = cookiejar.New(nil)
 	if client.requestMinInterval > 0 {
 		client.rateLimiter = time.NewTicker(client.requestMinInterval).C
 	} else {

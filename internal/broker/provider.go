@@ -18,7 +18,6 @@ package broker
 
 import (
 	"context"
-	"net/http/cookiejar"
 	"strings"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -31,8 +30,6 @@ import (
 
 var _ provider.Provider = &BrokerProvider{}
 var ProviderVersion string
-
-var Cookiejar, _ = cookiejar.New(nil)
 
 type BrokerProvider struct {
 	Version string
