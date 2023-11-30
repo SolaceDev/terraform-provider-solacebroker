@@ -56,7 +56,3 @@ If empty, no key is included for each message as it is published into Solace. Mo
 - `local_topic` (String) The Substitution Expression used to generate the Solace Topic for each message received from Kafka. This expression can include data extracted from the metadata of each individual Kafka message as it is received from the Kafka Topic.
 
 If empty, the Topic Binding will not be operational. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
-
-### Read-Only
-
-- `id` (String) Identifier attribute, for internal use only.
