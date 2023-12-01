@@ -67,6 +67,9 @@ jobs:
       - name: Check changed files
         uses: tj-actions/verify-changed-files@v16
         id: check-changed-files
+        with:
+          files: |
+            !broker-terraform-provider-generator
 
       - name: Run step only when any of the above files change.
         if: steps.check-changed-files.outputs.files_changed == 'true'
@@ -80,7 +83,7 @@ jobs:
           committer_name: GitHub Actions
           committer_email: actions@github.com
           message: 'Updating generated source'
-          add: 'internal/broker/generated/*.go'
+          add: ". ':!broker-terraform-provider-generator'"
           new_branch: GeneratedSourceUpdates-${{ github.ref_name }}
 
       - name: Create pull request
