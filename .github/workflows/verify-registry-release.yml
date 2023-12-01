@@ -64,8 +64,10 @@ jobs:
           terraform init
           $(find .terraform/ | grep terraform-provider) version | grep ${{ github.event.inputs.release_version }}
           terraform plan
+          sleep 1
           terraform apply -auto-approve
-          terraform delete -auto-approve
+          sleep 1
+          terraform destroy -auto-approve
           popd
 
       - name: Test basic config generator
