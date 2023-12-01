@@ -37,7 +37,7 @@ jobs:
 
       - name: Build provider
         run: |
-          go mod tidy
+          make test-coverage
           make install
           ls ~/go/bin
           terraform-provider-solacebroker -h

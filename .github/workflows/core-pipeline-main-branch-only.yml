@@ -25,11 +25,8 @@ jobs:
 
       - name: Build provider
         run: |
-          go mod tidy
-          go fmt
           make install
           ~/go/bin/terraform-provider-solacebroker version
-          ~/go/bin/terraform-provider-solacebroker help
 
   Plugin-Integration-Test:
     needs: build
