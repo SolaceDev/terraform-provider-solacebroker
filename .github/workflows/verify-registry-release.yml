@@ -58,16 +58,11 @@ jobs:
           cat testconfig.tf
           popd
 
-      - name: Run init
+      - name: Run init and test basic provider
         run: |
           pushd ci/broker_vpn_q
           terraform init
           $(find .terraform/ | grep terraform-provider) version | grep ${{ github.event.inputs.release_version }}
-          popd
-
-      - name: Test basic provider
-        run: |
-          pushd ci/broker_vpn_q
           terraform plan
           terraform apply
           terraform delete
