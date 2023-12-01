@@ -35,12 +35,15 @@ jobs:
       - name: Set up Terraform latest - public
         if: ${{ github.event.inputs.public_release != 'false' }}
         uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: true
 
       - name: Set up Terraform latest - private, with token
         if: ${{ github.event.inputs.public_release == 'false' }}
         uses: hashicorp/setup-terraform@v3
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          terraform_wrapper: true
 
       - name: Setup token and patch provider for private release
         run: |
