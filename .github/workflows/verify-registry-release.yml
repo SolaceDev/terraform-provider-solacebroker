@@ -44,7 +44,7 @@ jobs:
 
       - name: Setup token and patch provider for private release
         run: |
-          cd ci/broker_vpn_q
+          pushd ci/broker_vpn_q
           if [ "${{ github.event.inputs.public_release }}" == "false" ] ; then
             echo Internal release
             sed -i "s@registry.terraform.io/solaceproducts@app.terraform.io/SolaceDev@g" testconfig.tf
@@ -53,20 +53,27 @@ jobs:
           fi
           sed -i '/source = "/a \ \ \ \ \ \ version = "${{ github.event.inputs.release_version }}"' testconfig.tf
           cat testconfig.tf
+          popd
 
       - name: Run init
         run: |
+          pushd ci/broker_vpn_q
           terraform init
           $(find .terraform/ | grep terraform-provider) version | grep ${{ github.event.inputs.release_version }}
+          popd
 
       - name: Test basic provider
         run: |
+          pushd ci/broker_vpn_q
           terraform plan
           terraform apply
           terraform delete
+          popd
 
       - name: Test basic config generator
         run: |
+          pushd ci/broker_vpn_q
           SOLACEBROKER_USERNAME=admin SOLACEBROKER_PASSWORD=admin $(find .terraform/ | grep terraform-provider) generate --url=http://localhost:8080 solacebroker_msg_vpn.test default messageVpn.tf
+          popd
 
 
