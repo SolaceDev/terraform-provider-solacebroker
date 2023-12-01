@@ -1,3 +1,4 @@
+# Launched manually
 on:
   workflow_dispatch:
     inputs:
