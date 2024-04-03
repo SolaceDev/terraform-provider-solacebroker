@@ -129,7 +129,7 @@ This command will create a file my-messagevpn.tf that contains a resource defini
 		var brokerResources []map[string]command.ResourceConfig
 
 		// This will iterate all resources and genarete config for each
-		
+
 		// TODO: evaluate returning error from this function
 		generateConfigForObjectInstances(cmd.Context(), *client, command.BrokerObjectType(brokerResourceTerraformName), providerSpecificIdentifier, nil)
 
