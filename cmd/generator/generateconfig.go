@@ -23,7 +23,6 @@ var rootBrokerObjectResourceName string
 var cachedResources map[string]map[string]interface{}
 var brokerResources []map[string]ResourceConfig
 
-
 func buildResourceTypeAndName(brokerObjectType BrokerObjectType, resourceInstancePathTemplate string, foundChildIndentifyingAttributes BrokerObjectAttributes) (string, error) {
 	var resourceTypeAndName string
 	// Replace rootBrokerObjectPathTemplate part with rootBrokerObjectResourceName
@@ -57,7 +56,6 @@ func buildResourceTypeAndName(brokerObjectType BrokerObjectType, resourceInstanc
 	resourceTypeAndName = "solacebroker_" + resourceTypeAndName
 	return resourceTypeAndName, nil
 }
-
 
 // Only used in this demo, for real broker instances the name is obtrained from the broker
 func getInstanceName(brokerObjectAttributes BrokerObjectAttributes) string {
