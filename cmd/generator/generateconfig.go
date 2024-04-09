@@ -229,7 +229,7 @@ func getInstances(context context.Context, client semp.Client, brokerObjectType 
 				if err != nil {
 					return nil, err
 				}
-				cachedResources[resourceTypeAndName] = ""  // using cachedResources as a set
+				cachedResources[resourceTypeAndName] = "" // using cachedResources as a set
 				// create a resource config from result
 				var elems []map[string]interface{}
 				elems = append(elems, result)

@@ -393,9 +393,9 @@ func GenerateTerraformString(resourceTypeAndName string, attributes []*broker.At
 					// first add the current attribute to variables
 					variableName := resourceName + "_" + attrName
 					newVariable := VariableConfig{
-						Type:      "",  // TODO: fix this
-						Default:   "",  // TODO: fix this
-						Sensitive: false,   // cannot be sensitive since this was a defined attribute	
+						Type:      "",    // TODO: fix this
+						Default:   "",    // TODO: fix this
+						Sensitive: false, // cannot be sensitive since this was a defined attribute
 					}
 					tfVariables[variableName] = newVariable
 					resourceConfig.ResourceAttributes[attrName] = newAttributeInfo("var." + variableName)
@@ -407,8 +407,8 @@ func GenerateTerraformString(resourceTypeAndName string, attributes []*broker.At
 						// attrType := attrInfo.BaseType
 						variableName := resourceName + "_" + linkedAttrName
 						newVariable := VariableConfig{
-							Type:      "",  // TODO: fix this
-							Default:   "",  // TODO: fix this
+							Type:      "", // TODO: fix this
+							Default:   "", // TODO: fix this
 							Sensitive: attrSensitive,
 						}
 						tfVariables[variableName] = newVariable
