@@ -33,14 +33,8 @@ This has been available since SEMP API version 2.2.
 
 ### Required
 
-- `msg_vpn_name` (String) The name of the Message VPN.
+- `msg_vpn_name` (String) "The name of the Message VPN."
 
 ### Read-Only
 
-- `access_level` (String) The Message VPN access level of the User. The allowed values and their meaning are:
-
-<pre>
-"none" - No access.
-"read-only" - Read only access.
-"read-write" - Read and write access.
-</pre>
+- `access_level` (String) "The Message VPN access level of the User. The allowed values and their meaning are:\n\n<pre>\n\"none\" - No access.\n\"read-only\" - Read only access.\n\"read-write\" - Read and write access.\n</pre>\n"

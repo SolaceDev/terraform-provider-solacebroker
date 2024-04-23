@@ -35,9 +35,9 @@ This has been available since SEMP API version 2.24.
 
 ### Required
 
-- `client_required_claim_name` (String) The name of the ID token claim to verify.
-- `oauth_profile_name` (String) The name of the OAuth profile.
+- `client_required_claim_name` (String) "The name of the ID token claim to verify."
+- `oauth_profile_name` (String) "The name of the OAuth profile."
 
 ### Read-Only
 
-- `client_required_claim_value` (String) The required claim value, which must be a string containing a valid JSON value.
+- `client_required_claim_value` (String) "The required claim value, which must be a string containing a valid JSON value."

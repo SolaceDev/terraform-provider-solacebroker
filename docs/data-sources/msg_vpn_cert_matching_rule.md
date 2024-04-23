@@ -35,9 +35,9 @@ This has been available since SEMP API version 2.27.
 
 ### Required
 
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `rule_name` (String) The name of the rule.
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `rule_name` (String) "The name of the rule."
 
 ### Read-Only
 
-- `enabled` (Boolean) Enable or disable a certificate matching rule. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`.
+- `enabled` (Boolean) "Enable or disable a certificate matching rule. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`."

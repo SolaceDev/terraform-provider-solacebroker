@@ -35,33 +35,12 @@ This has been available since SEMP API version 2.0.
 
 ### Required
 
-- `acl_profile_name` (String) The name of the ACL Profile.
-- `msg_vpn_name` (String) The name of the Message VPN.
+- `acl_profile_name` (String) "The name of the ACL Profile."
+- `msg_vpn_name` (String) "The name of the Message VPN."
 
 ### Optional
 
-- `client_connect_default_action` (String) The default action to take when a client using the ACL Profile connects to the Message VPN. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"disallow"`. The allowed values and their meaning are:
-
-<pre>
-"allow" - Allow client connection unless an exception is found for it.
-"disallow" - Disallow client connection unless an exception is found for it.
-</pre>
-- `publish_topic_default_action` (String) The default action to take when a client using the ACL Profile publishes to a topic in the Message VPN. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"disallow"`. The allowed values and their meaning are:
-
-<pre>
-"allow" - Allow topic unless an exception is found for it.
-"disallow" - Disallow topic unless an exception is found for it.
-</pre>
-- `subscribe_share_name_default_action` (String) The default action to take when a client using the ACL Profile subscribes to a share-name subscription in the Message VPN. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"allow"`. The allowed values and their meaning are:
-
-<pre>
-"allow" - Allow topic unless an exception is found for it.
-"disallow" - Disallow topic unless an exception is found for it.
-</pre>
- Available since SEMP API version 2.14.
-- `subscribe_topic_default_action` (String) The default action to take when a client using the ACL Profile subscribes to a topic in the Message VPN. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"disallow"`. The allowed values and their meaning are:
-
-<pre>
-"allow" - Allow topic unless an exception is found for it.
-"disallow" - Disallow topic unless an exception is found for it.
-</pre>
+- `client_connect_default_action` (String) "The default action to take when a client using the ACL Profile connects to the Message VPN. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"disallow\"`. The allowed values and their meaning are:\n\n<pre>\n\"allow\" - Allow client connection unless an exception is found for it.\n\"disallow\" - Disallow client connection unless an exception is found for it.\n</pre>\n"
+- `publish_topic_default_action` (String) "The default action to take when a client using the ACL Profile publishes to a topic in the Message VPN. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"disallow\"`. The allowed values and their meaning are:\n\n<pre>\n\"allow\" - Allow topic unless an exception is found for it.\n\"disallow\" - Disallow topic unless an exception is found for it.\n</pre>\n"
+- `subscribe_share_name_default_action` (String) "The default action to take when a client using the ACL Profile subscribes to a share-name subscription in the Message VPN. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"allow\"`. The allowed values and their meaning are:\n\n<pre>\n\"allow\" - Allow topic unless an exception is found for it.\n\"disallow\" - Disallow topic unless an exception is found for it.\n</pre>\n Available since SEMP API version 2.14."
+- `subscribe_topic_default_action` (String) "The default action to take when a client using the ACL Profile subscribes to a topic in the Message VPN. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"disallow\"`. The allowed values and their meaning are:\n\n<pre>\n\"allow\" - Allow topic unless an exception is found for it.\n\"disallow\" - Disallow topic unless an exception is found for it.\n</pre>\n"

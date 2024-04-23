@@ -35,14 +35,9 @@ This has been available since SEMP API version 2.1.
 
 ### Required
 
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `replicated_topic` (String) The topic for applying replication. Published messages matching this topic will be replicated to the standby site.
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `replicated_topic` (String) "The topic for applying replication. Published messages matching this topic will be replicated to the standby site."
 
 ### Read-Only
 
-- `replication_mode` (String) The replication mode for the Replicated Topic. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"async"`. The allowed values and their meaning are:
-
-<pre>
-"sync" - Messages are acknowledged when replicated (spooled remotely).
-"async" - Messages are acknowledged when pending replication (spooled locally).
-</pre>
+- `replication_mode` (String) "The replication mode for the Replicated Topic. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"async\"`. The allowed values and their meaning are:\n\n<pre>\n\"sync\" - Messages are acknowledged when replicated (spooled remotely).\n\"async\" - Messages are acknowledged when pending replication (spooled locally).\n</pre>\n"

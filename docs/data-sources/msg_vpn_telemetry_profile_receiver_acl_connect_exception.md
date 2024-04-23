@@ -37,6 +37,6 @@ This has been available since SEMP API version 2.31.
 
 ### Required
 
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `receiver_acl_connect_exception_address` (String) The IP address/netmask of the receiver connect exception in CIDR form.
-- `telemetry_profile_name` (String) The name of the Telemetry Profile.
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `receiver_acl_connect_exception_address` (String) "The IP address/netmask of the receiver connect exception in CIDR form."
+- `telemetry_profile_name` (String) "The name of the Telemetry Profile."

@@ -41,13 +41,8 @@ This has been available since SEMP API version 2.31.
 
 ### Required
 
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `subscription` (String) Messages matching this subscription will follow this filter's configuration.
-- `subscription_syntax` (String) The syntax of the trace filter subscription. The allowed values and their meaning are:
-
-<pre>
-"smf" - Subscription uses SMF syntax.
-"mqtt" - Subscription uses MQTT syntax.
-</pre>
-- `telemetry_profile_name` (String) The name of the Telemetry Profile.
-- `trace_filter_name` (String) A name used to identify the trace filter. Consider a name that describes the subscriptions contained within the filter, such as the name of the application and/or the scenario in which the trace filter might be enabled, such as "appNameDebug".
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `subscription` (String) "Messages matching this subscription will follow this filter's configuration."
+- `subscription_syntax` (String) "The syntax of the trace filter subscription. The allowed values and their meaning are:\n\n<pre>\n\"smf\" - Subscription uses SMF syntax.\n\"mqtt\" - Subscription uses MQTT syntax.\n</pre>\n"
+- `telemetry_profile_name` (String) "The name of the Telemetry Profile."
+- `trace_filter_name` (String) "A name used to identify the trace filter. Consider a name that describes the subscriptions contained within the filter, such as the name of the application and/or the scenario in which the trace filter might be enabled, such as \"appNameDebug\"."

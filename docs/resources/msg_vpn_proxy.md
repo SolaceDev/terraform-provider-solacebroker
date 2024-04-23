@@ -37,25 +37,15 @@ This has been available since SEMP API version 2.36.
 
 ### Required
 
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `proxy_name` (String) The name of the proxy.
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `proxy_name` (String) "The name of the proxy."
 
 ### Optional
 
-- `authentication_basic_password` (String, Sensitive) The password to use with basic authentication. This attribute is absent from a GET and not updated when absent in a PUT, subject to the exceptions in note 4 (refer to the `Notes` section in the SEMP API `Config reference`). Changes to this attribute are synchronized to HA mates via config-sync. The default value is `""`.
-- `authentication_basic_username` (String) The username to use with basic authentication. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `""`.
-- `authentication_scheme` (String) The authentication scheme used to connect to the proxy. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `"none"`. The allowed values and their meaning are:
-
-<pre>
-"none" - No authentication.
-"basic" - Username/password authentication.
-</pre>
-- `enabled` (Boolean) Enable or disable the proxy. When disabled, no connections are initiated to this particular Proxy. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`.
-- `host` (String) The IP address or host name of the proxy. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `""`.
-- `port` (Number) The port to connect to on the proxy host. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `0`.
-- `proxy_type` (String) The type of proxy. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `"direct"`. The allowed values and their meaning are:
-
-<pre>
-"direct" - Direct connection (no proxy).
-"http" - HTTP proxy.
-</pre>
+- `authentication_basic_password` (String, Sensitive) "The password to use with basic authentication. This attribute is absent from a GET and not updated when absent in a PUT, subject to the exceptions in note 4 (refer to the `Notes` section in the SEMP API `Config reference`) (refer to the `Notes` section in the SEMP API `Config reference`). Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"\"`."
+- `authentication_basic_username` (String) "The username to use with basic authentication. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"\"`."
+- `authentication_scheme` (String) "The authentication scheme used to connect to the proxy. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"none\"`. The allowed values and their meaning are:\n\n<pre>\n\"none\" - No authentication.\n\"basic\" - Username/password authentication.\n</pre>\n"
+- `enabled` (Boolean) "Enable or disable the proxy. When disabled, no connections are initiated to this particular Proxy. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`."
+- `host` (String) "The IP address or host name of the proxy. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"\"`."
+- `port` (Number) "The port to connect to on the proxy host. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `0`."
+- `proxy_type` (String) "The type of proxy. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"direct\"`. The allowed values and their meaning are:\n\n<pre>\n\"direct\" - Direct connection (no proxy).\n\"http\" - HTTP proxy.\n</pre>\n"

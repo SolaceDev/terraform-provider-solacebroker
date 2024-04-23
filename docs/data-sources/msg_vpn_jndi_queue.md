@@ -35,9 +35,9 @@ This has been available since SEMP API version 2.2.
 
 ### Required
 
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `queue_name` (String) The JNDI name of the JMS Queue.
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `queue_name` (String) "The JNDI name of the JMS Queue."
 
 ### Read-Only
 
-- `physical_name` (String) The physical name of the JMS Queue. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
+- `physical_name` (String) "The physical name of the JMS Queue. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`."

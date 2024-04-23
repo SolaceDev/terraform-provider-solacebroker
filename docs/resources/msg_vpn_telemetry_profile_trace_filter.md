@@ -37,10 +37,10 @@ This has been available since SEMP API version 2.31.
 
 ### Required
 
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `telemetry_profile_name` (String) The name of the Telemetry Profile.
-- `trace_filter_name` (String) A name used to identify the trace filter. Consider a name that describes the subscriptions contained within the filter, such as the name of the application and/or the scenario in which the trace filter might be enabled, such as "appNameDebug".
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `telemetry_profile_name` (String) "The name of the Telemetry Profile."
+- `trace_filter_name` (String) "A name used to identify the trace filter. Consider a name that describes the subscriptions contained within the filter, such as the name of the application and/or the scenario in which the trace filter might be enabled, such as \"appNameDebug\"."
 
 ### Optional
 
-- `enabled` (Boolean) Enable or disable the trace filter. When the filter is disabled, the filter's subscriptions will not trigger a message to be traced. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`.
+- `enabled` (Boolean) "Enable or disable the trace filter. When the filter is disabled, the filter's subscriptions will not trigger a message to be traced. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`."

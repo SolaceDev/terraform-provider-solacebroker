@@ -39,17 +39,11 @@ This has been available since SEMP API version 2.1.
 
 ### Required
 
-- `mqtt_session_client_id` (String) The Client ID of the MQTT Session, which corresponds to the ClientId provided in the MQTT CONNECT packet.
-- `mqtt_session_virtual_router` (String) The virtual router of the MQTT Session. The allowed values and their meaning are:
-
-<pre>
-"primary" - The MQTT Session belongs to the primary virtual router.
-"backup" - The MQTT Session belongs to the backup virtual router.
-"auto" - The MQTT Session is automatically assigned a virtual router at creation, depending on the broker's active-standby role.
-</pre>
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `subscription_topic` (String) The MQTT subscription topic.
+- `mqtt_session_client_id` (String) "The Client ID of the MQTT Session, which corresponds to the ClientId provided in the MQTT CONNECT packet."
+- `mqtt_session_virtual_router` (String) "The virtual router of the MQTT Session. The allowed values and their meaning are:\n\n<pre>\n\"primary\" - The MQTT Session belongs to the primary virtual router.\n\"backup\" - The MQTT Session belongs to the backup virtual router.\n\"auto\" - The MQTT Session is automatically assigned a virtual router at creation, depending on the broker's active-standby role.\n</pre>\n"
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `subscription_topic` (String) "The MQTT subscription topic."
 
 ### Optional
 
-- `subscription_qos` (Number) The quality of service (QoS) for the subscription as either 0 (deliver at most once) or 1 (deliver at least once). QoS 2 is not supported, but QoS 2 messages attracted by QoS 0 or QoS 1 subscriptions are accepted and delivered accordingly. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `0`.
+- `subscription_qos` (Number) "The quality of service (QoS) for the subscription as either 0 (deliver at most once) or 1 (deliver at least once). QoS 2 is not supported, but QoS 2 messages attracted by QoS 0 or QoS 1 subscriptions are accepted and delivered accordingly. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `0`."

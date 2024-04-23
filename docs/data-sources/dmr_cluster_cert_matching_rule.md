@@ -35,9 +35,9 @@ This has been available since SEMP API version 2.28.
 
 ### Required
 
-- `dmr_cluster_name` (String) The name of the Cluster.
-- `rule_name` (String) The name of the rule.
+- `dmr_cluster_name` (String) "The name of the Cluster."
+- `rule_name` (String) "The name of the rule."
 
 ### Read-Only
 
-- `enabled` (Boolean) Enable or disable a certificate matching rule. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`.
+- `enabled` (Boolean) "Enable or disable a certificate matching rule. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`."

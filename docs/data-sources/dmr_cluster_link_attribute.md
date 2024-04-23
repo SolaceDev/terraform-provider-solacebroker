@@ -39,7 +39,7 @@ This has been available since SEMP API version 2.28.
 
 ### Required
 
-- `attribute_name` (String) The name of the Attribute.
-- `attribute_value` (String) The value of the Attribute.
-- `dmr_cluster_name` (String) The name of the Cluster.
-- `remote_node_name` (String) The name of the node at the remote end of the Link.
+- `attribute_name` (String) "The name of the Attribute."
+- `attribute_value` (String) "The value of the Attribute."
+- `dmr_cluster_name` (String) "The name of the Cluster."
+- `remote_node_name` (String) "The name of the node at the remote end of the Link."

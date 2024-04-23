@@ -39,13 +39,13 @@ This has been available since SEMP API version 2.11.
 
 ### Required
 
-- `cache_name` (String) The name of the Distributed Cache.
-- `cluster_name` (String) The name of the Cache Cluster.
-- `instance_name` (String) The name of the Cache Instance.
-- `msg_vpn_name` (String) The name of the Message VPN.
+- `cache_name` (String) "The name of the Distributed Cache."
+- `cluster_name` (String) "The name of the Cache Cluster."
+- `instance_name` (String) "The name of the Cache Instance."
+- `msg_vpn_name` (String) "The name of the Message VPN."
 
 ### Read-Only
 
-- `auto_start_enabled` (Boolean) Enable or disable auto-start for the Cache Instance. When enabled, the Cache Instance will automatically attempt to transition from the Stopped operational state to Up whenever it restarts or reconnects to the message broker. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`.
-- `enabled` (Boolean) Enable or disable the Cache Instance. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`.
-- `stop_on_lost_msg_enabled` (Boolean) Enable or disable stop-on-lost-message for the Cache Instance. When enabled, the Cache Instance will transition to the stopped operational state upon losing a message. When stopped, it cannot accept or respond to cache requests, but continues to cache messages. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `true`.
+- `auto_start_enabled` (Boolean) "Enable or disable auto-start for the Cache Instance. When enabled, the Cache Instance will automatically attempt to transition from the Stopped operational state to Up whenever it restarts or reconnects to the message broker. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`."
+- `enabled` (Boolean) "Enable or disable the Cache Instance. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`."
+- `stop_on_lost_msg_enabled` (Boolean) "Enable or disable stop-on-lost-message for the Cache Instance. When enabled, the Cache Instance will transition to the stopped operational state upon losing a message. When stopped, it cannot accept or respond to cache requests, but continues to cache messages. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `true`."

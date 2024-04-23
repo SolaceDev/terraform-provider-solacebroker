@@ -39,12 +39,7 @@ This has been available since SEMP API version 2.14.
 
 ### Required
 
-- `acl_profile_name` (String) The name of the ACL Profile.
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `subscribe_share_name_exception` (String) The subscribe share name exception to the default action taken. May include wildcard characters.
-- `subscribe_share_name_exception_syntax` (String) The syntax of the subscribe share name for the exception to the default action taken. The allowed values and their meaning are:
-
-<pre>
-"smf" - Topic uses SMF syntax.
-"mqtt" - Topic uses MQTT syntax.
-</pre>
+- `acl_profile_name` (String) "The name of the ACL Profile."
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `subscribe_share_name_exception` (String) "The subscribe share name exception to the default action taken. May include wildcard characters."
+- `subscribe_share_name_exception_syntax` (String) "The syntax of the subscribe share name for the exception to the default action taken. The allowed values and their meaning are:\n\n<pre>\n\"smf\" - Topic uses SMF syntax.\n\"mqtt\" - Topic uses MQTT syntax.\n</pre>\n"

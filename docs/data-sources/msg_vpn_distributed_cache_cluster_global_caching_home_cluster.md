@@ -39,7 +39,7 @@ This has been available since SEMP API version 2.11.
 
 ### Required
 
-- `cache_name` (String) The name of the Distributed Cache.
-- `cluster_name` (String) The name of the Cache Cluster.
-- `home_cluster_name` (String) The name of the remote Home Cache Cluster.
-- `msg_vpn_name` (String) The name of the Message VPN.
+- `cache_name` (String) "The name of the Distributed Cache."
+- `cluster_name` (String) "The name of the Cache Cluster."
+- `home_cluster_name` (String) "The name of the remote Home Cache Cluster."
+- `msg_vpn_name` (String) "The name of the Message VPN."

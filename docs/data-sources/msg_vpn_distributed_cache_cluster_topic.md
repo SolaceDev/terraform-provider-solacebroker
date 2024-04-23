@@ -39,7 +39,7 @@ This has been available since SEMP API version 2.11.
 
 ### Required
 
-- `cache_name` (String) The name of the Distributed Cache.
-- `cluster_name` (String) The name of the Cache Cluster.
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `topic` (String) The value of the Topic in the form a/b/c.
+- `cache_name` (String) "The name of the Distributed Cache."
+- `cluster_name` (String) "The name of the Cache Cluster."
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `topic` (String) "The value of the Topic in the form a/b/c."

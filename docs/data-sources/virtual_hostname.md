@@ -39,9 +39,9 @@ This has been available since SEMP API version 2.17.
 
 ### Required
 
-- `virtual_hostname` (String) The virtual hostname.
+- `virtual_hostname` (String) "The virtual hostname."
 
 ### Read-Only
 
-- `enabled` (Boolean) Enable or disable Virtual Hostname to Message VPN mapping. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`.
-- `msg_vpn_name` (String) The message VPN to which this virtual hostname is mapped. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `""`.
+- `enabled` (Boolean) "Enable or disable Virtual Hostname to Message VPN mapping. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`."
+- `msg_vpn_name` (String) "The message VPN to which this virtual hostname is mapped. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"\"`."

@@ -37,10 +37,10 @@ This has been available since SEMP API version 2.25.
 
 ### Required
 
-- `client_required_claim_name` (String) The name of the ID token claim to verify.
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `oauth_profile_name` (String) The name of the OAuth profile.
+- `client_required_claim_name` (String) "The name of the ID token claim to verify."
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `oauth_profile_name` (String) "The name of the OAuth profile."
 
 ### Read-Only
 
-- `client_required_claim_value` (String) The required claim value.
+- `client_required_claim_value` (String) "The required claim value."

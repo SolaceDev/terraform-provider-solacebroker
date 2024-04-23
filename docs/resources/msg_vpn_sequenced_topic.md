@@ -35,5 +35,5 @@ This has been available since SEMP API version 2.0.
 
 ### Required
 
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `sequenced_topic` (String) Topic for applying sequence numbers.
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `sequenced_topic` (String) "Topic for applying sequence numbers."

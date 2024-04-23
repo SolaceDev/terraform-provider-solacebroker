@@ -41,11 +41,11 @@ This has been available since SEMP API version 2.30.
 
 ### Required
 
-- `header_name` (String) The name of the protected HTTP request header.
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `queue_binding_name` (String) The name of a queue in the Message VPN.
-- `rest_delivery_point_name` (String) The name of the REST Delivery Point.
+- `header_name` (String) "The name of the protected HTTP request header."
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `queue_binding_name` (String) "The name of a queue in the Message VPN."
+- `rest_delivery_point_name` (String) "The name of the REST Delivery Point."
 
 ### Optional
 
-- `header_value` (String, Sensitive) The value of the protected HTTP request header. Unlike a non-protected request header, this value cannot be displayed after it is set, and does not support substitution expressions. This attribute is absent from a GET and not updated when absent in a PUT, subject to the exceptions in note 4 (refer to the `Notes` section in the SEMP API `Config reference`). Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
+- `header_value` (String, Sensitive) "The value of the protected HTTP request header. Unlike a non-protected request header, this value cannot be displayed after it is set, and does not support substitution expressions. This attribute is absent from a GET and not updated when absent in a PUT, subject to the exceptions in note 4 (refer to the `Notes` section in the SEMP API `Config reference`) (refer to the `Notes` section in the SEMP API `Config reference`). Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`."

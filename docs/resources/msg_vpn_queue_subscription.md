@@ -37,6 +37,6 @@ This has been available since SEMP API version 2.0.
 
 ### Required
 
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `queue_name` (String) The name of the Queue.
-- `subscription_topic` (String) The topic of the Subscription.
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `queue_name` (String) "The name of the Queue."
+- `subscription_topic` (String) "The topic of the Subscription."

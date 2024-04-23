@@ -37,11 +37,11 @@ This has been available since SEMP API version 2.28.
 
 ### Required
 
-- `dmr_cluster_name` (String) The name of the Cluster.
-- `filter_name` (String) The name of the filter.
-- `rule_name` (String) The name of the rule.
+- `dmr_cluster_name` (String) "The name of the Cluster."
+- `filter_name` (String) "The name of the filter."
+- `rule_name` (String) "The name of the rule."
 
 ### Optional
 
-- `attribute_name` (String) Link Attribute to be tested. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `""`.
-- `attribute_value` (String) Expected attribute value. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `""`.
+- `attribute_name` (String) "Link Attribute to be tested. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"\"`."
+- `attribute_value` (String) "Expected attribute value. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"\"`."

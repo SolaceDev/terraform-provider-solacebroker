@@ -43,36 +43,17 @@ This has been available since SEMP API version 2.0.
 
 ### Required
 
-- `bridge_name` (String) The name of the Bridge.
-- `bridge_virtual_router` (String) The virtual router of the Bridge. The allowed values and their meaning are:
-
-<pre>
-"primary" - The Bridge is used for the primary virtual router.
-"backup" - The Bridge is used for the backup virtual router.
-"auto" - The Bridge is automatically assigned a virtual router at creation, depending on the broker's active-standby role.
-</pre>
-- `msg_vpn_name` (String) The name of the Message VPN.
+- `bridge_name` (String) "The name of the Bridge."
+- `bridge_virtual_router` (String) "The virtual router of the Bridge. The allowed values and their meaning are:\n\n<pre>\n\"primary\" - The Bridge is used for the primary virtual router.\n\"backup\" - The Bridge is used for the backup virtual router.\n\"auto\" - The Bridge is automatically assigned a virtual router at creation, depending on the broker's active-standby role.\n</pre>\n"
+- `msg_vpn_name` (String) "The name of the Message VPN."
 
 ### Read-Only
 
-- `enabled` (Boolean) Enable or disable the Bridge. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`.
-- `max_ttl` (Number) The maximum time-to-live (TTL) in hops. Messages are discarded if their TTL exceeds this value. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `8`.
-- `remote_authentication_basic_client_username` (String) The Client Username the Bridge uses to login to the remote Message VPN. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
-- `remote_authentication_scheme` (String) The authentication scheme for the remote Message VPN. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"basic"`. The allowed values and their meaning are:
-
-<pre>
-"basic" - Basic Authentication Scheme (via username and password).
-"client-certificate" - Client Certificate Authentication Scheme (via certificate file or content).
-</pre>
-- `remote_connection_retry_count` (Number) The maximum number of retry attempts to establish a connection to the remote Message VPN. A value of 0 means to retry forever. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `0`.
-- `remote_connection_retry_delay` (Number) The number of seconds the broker waits for the bridge connection to be established before attempting a new connection. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `3`.
-- `remote_deliver_to_one_priority` (String) The priority for deliver-to-one (DTO) messages transmitted from the remote Message VPN. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"p1"`. The allowed values and their meaning are:
-
-<pre>
-"p1" - The 1st or highest priority.
-"p2" - The 2nd highest priority.
-"p3" - The 3rd highest priority.
-"p4" - The 4th highest priority.
-"da" - Ignore priority and deliver always.
-</pre>
-- `tls_cipher_suite_list` (String) The colon-separated list of cipher suites supported for TLS connections to the remote Message VPN. The value "default" implies all supported suites ordered from most secure to least secure. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"default"`.
+- `enabled` (Boolean) "Enable or disable the Bridge. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`."
+- `max_ttl` (Number) "The maximum time-to-live (TTL) in hops. Messages are discarded if their TTL exceeds this value. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `8`."
+- `remote_authentication_basic_client_username` (String) "The Client Username the Bridge uses to login to the remote Message VPN. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`."
+- `remote_authentication_scheme` (String) "The authentication scheme for the remote Message VPN. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"basic\"`. The allowed values and their meaning are:\n\n<pre>\n\"basic\" - Basic Authentication Scheme (via username and password).\n\"client-certificate\" - Client Certificate Authentication Scheme (via certificate file or content).\n</pre>\n"
+- `remote_connection_retry_count` (Number) "The maximum number of retry attempts to establish a connection to the remote Message VPN. A value of 0 means to retry forever. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `0`."
+- `remote_connection_retry_delay` (Number) "The number of seconds the broker waits for the bridge connection to be established before attempting a new connection. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `3`."
+- `remote_deliver_to_one_priority` (String) "The priority for deliver-to-one (DTO) messages transmitted from the remote Message VPN. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"p1\"`. The allowed values and their meaning are:\n\n<pre>\n\"p1\" - The 1st or highest priority.\n\"p2\" - The 2nd highest priority.\n\"p3\" - The 3rd highest priority.\n\"p4\" - The 4th highest priority.\n\"da\" - Ignore priority and deliver always.\n</pre>\n"
+- `tls_cipher_suite_list` (String) "The colon-separated list of cipher suites supported for TLS connections to the remote Message VPN. The value \"default\" implies all supported suites ordered from most secure to least secure. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"default\"`."

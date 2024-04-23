@@ -35,18 +35,13 @@ This has been available since SEMP API version 2.11.
 
 ### Required
 
-- `cache_name` (String) The name of the Distributed Cache.
-- `msg_vpn_name` (String) The name of the Message VPN.
+- `cache_name` (String) "The name of the Distributed Cache."
+- `msg_vpn_name` (String) "The name of the Message VPN."
 
 ### Optional
 
-- `cache_virtual_router` (String) The virtual router of the Distributed Cache. The default value is `"auto"`. The allowed values and their meaning are:
-
-<pre>
-"auto" - The Distributed Cache is automatically assigned a virtual router at creation, depending on the broker's active-standby role.
-</pre>
- Available since SEMP API version 2.28.
-- `enabled` (Boolean) Enable or disable the Distributed Cache. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`.
-- `heartbeat` (Number) The heartbeat interval, in seconds, used by the Cache Instances to monitor connectivity with the message broker. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `10`.
-- `scheduled_delete_msg_day_list` (String) The scheduled delete message day(s), specified as "daily" or a comma-separated list of days. Days must be specified as "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", or "Sat", with no spaces, and in sorted order from Sunday to Saturday. The empty-string ("") can also be specified, indicating no schedule is configured ("scheduled_delete_msg_time_list" must also be configured to the empty-string). Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
-- `scheduled_delete_msg_time_list` (String) The scheduled delete message time(s), specified as "hourly" or a comma-separated list of 24-hour times in the form hh:mm, or h:mm. There must be no spaces, and times (up to 4) must be in sorted order from 0:00 to 23:59. The empty-string ("") can also be specified, indicating no schedule is configured ("scheduled_delete_msg_day_list" must also be configured to the empty-string). Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
+- `cache_virtual_router` (String) "The virtual router of the Distributed Cache. The default value is `\"auto\"`. The allowed values and their meaning are:\n\n<pre>\n\"auto\" - The Distributed Cache is automatically assigned a virtual router at creation, depending on the broker's active-standby role.\n</pre>\n Available since SEMP API version 2.28."
+- `enabled` (Boolean) "Enable or disable the Distributed Cache. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`."
+- `heartbeat` (Number) "The heartbeat interval, in seconds, used by the Cache Instances to monitor connectivity with the message broker. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `10`."
+- `scheduled_delete_msg_day_list` (String) "The scheduled delete message day(s), specified as \"daily\" or a comma-separated list of days. Days must be specified as \"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", or \"Sat\", with no spaces, and in sorted order from Sunday to Saturday. The empty-string (\"\") can also be specified, indicating no schedule is configured (\"scheduled_delete_msg_time_list\" must also be configured to the empty-string). Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`."
+- `scheduled_delete_msg_time_list` (String) "The scheduled delete message time(s), specified as \"hourly\" or a comma-separated list of 24-hour times in the form hh:mm, or h:mm. There must be no spaces, and times (up to 4) must be in sorted order from 0:00 to 23:59. The empty-string (\"\") can also be specified, indicating no schedule is configured (\"scheduled_delete_msg_day_list\" must also be configured to the empty-string). Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`."

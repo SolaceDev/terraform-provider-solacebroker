@@ -35,5 +35,5 @@ This has been available since SEMP API version 2.24.
 
 ### Required
 
-- `allowed_host` (String) An allowed value for the Host header.
-- `oauth_profile_name` (String) The name of the OAuth profile.
+- `allowed_host` (String) "An allowed value for the Host header."
+- `oauth_profile_name` (String) "The name of the OAuth profile."

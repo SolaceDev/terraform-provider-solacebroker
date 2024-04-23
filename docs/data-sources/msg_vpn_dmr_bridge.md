@@ -35,9 +35,9 @@ This has been available since SEMP API version 2.11.
 
 ### Required
 
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `remote_node_name` (String) The name of the node at the remote end of the DMR Bridge.
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `remote_node_name` (String) "The name of the node at the remote end of the DMR Bridge."
 
 ### Read-Only
 
-- `remote_msg_vpn_name` (String) The remote Message VPN of the DMR Bridge. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
+- `remote_msg_vpn_name` (String) "The remote Message VPN of the DMR Bridge. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`."

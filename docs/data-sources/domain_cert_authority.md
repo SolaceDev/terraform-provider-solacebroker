@@ -33,8 +33,8 @@ This has been available since SEMP API version 2.19.
 
 ### Required
 
-- `cert_authority_name` (String) The name of the Certificate Authority.
+- `cert_authority_name` (String) "The name of the Certificate Authority."
 
 ### Read-Only
 
-- `cert_content` (String) The PEM formatted content for the trusted root certificate of a domain Certificate Authority. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `""`.
+- `cert_content` (String) "The PEM formatted content for the trusted root certificate of a domain Certificate Authority. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"\"`."

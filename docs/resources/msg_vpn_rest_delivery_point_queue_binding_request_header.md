@@ -39,11 +39,11 @@ This has been available since SEMP API version 2.23.
 
 ### Required
 
-- `header_name` (String) The name of the HTTP request header.
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `queue_binding_name` (String) The name of a queue in the Message VPN.
-- `rest_delivery_point_name` (String) The name of the REST Delivery Point.
+- `header_name` (String) "The name of the HTTP request header."
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `queue_binding_name` (String) "The name of a queue in the Message VPN."
+- `rest_delivery_point_name` (String) "The name of the REST Delivery Point."
 
 ### Optional
 
-- `header_value` (String) A substitution expression for the value of the HTTP request header. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
+- `header_value` (String) "A substitution expression for the value of the HTTP request header. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`."

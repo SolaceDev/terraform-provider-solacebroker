@@ -37,16 +37,10 @@ This has been available since SEMP API version 2.24.
 
 ### Required
 
-- `group_name` (String) The name of the group.
-- `msg_vpn_name` (String) The name of the message VPN.
-- `oauth_profile_name` (String) The name of the OAuth profile.
+- `group_name` (String) "The name of the group."
+- `msg_vpn_name` (String) "The name of the message VPN."
+- `oauth_profile_name` (String) "The name of the OAuth profile."
 
 ### Optional
 
-- `access_level` (String) The message VPN access level. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `"none"`. The allowed values and their meaning are:
-
-<pre>
-"none" - User has no access to a Message VPN.
-"read-only" - User has read-only access to a Message VPN.
-"read-write" - User has read-write access to most Message VPN settings.
-</pre>
+- `access_level` (String) "The message VPN access level. Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"none\"`. The allowed values and their meaning are:\n\n<pre>\n\"none\" - User has no access to a Message VPN.\n\"read-only\" - User has read-only access to a Message VPN.\n\"read-write\" - User has read-write access to most Message VPN settings.\n</pre>\n"

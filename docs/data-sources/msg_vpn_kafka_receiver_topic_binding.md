@@ -37,30 +37,13 @@ This has been available since SEMP API version 2.36.
 
 ### Required
 
-- `kafka_receiver_name` (String) The name of the Kafka Receiver.
-- `msg_vpn_name` (String) The name of the Message VPN.
-- `topic_name` (String) The name of the Topic.
+- `kafka_receiver_name` (String) "The name of the Kafka Receiver."
+- `msg_vpn_name` (String) "The name of the Message VPN."
+- `topic_name` (String) "The name of the Topic."
 
 ### Read-Only
 
-- `enabled` (Boolean) Enable or disable this topic binding of the Kafka Receiver. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`.
-- `initial_offset` (String) The initial offset to consume from the Kafka Topic if no member of the group has consumed and committed any offset already, or if the last committed offset has been deleted. Offsets are unique per partition.
-
-This corresponds to the Kafka consumer API `auto.offset.reset` configuration setting.
-
-Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"end"`. The allowed values and their meaning are:
-
-<pre>
-"beginning" - Start with the earliest offset available.
-"end" - Start with new offsets only.
-</pre>
-- `local_key` (String) The Substitution Expression used to generate the key for each message received from Kafka. This expression can include fields extracted from the metadata of each individual Kafka message as it is received from the Kafka Topic.
-
-If empty, no key is included for each message as it is published into Solace.
-
-Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
-- `local_topic` (String) The Substitution Expression used to generate the Solace Topic for each message received from Kafka. This expression can include data extracted from the metadata of each individual Kafka message as it is received from the Kafka Topic.
-
-If empty, the Topic Binding will not be operational.
-
-Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
+- `enabled` (Boolean) "Enable or disable this topic binding of the Kafka Receiver. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`."
+- `initial_offset` (String) "The initial offset to consume from the Kafka Topic if no member of the group has consumed and committed any offset already, or if the last committed offset has been deleted. Offsets are unique per partition.\n\nThis corresponds to the Kafka consumer API `auto.offset.reset` configuration setting.\n\nModifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"end\"`. The allowed values and their meaning are:\n\n<pre>\n\"beginning\" - Start with the earliest offset available.\n\"end\" - Start with new offsets only.\n</pre>\n"
+- `local_key` (String) "The Substitution Expression used to generate the key for each message received from Kafka. This expression can include fields extracted from the metadata of each individual Kafka message as it is received from the Kafka Topic.\n\nIf empty, no key is included for each message as it is published into Solace.\n\nModifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`."
+- `local_topic` (String) "The Substitution Expression used to generate the Solace Topic for each message received from Kafka. This expression can include data extracted from the metadata of each individual Kafka message as it is received from the Kafka Topic.\n\nIf empty, the Topic Binding will not be operational.\n\nModifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`."
