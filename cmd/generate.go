@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"terraform-provider-solacebroker/cmd/client"
 	"terraform-provider-solacebroker/cmd/generator"
@@ -26,6 +27,25 @@ import (
 
 	"github.com/spf13/cobra"
 )
+
+type generatorOptions struct {
+	Type string
+	Default string
+	Description string
+}
+var generatorOptionsList = map[string]generatorOptions{
+	"url": {"string", "http://localhost:8080", "Broker URL"},
+	"username": {"string", "", "Username"},
+	"password": {"string", "", "Password"},
+	"bearer_token": {"string", "", "Bearer Token"},
+	"retries": {"int64", "10", "Retries"},
+	"retry_min_interval": {"string", "3s", "Retry Min Interval"},
+	"retry_max_interval": {"string", "30s", "Retry Max Interval"},
+	"request_timeout_duration": {"string", "1m", "Request Timeout Duration"},
+	"request_min_interval": {"string", "100ms", "Request Min Interval"},
+	"insecure_skip_verify": {"bool", "false", "Insecure Skip Verify"},
+	"skip_api_check": {"bool", "false", "Skip Api Check"},
+}
 
 // generateCmd represents the generate command
 var generateCmd = &cobra.Command{
@@ -58,6 +78,7 @@ This command will create a file my-messagevpn.tf that contains a resource defini
 
 		flags := cmd.Flags()
 		brokerURL, _ := flags.GetString("url")
+		flags.Changed("retries")
 		generator.LogCLIInfo("Connecting to Broker : " + brokerURL)
 
 		cliClient := client.CliClient(brokerURL)
@@ -66,15 +87,21 @@ This command will create a file my-messagevpn.tf that contains a resource defini
 		}
 
 		brokerObjectType := flags.Arg(0)
-
 		if len(brokerObjectType) == 0 {
 			generator.LogCLIError("Terraform resource name not provided")
 			_ = cmd.Help()
 			os.Exit(1)
 		}
+		// Extract and verify parameters
+		if strings.Count(brokerObjectType, ".") != 1 {
+			generator.ExitWithError("\nError: Terraform resource address is not in correct format. Should be in the format <resource_type>.<resource_name>\n\n")
+		}
+		brokerResourceType := strings.Split(brokerObjectType, ".")[0]
+		brokerResourceName := strings.Split(brokerObjectType, ".")[1]
+		
 		providerSpecificIdentifier := flags.Arg(1)
 		if len(providerSpecificIdentifier) == 0 {
-			generator.LogCLIError("Broker object not provided")
+			generator.LogCLIError("Broker object identifier not provided")
 			_ = cmd.Help()
 			os.Exit(1)
 		}
@@ -110,12 +137,6 @@ This command will create a file my-messagevpn.tf that contains a resource defini
 
 		generator.LogCLIInfo(fmt.Sprintf("Attempting config generation for object and its child-objects: %s, identifier: %s, destination file: %s\n", brokerObjectType, providerSpecificIdentifier, fileName))
 
-		// Extract and verify parameters
-		if strings.Count(brokerObjectType, ".") != 1 {
-			generator.ExitWithError("\nError: Terraform resource address is not in correct format. Should be in the format <resource_type>.<resource_name>\n\n")
-		}
-		brokerResourceType := strings.Split(brokerObjectType, ".")[0]
-		brokerResourceName := strings.Split(brokerObjectType, ".")[1]
 		if !generator.IsValidTerraformIdentifier(brokerResourceName) {
 			generator.ExitWithError(fmt.Sprintf("\nError: Resource name %s in the Terraform resource address is not a valid Terraform identifier\n\n", brokerResourceName))
 		}
@@ -129,5 +150,17 @@ This command will create a file my-messagevpn.tf that contains a resource defini
 
 func init() {
 	rootCmd.AddCommand(generateCmd)
-	generateCmd.PersistentFlags().String("url", "http://localhost:8080", "Broker URL")
+	// iterate over the generatorOptionsList and add flags
+	for key, value := range generatorOptionsList {
+		switch value.Type {
+		case "string":
+			generateCmd.Flags().String(key, value.Default, value.Description)
+		case "int64":
+			defaultInt64, _ := strconv.ParseInt(value.Default, 10, 64)
+			generateCmd.Flags().Int64(key, defaultInt64, value.Description)
+		case "bool":
+			defaultBool, _ := strconv.ParseBool(value.Default)
+			generateCmd.Flags().Bool(key, defaultBool, value.Description)
+		}
+	}
 }
