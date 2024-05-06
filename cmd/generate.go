@@ -29,22 +29,23 @@ import (
 )
 
 type generatorOptions struct {
-	Type string
-	Default string
+	Type        string
+	Default     string
 	Description string
 }
+
 var generatorOptionsList = map[string]generatorOptions{
-	"url": {"string", "http://localhost:8080", "Broker URL"},
-	"username": {"string", "", "Username"},
-	"password": {"string", "", "Password"},
-	"bearer_token": {"string", "", "Bearer Token"},
-	"retries": {"int64", "10", "Retries"},
-	"retry_min_interval": {"string", "3s", "Retry Min Interval"},
-	"retry_max_interval": {"string", "30s", "Retry Max Interval"},
+	"url":                      {"string", "http://localhost:8080", "Broker URL"},
+	"username":                 {"string", "", "Username"},
+	"password":                 {"string", "", "Password"},
+	"bearer_token":             {"string", "", "Bearer Token"},
+	"retries":                  {"int64", "10", "Retries"},
+	"retry_min_interval":       {"string", "3s", "Retry Min Interval"},
+	"retry_max_interval":       {"string", "30s", "Retry Max Interval"},
 	"request_timeout_duration": {"string", "1m", "Request Timeout Duration"},
-	"request_min_interval": {"string", "100ms", "Request Min Interval"},
-	"insecure_skip_verify": {"bool", "false", "Insecure Skip Verify"},
-	"skip_api_check": {"bool", "false", "Skip Api Check"},
+	"request_min_interval":     {"string", "100ms", "Request Min Interval"},
+	"insecure_skip_verify":     {"bool", "false", "Insecure Skip Verify"},
+	"skip_api_check":           {"bool", "false", "Skip Api Check"},
 }
 
 // generateCmd represents the generate command
@@ -98,7 +99,7 @@ This command will create a file my-messagevpn.tf that contains a resource defini
 		}
 		brokerResourceType := strings.Split(brokerObjectType, ".")[0]
 		brokerResourceName := strings.Split(brokerObjectType, ".")[1]
-		
+
 		providerSpecificIdentifier := flags.Arg(1)
 		if len(providerSpecificIdentifier) == 0 {
 			generator.LogCLIError("Broker object identifier not provided")

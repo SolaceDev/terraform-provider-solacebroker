@@ -12,11 +12,12 @@ You can [locate](https://terra-farm.github.io/main/installation.html) the provid
 
 You can run the provider binary directly with the `generate` command to generate a Terraform configuration file from the current configuration of a PubSub+ broker.
 
-`<binary> generate <broker URL> <provider-specific identifier> <filename>`
+`<binary> generate [options] <terraform resource address> <provider-specific identifier> <filename>`
 
 - `<binary>` is the broker provider binary.
-- `<broker URL>` is the broker address, for example `https://mybroker.example.org:1943/`.
-- `<provider-specific identifier>` is similar to the Terraform Import command. This is the resource name and possible values to find a specific resource.
+- `[options]` are the supported options, which mirror the configuration options for the provider object, for example `-url=https://mybroker.example.org:1943/`.
+- `<terraform resource address>`
+- `<provider-specific identifier>` is similar to the Terraform Import command. This is the identifyer to find a specific resource.
 - `<filename>` is the desirable name of the generated filename.
 - There are also supported options, which mirror the configuration options for the provider object. These can be found [here](#supported-options).
 

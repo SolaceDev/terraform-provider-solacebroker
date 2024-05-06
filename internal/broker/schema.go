@@ -183,7 +183,7 @@ func newBrokerEntity(inputs EntityInputs, isResource bool) brokerEntity[schema.S
 		return iIndex < jIndex
 	})
 
-	identifierInfo := "" 
+	identifierInfo := ""
 	if isResource {
 		identifiersString := ""
 		pathTemplate := inputs.PathTemplate
