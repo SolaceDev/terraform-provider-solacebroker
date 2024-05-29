@@ -4,11 +4,11 @@ page_title: "solacebroker_msg_vpn_queue_subscription Data Source - solacebroker"
 subcategory: ""
 description: |-
   One or more Queue Subscriptions can be added to a durable queue so that Guaranteed messages published to matching topics are also delivered to and spooled by the queue.
-  Attribute|Identifying
-  :---|:---:
-  msg_vpn_name|x
-  queue_name|x
-  subscription_topic|x
+  Attribute|Identifying|Write-Only|Deprecated|Opaque
+  :---|:---:|:---:|:---:|:---:
+  msg_vpn_name|x|||
+  queue_name|x|||
+  subscription_topic|x|||
   A SEMP client authorized with a minimum access scope/level of "vpn/read-only" is required to perform this operation.
   This has been available since SEMP API version 2.0.
 ---
@@ -18,11 +18,11 @@ description: |-
 One or more Queue Subscriptions can be added to a durable queue so that Guaranteed messages published to matching topics are also delivered to and spooled by the queue.
 
 
-Attribute|Identifying
-:---|:---:
-msg_vpn_name|x
-queue_name|x
-subscription_topic|x
+Attribute|Identifying|Write-Only|Deprecated|Opaque
+:---|:---:|:---:|:---:|:---:
+msg_vpn_name|x|||
+queue_name|x|||
+subscription_topic|x|||
 
 
 
