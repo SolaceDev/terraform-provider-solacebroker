@@ -1830,13 +1830,14 @@ func init() {
 				BaseType:            broker.Int64,
 				SempName:            "maxSubscriptionCount",
 				TerraformName:       "max_subscription_count",
-				MarkdownDescription: "The maximum number of local client subscriptions that can be added to the Message VPN. This limit is not enforced when a subscription is added using a management interface, such as CLI or SEMP. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default varies by platform.",
+				MarkdownDescription: "The maximum number of local subscriptions that can be added to the Message VPN. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `500000`.",
 				Type:                types.Int64Type,
 				TerraformType:       tftypes.Number,
 				Converter:           broker.IntegerConverter{},
 				Int64Validators: []validator.Int64{
 					int64validator.Between(0, 4294967295),
 				},
+				Default: 500000,
 			},
 			{
 				BaseType:            broker.Int64,
