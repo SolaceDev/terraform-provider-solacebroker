@@ -16,4 +16,4 @@
 
 package main
 
-const version = "1.0.0-rc.3-semp10.8.1"
+const version = "v1.0.0-rc.4-semp10.8.1.110"
