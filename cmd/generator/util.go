@@ -245,9 +245,6 @@ func hclFormatResource(resourceConfig ResourceConfig) string {
 func SanitizeHclStringValue(value string) string {
 	b, _ := json.Marshal(value)
 	s := string(b)
-	if strings.Contains(s, "\"") {
-		return ""
-	}
 	output := s[1 : len(s)-1]
 	output = strings.ReplaceAll(output, "${", "$${")
 	output = strings.ReplaceAll(output, "%{", "%%{")
