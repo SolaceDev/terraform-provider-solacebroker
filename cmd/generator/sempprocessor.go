@@ -85,7 +85,7 @@ func processSempResults(resourceTypeAndName string, attributes []*broker.Attribu
 				}
 				escapedValue := SanitizeHclStringValue(valuesRes.(string))
 				var val
-				if !strings.Contains(escapedValue, "\"") {
+				if !strings.Contains(escapedValue, '"') {
 					val = "\"" + escapedValue + "\""
 				} else {
 					val = "\"\""
