@@ -83,7 +83,13 @@ func processSempResults(resourceTypeAndName string, attributes []*broker.Attribu
 				if len(valuesRes.(string)) > 0 {
 					systemProvisioned = isSystemProvisionedAttribute(valuesRes.(string))
 				}
-				val := "\"" + SanitizeHclStringValue(valuesRes.(string)) + "\""
+				escapedValue := SanitizeHclStringValue(valuesRes.(string))
+				var val
+				if !strings.Contains(escapedValue, "\"") {
+					val = "\"" + escapedValue + "\""
+				} else {
+					val = "\"\""
+				}
 				if reflect.TypeOf(attr.Default) != nil && fmt.Sprint(attr.Default) == fmt.Sprint(valuesRes) {
 					//attributes with default values will be added to the internal list but will be skipped from results
 					attributesWithDefaultValue[attr.TerraformName] = &val
