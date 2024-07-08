@@ -282,7 +282,7 @@ func init() {
 				Type:                types.BoolType,
 				TerraformType:       tftypes.Bool,
 				Converter:           broker.SimpleConverter[bool]{TerraformType: tftypes.Bool},
-				Default:             true,
+				Default:             false,
 			},
 			{
 				BaseType:            broker.Struct,
