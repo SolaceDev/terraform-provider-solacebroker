@@ -28,10 +28,10 @@ import (
 func init() {
 	info := broker.EntityInputs{
 		TerraformName:       "msg_vpn_kafka_receiver_topic_binding",
-		MarkdownDescription: "A Topic Binding receives messages from a remote Kafka Topic.\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"vpn/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.36.",
+		MarkdownDescription: "A Topic Binding receives messages from a remote Kafka Topic.\n\n\nAttribute|Identifying|Write-Only|Deprecated|Opaque\n:---|:---:|:---:|:---:|:---:\nkafka_receiver_name|x|||\nmsg_vpn_name|x|||\ntopic_name|x|||\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"vpn/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.36.",
 		ObjectType:          broker.StandardObject,
 		PathTemplate:        "/msgVpns/{msgVpnName}/kafkaReceivers/{kafkaReceiverName}/topicBindings/{topicName}",
-		Version:             0, // Placeholder: value will be replaced in the provider code
+		Version:             0,
 		Attributes: []*broker.AttributeInfo{
 			{
 				BaseType:            broker.Bool,
@@ -47,7 +47,7 @@ func init() {
 				BaseType:            broker.String,
 				SempName:            "initialOffset",
 				TerraformName:       "initial_offset",
-				MarkdownDescription: "The initial offset to consume from the Kafka Topic if no member of the group has consumed and committed any offset already, or if the last committed offset has been deleted. Offsets are unique per partition.\n\nThis corresponds to the Kafka consumer API `auto.offset.reset` configuration setting.\n\nModifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"end\"`. The allowed values and their meaning are:\n\n<pre>\n\"beginning\" - Start with the earliest offset available.\n\"end\" - Start with new offsets only.\n</pre>\n",
+				MarkdownDescription: "The initial offset to consume from the Kafka Topic if no member of the group has consumed and committed any offset already, or if the last committed offset has been deleted. Offsets are unique per partition. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"end\"`. The allowed values and their meaning are:\n\n<pre>\n\"beginning\" - Start with the earliest offset available.\n\"end\" - Start with new offsets only.\n</pre>\n",
 				Type:                types.StringType,
 				TerraformType:       tftypes.String,
 				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
@@ -120,7 +120,7 @@ func init() {
 				BaseType:            broker.String,
 				SempName:            "topicName",
 				TerraformName:       "topic_name",
-				MarkdownDescription: "The name of the Topic or a POSIX.2 regular expression starting with '^'.",
+				MarkdownDescription: "The name of the Topic.",
 				Identifying:         true,
 				Required:            true,
 				RequiresReplace:     true,
@@ -129,7 +129,7 @@ func init() {
 				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
 				StringValidators: []validator.String{
 					stringvalidator.LengthBetween(1, 255),
-					stringvalidator.RegexMatches(regexp.MustCompile("^\\^.{0,254}|[a-zA-Z0-9\\._\\-]{1,255}$"), ""),
+					stringvalidator.RegexMatches(regexp.MustCompile("^\\^.*|[a-zA-Z0-9\\._\\-]+$"), ""),
 				},
 			},
 		},
