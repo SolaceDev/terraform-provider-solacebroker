@@ -29,16 +29,16 @@ import (
 func init() {
 	info := broker.EntityInputs{
 		TerraformName:       "msg_vpn_kafka_sender_queue_binding",
-		MarkdownDescription: "A Queue Binding sends messages from a local Solace Queue to a remote Kafka topic.\n\n\nAttribute|Identifying|Write-Only|Deprecated|Opaque\n:---|:---:|:---:|:---:|:---:\nkafka_sender_name|x|||\nmsg_vpn_name|x|||\nqueue_name|x|||\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"vpn/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.36.",
+		MarkdownDescription: "A Queue Binding sends messages from a local Solace Queue to a remote Kafka topic.\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"vpn/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.36.",
 		ObjectType:          broker.StandardObject,
 		PathTemplate:        "/msgVpns/{msgVpnName}/kafkaSenders/{kafkaSenderName}/queueBindings/{queueName}",
-		Version:             0,
+		Version:             0, // Placeholder: value will be replaced in the provider code
 		Attributes: []*broker.AttributeInfo{
 			{
 				BaseType:            broker.String,
 				SempName:            "ackMode",
 				TerraformName:       "ack_mode",
-				MarkdownDescription: "The number of acks required from the remote Kafka broker. When \"none\" messages are delivered at-most-once. When \"one\" or \"all\" messages are delivered at-least-once but may be reordered. This is overridden to \"all\" for an idempotent Kafka Sender. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"all\"`. The allowed values and their meaning are:\n\n<pre>\n\"none\" - No Acks.\n\"one\" - Leader Ack Only.\n\"all\" - All Replica Acks.\n</pre>\n",
+				MarkdownDescription: "The number of acks required from the remote Kafka broker. When \"none\" messages are delivered at-most-once. When \"one\" or \"all\" messages are delivered at-least-once but may be reordered. This must be configured as \"all\" for an idempotent Kafka Sender, otherwise the Queue Binding will be operationally down.\n\nThis corresponds to the Kafka producer API `acks` configuration setting.\n\nModifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"all\"`. The allowed values and their meaning are:\n\n<pre>\n\"none\" - No Acks.\n\"one\" - Leader Ack Only.\n\"all\" - All Replica Acks.\n</pre>\n",
 				Type:                types.StringType,
 				TerraformType:       tftypes.String,
 				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
@@ -131,7 +131,7 @@ func init() {
 				BaseType:            broker.String,
 				SempName:            "partitionScheme",
 				TerraformName:       "partition_scheme",
-				MarkdownDescription: "The partitioning scheme used to select a partition of the topic on the Kafka cluster to send messages to. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"consistent\"`. The allowed values and their meaning are:\n\n<pre>\n\"consistent\" - Select a consistent partition for each key value. A hash of the key will be used to select the partition number.\n\"explicit\" - Select an explicit partition independent of key value.\n\"random\" - Select a random partition independent of key value.\n</pre>\n",
+				MarkdownDescription: "The partitioning scheme used to select a partition of the topic on the Kafka cluster to send messages to.\n\nThis corresponds to the Kafka producer API `partitioner.class` configuration setting.\n\nModifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"consistent\"`. The allowed values and their meaning are:\n\n<pre>\n\"consistent\" - Select a consistent partition for each key value. A hash of the key will be used to select the partition number.\n\"explicit\" - Select an explicit partition independent of key value.\n\"random\" - Select a random partition independent of key value.\n</pre>\n",
 				Type:                types.StringType,
 				TerraformType:       tftypes.String,
 				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},

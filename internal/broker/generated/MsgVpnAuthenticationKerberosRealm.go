@@ -27,18 +27,41 @@ import (
 
 func init() {
 	info := broker.EntityInputs{
-		TerraformName:       "msg_vpn_authentication_oauth_profile_client_required_claim",
-		MarkdownDescription: "Additional claims to be verified in the ID token.\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"vpn/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.25.",
-		ObjectType:          broker.ReplaceOnlyObject,
-		PathTemplate:        "/msgVpns/{msgVpnName}/authenticationOauthProfiles/{oauthProfileName}/clientRequiredClaims/{clientRequiredClaimName}",
-		PostPathTemplate:    "/msgVpns/{msgVpnName}/authenticationOauthProfiles/{oauthProfileName}/clientRequiredClaims",
+		TerraformName:       "msg_vpn_authentication_kerberos_realm",
+		MarkdownDescription: "Kerberos Realm.\n\n\n\nA SEMP client authorized with a minimum access scope/level of \"vpn/read-only\" is required to perform this operation.\n\nThis has been available since SEMP API version 2.40.",
+		ObjectType:          broker.StandardObject,
+		PathTemplate:        "/msgVpns/{msgVpnName}/authenticationKerberosRealms/{kerberosRealmName}",
 		Version:             0, // Placeholder: value will be replaced in the provider code
 		Attributes: []*broker.AttributeInfo{
 			{
+				BaseType:            broker.Bool,
+				SempName:            "enabled",
+				TerraformName:       "enabled",
+				MarkdownDescription: "Enable or disable the Realm. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`.",
+				Type:                types.BoolType,
+				TerraformType:       tftypes.Bool,
+				Converter:           broker.SimpleConverter[bool]{TerraformType: tftypes.Bool},
+				Default:             false,
+			},
+			{
 				BaseType:            broker.String,
-				SempName:            "clientRequiredClaimName",
-				TerraformName:       "client_required_claim_name",
-				MarkdownDescription: "The name of the ID token claim to verify.",
+				SempName:            "kdcAddress",
+				TerraformName:       "kdc_address",
+				MarkdownDescription: "Address (FQDN or IP) and optional port of the Key Distribution Center for principals in this Realm. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`.",
+				Type:                types.StringType,
+				TerraformType:       tftypes.String,
+				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
+				StringValidators: []validator.String{
+					stringvalidator.LengthBetween(0, 259),
+					stringvalidator.RegexMatches(regexp.MustCompile("^(((([0-9a-zA-Z\\-\\.]){1,253})|\\[([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}\\]|\\[([0-9a-fA-F]{1,4}:){1,7}:\\]|\\[([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}\\]|\\[([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}\\]|\\[([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}\\]|\\[([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}\\]|\\[([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}\\]|\\[[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})\\]|\\[:((:[0-9a-fA-F]{1,4}){1,7}|:)\\])((:[0-9]{1,5}){0,1}))?$"), ""),
+				},
+				Default: "",
+			},
+			{
+				BaseType:            broker.String,
+				SempName:            "kerberosRealmName",
+				TerraformName:       "kerberos_realm_name",
+				MarkdownDescription: "The Realm Name. Must start with \"@\", typically all uppercase.",
 				Identifying:         true,
 				Required:            true,
 				RequiresReplace:     true,
@@ -46,21 +69,8 @@ func init() {
 				TerraformType:       tftypes.String,
 				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
 				StringValidators: []validator.String{
-					stringvalidator.LengthBetween(1, 100),
-				},
-			},
-			{
-				BaseType:            broker.String,
-				SempName:            "clientRequiredClaimValue",
-				TerraformName:       "client_required_claim_value",
-				MarkdownDescription: "The required claim value.",
-				Required:            true,
-				RequiresReplace:     true,
-				Type:                types.StringType,
-				TerraformType:       tftypes.String,
-				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
-				StringValidators: []validator.String{
-					stringvalidator.LengthBetween(1, 200),
+					stringvalidator.LengthBetween(2, 254),
+					stringvalidator.RegexMatches(regexp.MustCompile("^@.+$"), ""),
 				},
 			},
 			{
@@ -78,23 +88,6 @@ func init() {
 				StringValidators: []validator.String{
 					stringvalidator.LengthBetween(1, 32),
 					stringvalidator.RegexMatches(regexp.MustCompile("^[^*?]+$"), ""),
-				},
-			},
-			{
-				BaseType:            broker.String,
-				SempName:            "oauthProfileName",
-				TerraformName:       "oauth_profile_name",
-				MarkdownDescription: "The name of the OAuth profile.",
-				Identifying:         true,
-				Required:            true,
-				ReadOnly:            true,
-				RequiresReplace:     true,
-				Type:                types.StringType,
-				TerraformType:       tftypes.String,
-				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
-				StringValidators: []validator.String{
-					stringvalidator.LengthBetween(1, 32),
-					stringvalidator.RegexMatches(regexp.MustCompile("^[A-Za-z0-9_]+$"), ""),
 				},
 			},
 		},
