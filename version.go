@@ -16,4 +16,4 @@
 
 package main
 
-const version = "1.0.1-broker10.9.1"
+const version = "test"
