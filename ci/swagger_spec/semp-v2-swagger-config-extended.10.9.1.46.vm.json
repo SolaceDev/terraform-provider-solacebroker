@@ -30552,6 +30552,31 @@
           "x-sensitive": false,
           "x-writeOnly": false
         },
+        "authenticationOauthClientProxyName": {
+          "description": "The name of the proxy to use. Leave empty for no proxy. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`. Available since 2.42.",
+          "maxLength": 32,
+          "minLength": 0,
+          "type": "string",
+          "x-accessLevels": {
+            "get": "vpn/read-only",
+            "patch": "vpn/read-write"
+          },
+          "x-autoDisable": [],
+          "x-configSyncDefault": "",
+          "x-configSyncTableType": "vpn",
+          "x-default": "",
+          "x-deprecated": false,
+          "x-identifying": false,
+          "x-identifyingDirect": false,
+          "x-opaque": false,
+          "x-readOnlyOther": false,
+          "x-readOnlyPost": false,
+          "x-readOptional": false,
+          "x-requiredPost": false,
+          "x-requiresDisable": [],
+          "x-sensitive": false,
+          "x-writeOnly": false
+        },
         "authenticationOauthClientScope": {
           "description": "The OAuth scope. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`. Available since 2.19.",
           "maxLength": 200,
@@ -30648,6 +30673,31 @@
           "x-configSyncDefault": 900,
           "x-configSyncTableType": "vpn",
           "x-default": 900,
+          "x-deprecated": false,
+          "x-identifying": false,
+          "x-identifyingDirect": false,
+          "x-opaque": false,
+          "x-readOnlyOther": false,
+          "x-readOnlyPost": false,
+          "x-readOptional": false,
+          "x-requiredPost": false,
+          "x-requiresDisable": [],
+          "x-sensitive": false,
+          "x-writeOnly": false
+        },
+        "authenticationOauthJwtProxyName": {
+          "description": "The name of the proxy to use. Leave empty for no proxy. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"\"`. Available since 2.42.",
+          "maxLength": 32,
+          "minLength": 0,
+          "type": "string",
+          "x-accessLevels": {
+            "get": "vpn/read-only",
+            "patch": "vpn/read-write"
+          },
+          "x-autoDisable": [],
+          "x-configSyncDefault": "",
+          "x-configSyncTableType": "vpn",
+          "x-default": "",
           "x-deprecated": false,
           "x-identifying": false,
           "x-identifyingDirect": false,
