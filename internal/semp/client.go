@@ -101,7 +101,7 @@ func NewClient(url string, insecure_skip_verify bool, providerClient bool, optio
 	tr := &http.Transport{
 		TLSClientConfig:     &tls.Config{InsecureSkipVerify: insecure_skip_verify},
 		MaxIdleConnsPerHost: 10,
-		Proxy: http.ProxyFromEnvironment,
+		Proxy:               http.ProxyFromEnvironment,
 	}
 	retryClient := retryablehttp.NewClient()
 	retryClient.HTTPClient.Transport = tr
