@@ -89,7 +89,10 @@ For example, the password attribute can be set via the `SOLACEBROKER_PASSWORD` e
 
 ## HTTP Proxy Support
 
-This provider supports the environment variables HTTP_PROXY, HTTP_PROXY and NO_PROXY to configure clients to use the specified proxy server(s).
+This provider supports the environment variables HTTP_PROXY, HTTP_PROXY and NO_PROXY (or the lowercase versions thereof) to configure clients to use the specified proxy server(s).
+
+If the proxy URL contains a [RFC 3986 userinfo](https://datatracker.ietf.org/doc/html/rfc3986#section-3.2) subcomponent, the proxy request will pass the username and password in a Proxy-Authorization header.
+Example: `https_proxy=http://proxy-user:proxy-password@proxy:port`
 
 # Release Notes and History
 
