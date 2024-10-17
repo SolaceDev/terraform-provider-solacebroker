@@ -99,7 +99,7 @@ The environment variables for HTTP proxy configuration are:
 * `HTTPS_PROXY`: Use to set the proxy when secure `https://` protocol is specified in the target broker URL in the provider configuration.
 * `NO_PROXY`: Comma separated list of broker address domains that should bypass the proxy.
 
-To set the proxy, specify the proxy protocol, FQDN address and port. If `https://` protocol is specified then secure TLS connection will be used between the provider and the proxy. Username and password can be optionally specified for proxy authorization.
+To set the proxy, specify the proxy protocol, FQDN address and port. If `https://` proxy protocol is specified then secure TLS connection will be used between the provider and the proxy. Username and password can be optionally specified for proxy authorization.
 
 Examples:
 ```shell
