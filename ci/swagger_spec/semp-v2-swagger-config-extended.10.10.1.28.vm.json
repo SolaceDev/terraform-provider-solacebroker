@@ -2302,6 +2302,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -2366,6 +2368,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -2564,6 +2568,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -2628,6 +2634,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -2698,6 +2706,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -2762,6 +2772,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -2832,6 +2844,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -2896,6 +2910,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -3094,6 +3110,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -3158,6 +3176,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -3228,6 +3248,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNoValue()",
+          "x-complexDefault": "DefaultNoValue()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -3292,6 +3314,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNoValue()",
+          "x-complexDefault": "DefaultNoValue()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -3426,6 +3450,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -3490,6 +3516,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -3626,6 +3654,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -3690,6 +3720,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -3760,6 +3792,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -3824,6 +3858,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -3894,6 +3930,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -3958,6 +3996,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -4028,6 +4068,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -4092,6 +4134,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -6868,6 +6912,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -6932,6 +6978,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "router",
           "x-conflicts": [
             "clearPercent",
@@ -8385,6 +8433,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultMaxForPlatform()",
+          "x-complexDefault": "DefaultMaxForPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -8487,6 +8537,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultMaxForPlatform()",
+          "x-complexDefault": "DefaultMaxForPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -8563,6 +8615,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultVariesByPlatform()",
+          "x-complexDefault": "DefaultVariesByPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -8587,6 +8641,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultVariesByPlatform()",
+          "x-complexDefault": "DefaultVariesByPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -9330,6 +9386,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultMaxForPlatform()",
+          "x-complexDefault": "DefaultMaxForPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -9484,6 +9542,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultMaxForPlatform()",
+          "x-complexDefault": "DefaultMaxForPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -9768,6 +9828,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultMaxForPlatform()",
+          "x-complexDefault": "DefaultMaxForPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -9921,6 +9983,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultVariesByPlatform()",
+          "x-complexDefault": "DefaultVariesByPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -9945,6 +10009,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultVariesByPlatform()",
+          "x-complexDefault": "DefaultVariesByPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -10043,6 +10109,8 @@
             "patch": "global/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultMaxForPlatform()",
+          "x-complexDefault": "DefaultMaxForPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -13248,6 +13316,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "orderBeforeAuthorizationGroupName"
@@ -13273,6 +13343,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "orderAfterAuthorizationGroupName"
@@ -15479,6 +15551,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultMaxForPlatform()",
+          "x-complexDefault": "DefaultMaxForPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -15607,6 +15681,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultVariesByPlatform()",
+          "x-complexDefault": "DefaultVariesByPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -15657,6 +15733,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultVariesByPlatform()",
+          "x-complexDefault": "DefaultVariesByPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -16035,6 +16113,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultMaxForPlatform()",
+          "x-complexDefault": "DefaultMaxForPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -16108,6 +16188,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultMaxForPlatform()",
+          "x-complexDefault": "DefaultMaxForPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -16445,6 +16527,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -16509,6 +16593,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -16579,6 +16665,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -16643,6 +16731,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -16713,6 +16803,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -16777,6 +16869,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -16847,6 +16941,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -16911,6 +17007,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -16981,6 +17079,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -17045,6 +17145,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -17115,6 +17217,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -17179,6 +17283,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -17249,6 +17355,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -17313,6 +17421,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -17383,6 +17493,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -17447,6 +17559,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -17517,6 +17631,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -17581,6 +17697,8 @@
             "patch": "global/mesh-manager"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20029,6 +20147,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20093,6 +20213,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20163,6 +20285,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20227,6 +20351,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20361,6 +20487,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20425,6 +20553,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20495,6 +20625,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20559,6 +20691,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20693,6 +20827,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20757,6 +20893,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20827,6 +20965,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20891,6 +21031,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -20961,6 +21103,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21025,6 +21169,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21095,6 +21241,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21159,6 +21307,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21229,6 +21379,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21293,6 +21445,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21363,6 +21517,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21427,6 +21583,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21497,6 +21655,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21561,6 +21721,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21631,6 +21793,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21695,6 +21859,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21765,6 +21931,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -21829,6 +21997,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -26271,6 +26441,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -26335,6 +26507,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -26405,6 +26579,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -26469,6 +26645,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -26539,6 +26717,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -26603,6 +26783,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -27956,6 +28138,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -28020,6 +28204,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -28090,6 +28276,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -28154,6 +28342,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -28224,6 +28414,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -28288,6 +28480,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -29162,6 +29356,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -29226,6 +29422,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -29296,6 +29494,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -29360,6 +29560,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -29430,6 +29632,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -29494,6 +29698,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -32383,6 +32589,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultMaxForPlatform()",
+          "x-complexDefault": "DefaultMaxForPlatform()",
           "x-configSyncTableType": "vpn",
           "x-deprecated": false,
           "x-identifying": false,
@@ -32692,6 +32900,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -32756,6 +32966,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -32826,6 +33038,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -32890,6 +33104,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -33085,6 +33301,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -33149,6 +33367,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -34291,6 +34511,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -34355,6 +34577,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -34425,6 +34649,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -34489,6 +34715,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -34559,6 +34787,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -34623,6 +34853,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -35342,6 +35574,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -35406,6 +35640,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -35476,6 +35712,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -35540,6 +35778,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -35610,6 +35850,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
@@ -35674,6 +35916,8 @@
             "patch": "vpn/read-write"
           },
           "x-autoDisable": [],
+          "x-complexConfigSyncDefault": "DefaultNotApplicable()",
+          "x-complexDefault": "DefaultNotApplicable()",
           "x-configSyncTableType": "vpn",
           "x-conflicts": [
             "clearPercent",
