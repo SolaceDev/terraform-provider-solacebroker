@@ -30,7 +30,7 @@ The import identifier for this resource is `{msg_vpn_name}/{kafka_receiver_name}
 
 - `kafka_receiver_name` (String) The name of the Kafka Receiver.
 - `msg_vpn_name` (String) The name of the Message VPN.
-- `topic_name` (String) The name of the Topic or a POSIX.2 regular expression starting with '^'.
+- `topic_name` (String) The name of the Topic.
 
 ### Optional
 
