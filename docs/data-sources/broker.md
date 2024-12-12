@@ -41,12 +41,12 @@ The minimum access scope/level required to retrieve this attribute is "global/re
 "crl" - Use Certificate Revocation Lists (CRL) for certificate revocation checking.
 "ocsp-crl" - Use OCSP first, but if OCSP fails to return an unambiguous result, then check via CRL.
 </pre>
-- `config_sync_authentication_client_cert_max_chain_depth` (Number, Deprecated) The maximum depth for a client certificate chain. The depth of a chain is defined as the number of signing CA certificates that are present in the chain back to a trusted self-signed root CA certificate.
+- `config_sync_authentication_client_cert_max_chain_depth` (Number) The maximum depth for a client certificate chain. The depth of a chain is defined as the number of signing CA certificates that are present in the chain back to a trusted self-signed root CA certificate.
 
-The minimum access scope/level required to retrieve this attribute is "global/read-only". The minimum access scope/level required to change this attribute is "global/read-write". The default value is `3`. Deprecated since SEMP API version 2.44. Client certificate authentication is deprecated for config-sync.
-- `config_sync_authentication_client_cert_validate_date_enabled` (Boolean, Deprecated) Enable or disable validation of the "Not Before" and "Not After" validity dates in the authentication certificate(s).
+The minimum access scope/level required to retrieve this attribute is "global/read-only". The minimum access scope/level required to change this attribute is "global/read-write". The default value is `3`. Available since SEMP API version 2.22.
+- `config_sync_authentication_client_cert_validate_date_enabled` (Boolean) Enable or disable validation of the "Not Before" and "Not After" validity dates in the authentication certificate(s).
 
-The minimum access scope/level required to retrieve this attribute is "global/read-only". The minimum access scope/level required to change this attribute is "global/read-write". The default value is `true`. Deprecated since SEMP API version 2.44. Client certificate authentication is deprecated for config-sync.
+The minimum access scope/level required to retrieve this attribute is "global/read-only". The minimum access scope/level required to change this attribute is "global/read-write". The default value is `true`. Available since SEMP API version 2.22.
 - `config_sync_client_profile_tcp_initial_congestion_window` (Number) The TCP initial congestion window size for Config Sync clients, in multiples of the TCP Maximum Segment Size (MSS). Changing the value from its default of 2 results in non-compliance with RFC 2581. Contact support before changing this value.
 
 The minimum access scope/level required to retrieve this attribute is "global/read-only". The minimum access scope/level required to change this attribute is "global/read-write". The default value is `2`. Available since SEMP API version 2.22.
