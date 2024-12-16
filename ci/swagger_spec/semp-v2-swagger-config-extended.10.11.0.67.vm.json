@@ -2130,7 +2130,7 @@
           "x-writeOnly": false
         },
         "tlsTicketLifetime": {
-          "description": "The TLS ticket lifetime in seconds. When a client connects with TLS, a session with a session ticket is created using the TLS ticket lifetime which determines how long the client has to resume the session.\n\nThe minimum access scope/level required to retrieve this attribute is \"global/read-only\". The minimum access scope/level required to change this attribute is \"global/read-write\". The default value is `86400`. Deprecated since 2.44. This attribute had been deprecated. TLS session tickets are no longer supported.",
+          "description": "The TLS ticket lifetime in seconds. When a client connects with TLS, a session with a session ticket is created using the TLS ticket lifetime which determines how long the client has to resume the session.\n\nThe minimum access scope/level required to retrieve this attribute is \"global/read-only\". The minimum access scope/level required to change this attribute is \"global/read-write\". The default value is `86400`. Deprecated since 2.45. This attribute had been deprecated. TLS session tickets are no longer supported.",
           "format": "int32",
           "maximum": 86400,
           "minimum": 1,
@@ -38651,7 +38651,7 @@
     },
     "description": "SEMP (starting in `v2`) is a RESTful API for configuring, monitoring, and administering a Solace PubSub+ broker. This specification defines the following API:\n\n\nAPI|Base Path|Purpose\n:---|:---|:---\nConfiguration|/SEMP/v2/config|Reading and writing configuration\n\n\n\nThe following APIs are also available:\n\n\nAPI|Base Path|Purpose\n:---|:---|:---\nAction|/SEMP/v2/action|Performing actions\nMonitoring|/SEMP/v2/monitor|Querying operational state\n\n\n\nFor tutorials, architectural and protocol design documentation, and other information about the SEMP API, consult the [SEMP documentation](https://docs.solace.com/Admin/SEMP/Using-SEMP.htm) on the Solace website. The SEMP API specifications are also [available for download](https://solace.com/downloads/).\n\nIf you need additional support, please contact us at [support@solace.com](mailto:support@solace.com).",
     "title": "SEMP (Solace Element Management Protocol)",
-    "version": "2.44"
+    "version": "2.45"
   },
   "parameters": {
     "countQuery": {
