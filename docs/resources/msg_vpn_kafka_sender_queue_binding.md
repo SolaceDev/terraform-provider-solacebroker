@@ -34,11 +34,7 @@ The import identifier for this resource is `{msg_vpn_name}/{kafka_sender_name}/{
 
 ### Optional
 
-- `ack_mode` (String) The number of acks required from the remote Kafka broker. When "none" messages are delivered at-most-once. When "one" or "all" messages are delivered at-least-once but may be reordered. This must be configured as "all" for an idempotent Kafka Sender, otherwise the Queue Binding will be operationally down.
-
-This corresponds to the Kafka producer API `acks` configuration setting.
-
-Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"all"`. The allowed values and their meaning are:
+- `ack_mode` (String) The number of acks required from the remote Kafka broker. When "none" messages are delivered at-most-once. When "one" or "all" messages are delivered at-least-once but may be reordered. This is overridden to "all" for an idempotent Kafka Sender. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"all"`. The allowed values and their meaning are:
 
 <pre>
 "none" - No Acks.
@@ -55,11 +51,7 @@ Modifying this attribute while the object (or the relevant part of the object) i
 </pre>
 - `partition_explicit_number` (Number) The partition number to use for explicit partition selection. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `0`.
 - `partition_random_fallback_enabled` (Boolean) Enable or disable fallback to the random partition selection scheme when the consistent partition scheme is being used but no partition key is available for the message. When enabled a random partition will be selected for each unkeyed messages, otherwise some partition will be selected for groups of unkeyed messages. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `true`.
-- `partition_scheme` (String) The partitioning scheme used to select a partition of the topic on the Kafka cluster to send messages to.
-
-This corresponds to the Kafka producer API `partitioner.class` configuration setting.
-
-Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"consistent"`. The allowed values and their meaning are:
+- `partition_scheme` (String) The partitioning scheme used to select a partition of the topic on the Kafka cluster to send messages to. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"consistent"`. The allowed values and their meaning are:
 
 <pre>
 "consistent" - Select a consistent partition for each key value. A hash of the key will be used to select the partition number.
@@ -68,11 +60,7 @@ Modifying this attribute while the object (or the relevant part of the object) i
 </pre>
 - `remote_key` (String) The Substitution Expression used to generate the key for each message sent to Kafka. This expression can include fields extracted from the metadata of each individual Solace message as it is taken from the Solace Queue.
 
-If empty, no key is included for each message as it is published into Kafka.
-
-Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
+If empty, no key is included for each message as it is published into Kafka. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
 - `remote_topic` (String) The Kafka Topic on the Kafka Cluster to send each message taken from the Solace Queue to.
 
-If empty, the Queue Binding will not be operational.
-
-Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
+If empty, the Queue Binding will not be operational. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
