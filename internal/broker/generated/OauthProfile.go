@@ -410,7 +410,7 @@ func init() {
 				BaseType:            broker.String,
 				SempName:            "proxyName",
 				TerraformName:       "proxy_name",
-				MarkdownDescription: "The name of the proxy to use for discovery, user info, jwks, and introspection requests. Leave empty for no proxy.\n\nThe minimum access scope/level required to retrieve this attribute is \"global/read-only\". The minimum access scope/level required to change this attribute is \"global/admin\". Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"\"`. Available since SEMP API version 2.41.",
+				MarkdownDescription: "The name of the proxy to use for discovery, user info, jwks, introspection, and token requests. Leave empty for no proxy.\n\nThe minimum access scope/level required to retrieve this attribute is \"global/read-only\". The minimum access scope/level required to change this attribute is \"global/admin\". Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"\"`. Available since SEMP API version 2.41.",
 				Type:                types.StringType,
 				TerraformType:       tftypes.String,
 				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
