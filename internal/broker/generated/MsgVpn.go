@@ -2497,7 +2497,7 @@ func init() {
 				TerraformType:       tftypes.Number,
 				Converter:           broker.IntegerConverter{},
 				Int64Validators: []validator.Int64{
-					int64validator.Between(0, 30000),
+					int64validator.Between(0, 6000),
 				},
 			},
 			{

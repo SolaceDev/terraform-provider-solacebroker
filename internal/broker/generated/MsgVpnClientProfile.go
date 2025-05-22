@@ -1088,19 +1088,6 @@ func init() {
 			},
 			{
 				BaseType:            broker.Int64,
-				SempName:            "maxAmqpLinkCount",
-				TerraformName:       "max_amqp_link_count",
-				MarkdownDescription: "The maximum number of AMQP links per AMQP client using the Client Profile.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"global/mesh-manager\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `146625`. Available since SEMP API version 2.46.",
-				Type:                types.Int64Type,
-				TerraformType:       tftypes.Number,
-				Converter:           broker.IntegerConverter{},
-				Int64Validators: []validator.Int64{
-					int64validator.Between(0, 146625),
-				},
-				Default: 146625,
-			},
-			{
-				BaseType:            broker.Int64,
 				SempName:            "maxConnectionCountPerClientUsername",
 				TerraformName:       "max_connection_count_per_client_username",
 				MarkdownDescription: "The maximum number of client connections per Client Username using the Client Profile.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"global/mesh-manager\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default is the maximum value supported by the platform.",

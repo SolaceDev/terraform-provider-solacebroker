@@ -34,21 +34,6 @@ The minimum access scope/level required to retrieve this attribute is "vpn/read-
 
 ### Read-Only
 
-- `authentication_aws_msk_iam_access_key_id` (String) The AWS Access Key identifier, typically beginning "AKIA...".
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`. Available since SEMP API version 2.46.
-- `authentication_aws_msk_iam_region` (String) The AWS Region code, such as "us-east-1".
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`. Available since SEMP API version 2.46.
-- `authentication_aws_msk_iam_sts_external_id` (String) The External ID is a unique identifier that might be required when assuming a role. Used with STS only; optional.
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`. Available since SEMP API version 2.46.
-- `authentication_aws_msk_iam_sts_role_arn` (String) The Amazon Resource Name (ARN) of the role to assume, typically beginning "arn:aws:iam::...". Used with STS only.
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`. Available since SEMP API version 2.46.
-- `authentication_aws_msk_iam_sts_role_session_name` (String) An identifier for the assumed role's session. Used with STS only.
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`. Available since SEMP API version 2.46.
 - `authentication_basic_username` (String) The username the Kafka Receiver uses to login to the remote Kafka broker. To be used when authentication_scheme is "basic".
 
 The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
@@ -76,8 +61,6 @@ The minimum access scope/level required to retrieve this attribute is "vpn/read-
 
 <pre>
 "none" - Anonymous Authentication. Used with Kafka broker PLAINTEXT listener ports.
-"aws-msk-iam" - Amazon Web Services (AWS) Managed Streaming for Kafka (MSK) Identity and Access Management (IAM) Authentication. Requires encryption.
-"aws-msk-iam-sts" - AWS MSK IAM with Security Token Service (STS) Authentication. Requires encryption.
 "basic" - Basic Authentication. Used with Kafka broker SASL_PLAINTEXT and SASL_SSL listener ports.
 "scram" - Salted Challenge Response Authentication. Used with Kafka broker SASL_PLAINTEXT and SASL_SSL listener ports.
 "client-certificate" - Client Certificate Authentication. Used with Kafka broker SSL listener ports.

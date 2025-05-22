@@ -90,9 +90,6 @@ The minimum access scope/level required to retrieve this attribute is "vpn/read-
 - `event_subscription_count_threshold` (Attributes) The thresholds for the subscription count event of the Client Profile, relative to `max_subscription_count`. (see [below for nested schema](#nestedatt--event_subscription_count_threshold))
 - `event_transacted_session_count_threshold` (Attributes) The thresholds for the transacted session count event of the Client Profile, relative to `max_transacted_session_count`. (see [below for nested schema](#nestedatt--event_transacted_session_count_threshold))
 - `event_transaction_count_threshold` (Attributes) The thresholds for the transaction count event of the Client Profile, relative to `max_transaction_count`. (see [below for nested schema](#nestedatt--event_transaction_count_threshold))
-- `max_amqp_link_count` (Number) The maximum number of AMQP links per AMQP client using the Client Profile.
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "global/mesh-manager". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `146625`. Available since SEMP API version 2.46.
 - `max_connection_count_per_client_username` (Number) The maximum number of client connections per Client Username using the Client Profile.
 
 The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "global/mesh-manager". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default is the maximum value supported by the platform.

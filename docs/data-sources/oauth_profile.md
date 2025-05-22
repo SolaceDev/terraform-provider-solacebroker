@@ -140,7 +140,7 @@ The minimum access scope/level required to retrieve this attribute is "global/re
 "client" - The broker is in the OAuth client role.
 "resource-server" - The broker is in the OAuth resource server role.
 </pre>
-- `proxy_name` (String) The name of the proxy to use for discovery, user info, jwks, introspection, and token requests. Leave empty for no proxy.
+- `proxy_name` (String) The name of the proxy to use for discovery, user info, jwks, and introspection requests. Leave empty for no proxy.
 
 The minimum access scope/level required to retrieve this attribute is "global/read-only". The minimum access scope/level required to change this attribute is "global/admin". Changes to this attribute are synchronized to HA mates via config-sync. The default value is `""`. Available since SEMP API version 2.41.
 - `resource_server_parse_access_token_enabled` (Boolean) Enable or disable parsing of the access token as a JWT.
