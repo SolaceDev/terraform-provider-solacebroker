@@ -13045,10 +13045,11 @@
           "x-writeOnly": true
         },
         "remoteAuthenticationScheme": {
-          "description": "The authentication scheme for the remote Message VPN. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"basic\"`. The allowed values and their meaning are:\n\n<pre>\n\"basic\" - Basic Authentication Scheme (via username and password).\n\"client-certificate\" - Client Certificate Authentication Scheme (via certificate file or content).\n</pre>\n",
+          "description": "The authentication scheme for the remote Message VPN. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"basic\"`. The allowed values and their meaning are:\n\n<pre>\n\"basic\" - Basic Authentication Scheme (via username and password).\n\"client-certificate\" - Client Certificate Authentication Scheme (via certificate file or content).\n\"tls-psk\" - This authentication scheme is used internally by the broker. It cannot be directly configured by a user.\n</pre>\n",
           "enum": [
             "basic",
-            "client-certificate"
+            "client-certificate",
+            "tls-psk"
           ],
           "type": "string",
           "x-accessLevels": {
