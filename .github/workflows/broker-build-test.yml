@@ -63,7 +63,7 @@ jobs:
           echo "No changes detected, skipping further steps"          
 
       - name: List changed files - from now on all tests are run only if there were changes
-        if: steps.check-changed-files.outputs.files_changed == 'true'
+        # if: steps.check-changed-files.outputs.files_changed == 'true'
         run: |
           echo "Changed files: ${{ steps.check-changed-files.outputs.changed_files }}"
           echo ******** Excluding MarkdownDescription:
@@ -72,13 +72,13 @@ jobs:
           git diff
 
       - name: Set up Terraform latest
-        if: steps.check-changed-files.outputs.files_changed == 'true'
+        # if: steps.check-changed-files.outputs.files_changed == 'true'
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_wrapper: false
 
       - name: Setup Test broker
-        if: steps.check-changed-files.outputs.files_changed == 'true'
+        # if: steps.check-changed-files.outputs.files_changed == 'true'
         run: |
           mkdir -p $HOME/solace; chmod 777 $HOME/solace
           docker run -d -p 8080:8080 -p 55555:55555 --shm-size=1g --env username_admin_globalaccesslevel=admin --env username_admin_password=admin --env system_scaling_maxkafkabridgecount="10" --name=solace \
@@ -87,13 +87,13 @@ jobs:
           while ! curl -s localhost:8080 | grep aurelia ; do sleep 1 ; done
 
       - name: Run acceptance test
-        if: steps.check-changed-files.outputs.files_changed == 'true'
+        # if: steps.check-changed-files.outputs.files_changed == 'true'
         run: |
           make vet
           make testacc
 
       - name: Use local provider
-        if: steps.check-changed-files.outputs.files_changed == 'true'
+        # if: steps.check-changed-files.outputs.files_changed == 'true'
         run: |
           echo "
           provider_installation {
@@ -105,12 +105,12 @@ jobs:
 
 
       - name: Build documentation
-        if: steps.check-changed-files.outputs.files_changed == 'true'
+        # if: steps.check-changed-files.outputs.files_changed == 'true'
         run: |
           make generate-docs
 
       - name: Build provider
-        if: steps.check-changed-files.outputs.files_changed == 'true'
+        # if: steps.check-changed-files.outputs.files_changed == 'true'
         run: |
           make test-coverage
           make install
@@ -118,7 +118,7 @@ jobs:
           terraform-provider-solacebroker -h
 
       - name: Run provider test - create custom messageVPN with large config
-        if: steps.check-changed-files.outputs.files_changed == 'true'
+        # if: steps.check-changed-files.outputs.files_changed == 'true'
         run: |
           pushd ci/broker_vpn_test
           # Create
@@ -128,13 +128,13 @@ jobs:
           popd
 
       - name: Run generate test - generate complete large config file for custom messageVPN file
-        if: steps.check-changed-files.outputs.files_changed == 'true'
+        # if: steps.check-changed-files.outputs.files_changed == 'true'
         run: |
           SOLACEBROKER_REGISTRY_OVERRIDE=registry.terraform.io/solaceproducts/solacebroker SOLACEBROKER_USERNAME=admin SOLACEBROKER_PASSWORD=admin terraform-provider-solacebroker generate --url=http://localhost:8080 solacebroker_msg_vpn.test test messageVpn.tf
           cat messageVpn.tf
 
       - name: Run provider test - delete large config
-        if: steps.check-changed-files.outputs.files_changed == 'true'
+        # if: steps.check-changed-files.outputs.files_changed == 'true'
         run: |
           pushd ci/broker_vpn_test
           terraform plan
@@ -143,7 +143,7 @@ jobs:
           popd
 
       - name: Test state upgrade
-        if: steps.check-changed-files.outputs.files_changed == 'true'
+        # if: steps.check-changed-files.outputs.files_changed == 'true'
         run: |
           pushd ci/state_upgrade
           bash -c "terraform plan &> results.out" || echo "Expecting terraform plan to fail"
