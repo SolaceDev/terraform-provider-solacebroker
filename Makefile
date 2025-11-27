@@ -1,4 +1,8 @@
 #make
+
+# Include .env file if it exists
+-include .env
+
 PKG_LIST := $(shell go list ./... | grep -v /vendor/)
 
 
@@ -64,7 +68,39 @@ generate-code: ## Generate latest code from SEMP API spec
 
 .PHONY:
 newbroker: ## Run a new broker container with a specified tag, usage: make newbroker [tag=<docker-tag>]
-	$(eval tag := $(if $(tag),$(tag),"10.25.0.24"))
+	$(eval tag := $(if $(tag),$(tag),$(DOCKER_TAG)))
 	@echo "Running a new broker container with tag: $(tag)"
-	@docker kill solace >/dev/null 2>&1 || true ; docker rm solace >/dev/null 2>&1 || true
-	docker run -d -p 8080:8080 -p 55554:55555 -p 8008:8008 -p 1883:1883 -p 8000:8000 -p 5672:5672 -p 9000:9000 -p 2222:2222 -p 1943:1943 --shm-size=1g --env username_admin_globalaccesslevel=admin --env username_admin_password=admin --name=solace docker.solacedev.ca/pubsubplus/solace-pubsub-standard:$(tag)
+	@$(CONTAINER_ENGINE) kill solace >/dev/null 2>&1 || true ; $(CONTAINER_ENGINE) rm solace >/dev/null 2>&1 || true
+	$(CONTAINER_ENGINE) run -d -p 8080:8080 -p 55554:55555 -p 8008:8008 -p 1883:1883 -p 8000:8000 -p 5672:5672 -p 9000:9000 -p 2222:2222 -p 1943:1943 --shm-size=1g --env username_admin_globalaccesslevel=$(BROKER_USERNAME) --env username_admin_password=$(BROKER_PASSWORD) --name=solace docker.solacedev.ca/pubsubplus/solace-pubsub-standard:$(tag)
+
+.PHONY:
+fetch-swagger-spec: ## Fetch swagger spec from devserver, usage: make fetch-swagger-spec [schema=<vm|lm>] [version=<broker-version>]
+	@if [ -z "$(DEVSERVER)" ] || [ -z "$(DEVSERVER_ACCOUNT)" ]; then \
+		echo "Error: DEVSERVER and DEVSERVER_ACCOUNT must be set in .env file"; \
+		exit 1; \
+	fi
+	$(eval schema := $(if $(schema),$(schema),vm))
+	@if [ -z "$(version)" ]; then \
+		echo "Error: version parameter is required. Usage: make fetch-swagger-spec version=<broker-version> [schema=<vm|lm>]"; \
+		echo "Example: make fetch-swagger-spec version=10.11.1 schema=vm"; \
+		exit 1; \
+	fi
+	@echo "Fetching swagger spec for version=$(version), schema=$(schema)"
+	@echo "Checking remote path on $(DEVSERVER)..."
+	@if ! ssh $(DEVSERVER_ACCOUNT)@$(DEVSERVER) "test -d /home/public/RND/loads/solcbr/$(version)/current/$(schema)_schema"; then \
+		echo "Error: Directory /home/public/RND/loads/solcbr/$(version)/current/$(schema)_schema does not exist on $(DEVSERVER)"; \
+		exit 1; \
+	fi
+	@echo "Resolving 'current' symlink to get load release version..."
+	$(eval load_version := $(shell ssh $(DEVSERVER_ACCOUNT)@$(DEVSERVER) "readlink /home/public/RND/loads/solcbr/$(version)/current"))
+	@if [ -z "$(load_version)" ]; then \
+		echo "Error: Failed to resolve 'current' symlink"; \
+		exit 1; \
+	fi
+	@echo "Load release version: $(load_version)"
+	@echo "Cleaning ci/swagger_spec directory..."
+	@rm -f ci/swagger_spec/*
+	@echo "Copying swagger spec file from devserver..."
+	@scp $(DEVSERVER_ACCOUNT)@$(DEVSERVER):/home/public/RND/loads/solcbr/$(version)/current/$(schema)_schema/semp-v2-swagger-config-extended.json ci/swagger_spec/semp-v2-swagger-config-extended.$(load_version).$(schema).json
+	@echo "Successfully fetched: ci/swagger_spec/semp-v2-swagger-config-extended.$(load_version).$(schema).json"
+	@ls -lh ci/swagger_spec/
