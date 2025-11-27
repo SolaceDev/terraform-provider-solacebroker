@@ -71,7 +71,7 @@ newbroker: ## Run a new broker container with a specified tag, usage: make newbr
 	$(eval tag := $(if $(tag),$(tag),$(DOCKER_TAG)))
 	@echo "Running a new broker container with tag: $(tag)"
 	@$(CONTAINER_ENGINE) kill solace >/dev/null 2>&1 || true ; $(CONTAINER_ENGINE) rm solace >/dev/null 2>&1 || true
-	$(CONTAINER_ENGINE) run -d -p 8080:8080 -p 55554:55555 -p 8008:8008 -p 1883:1883 -p 8000:8000 -p 5672:5672 -p 9000:9000 -p 2222:2222 -p 1943:1943 --shm-size=1g --env username_admin_globalaccesslevel=$(BROKER_USERNAME) --env username_admin_password=$(BROKER_PASSWORD) --name=solace docker.solacedev.ca/pubsubplus/solace-pubsub-standard:$(tag)
+	$(CONTAINER_ENGINE) run -d -p 8080:8080 -p 55554:55555 -p 8008:8008 -p 1883:1883 -p 8000:8000 -p 5672:5672 -p 9000:9000 -p 2222:2222 -p 1943:1943 --shm-size=1g --env username_admin_globalaccesslevel=$(BROKER_USERNAME) --env username_admin_password=$(BROKER_PASSWORD) --env system_scaling_maxconnectioncount="1000" --env system_scaling_maxkafkabridgecount="10" --name=solace docker.solacedev.ca/pubsubplus/solace-pubsub-standard:$(tag)
 
 .PHONY:
 fetch-swagger-spec: ## Fetch swagger spec from devserver, usage: make fetch-swagger-spec [schema=<vm|lm>] [version=<broker-version>]
