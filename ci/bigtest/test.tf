@@ -409,6 +409,13 @@ resource "solacebroker_msg_vpn_authentication_oauth_profile_resource_server_requ
   resource_server_required_claim_value = "{\"test\":1}"
 }
 
+resource "solacebroker_msg_vpn_authentication_kerberos_realm" "msg_vpn_authentication_kerberos_realm" {
+  msg_vpn_name         = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
+  kerberos_realm_name  = "@EXAMPLE.COM"
+  enabled              = true
+  kdc_address          = "kdc.example.com:88"
+}
+
 resource "solacebroker_msg_vpn_authorization_group" "msg_vpn_authorization_group" {
   msg_vpn_name                         = solacebroker_msg_vpn.msg_vpn.msg_vpn_name
   authorization_group_name             = "test"
@@ -1188,6 +1195,17 @@ resource "solacebroker_oauth_profile_resource_server_required_claim" "oauth_prof
   oauth_profile_name                   = solacebroker_oauth_profile.oauth_profile.oauth_profile_name
   resource_server_required_claim_name  = "test"
   resource_server_required_claim_value = "{\"test\":1}"
+}
+
+resource "solacebroker_proxy" "proxy" {
+  proxy_name                        = "test-proxy"
+  enabled                           = true
+  proxy_type                        = "http"
+  host                              = "proxy.example.com"
+  port                              = 8080
+  authentication_scheme             = "basic"
+  authentication_basic_username     = "proxy-user"
+  authentication_basic_password     = "proxy-pass"
 }
 
 resource "solacebroker_virtual_hostname" "virtual_hostname" {
