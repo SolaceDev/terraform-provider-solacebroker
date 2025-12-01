@@ -10,7 +10,6 @@
 **/*.tfplan
 __debug*
 bin
-broker-terraform-code-generator
 build
 dist
 test
