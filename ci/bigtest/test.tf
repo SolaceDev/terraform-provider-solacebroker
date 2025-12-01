@@ -28,7 +28,7 @@ resource "solacebroker_broker" "broker" {
   config_sync_tls_enabled                                              = true
   guaranteed_msging_defragmentation_schedule_day_list                  = "Mon,Tue"
   guaranteed_msging_defragmentation_schedule_enabled                   = true
-  guaranteed_msging_defragmentation_schedule_time_list                 = "23:59"
+  guaranteed_msging_defragmentation_schedule_time_list                 = "22:59"
   guaranteed_msging_defragmentation_threshold_enabled                  = true
   guaranteed_msging_defragmentation_threshold_fragmentation_percentage = 30
   guaranteed_msging_defragmentation_threshold_min_interval             = 16
