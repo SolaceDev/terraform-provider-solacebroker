@@ -4,7 +4,7 @@ page_title: "solacebroker_msg_vpn_kafka_sender_queue_binding Resource - solacebr
 subcategory: ""
 description: |-
   A Queue Binding sends messages from a local Solace Queue to a remote Kafka topic.
-  The minimum access scope/level required to perform this operation is "vpn/read-only".
+  A SEMP client authorized with a minimum access scope/level of "vpn/read-only" is required to perform this operation.
   This has been available since SEMP API version 2.36.
   The import identifier for this resource is {msg_vpn_name}/{kafka_sender_name}/{queue_name}, where {&lt;attribute&gt;} represents the value of the attribute and it must be URL-encoded.
 ---
@@ -15,7 +15,7 @@ A Queue Binding sends messages from a local Solace Queue to a remote Kafka topic
 
 
 
-The minimum access scope/level required to perform this operation is "vpn/read-only".
+A SEMP client authorized with a minimum access scope/level of "vpn/read-only" is required to perform this operation.
 
 This has been available since SEMP API version 2.36.
 
@@ -29,14 +29,8 @@ The import identifier for this resource is `{msg_vpn_name}/{kafka_sender_name}/{
 ### Required
 
 - `kafka_sender_name` (String) The name of the Kafka Sender.
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only".
 - `msg_vpn_name` (String) The name of the Message VPN.
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only".
 - `queue_name` (String) The name of the Queue.
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only".
 
 ### Optional
 
@@ -44,36 +38,28 @@ The minimum access scope/level required to retrieve this attribute is "vpn/read-
 
 This corresponds to the Kafka producer API `acks` configuration setting.
 
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"all"`. The allowed values and their meaning are:
+Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"all"`. The allowed values and their meaning are:
 
 <pre>
 "none" - No Acks.
 "one" - Leader Ack Only.
 "all" - All Replica Acks.
 </pre>
-- `enabled` (Boolean) Enable or disable this queue binding of the Kafka Sender.
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`.
-- `partition_consistent_hash` (String) The hash algorithm to use for consistent partition selection.
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"crc"`. The allowed values and their meaning are:
+- `enabled` (Boolean) Enable or disable this queue binding of the Kafka Sender. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`.
+- `partition_consistent_hash` (String) The hash algorithm to use for consistent partition selection. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"crc"`. The allowed values and their meaning are:
 
 <pre>
 "crc" - CRC Hash.
 "murmur2" - Murmer2 Hash.
 "fnv1a" - Fowler-Noll-Vo 1a Hash.
 </pre>
-- `partition_explicit_number` (Number) The partition number to use for explicit partition selection.
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `0`.
-- `partition_random_fallback_enabled` (Boolean) Enable or disable fallback to the random partition selection scheme when the consistent partition scheme is being used but no partition key is available for the message. When enabled a random partition will be selected for each unkeyed messages, otherwise some partition will be selected for groups of unkeyed messages.
-
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `true`.
+- `partition_explicit_number` (Number) The partition number to use for explicit partition selection. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `0`.
+- `partition_random_fallback_enabled` (Boolean) Enable or disable fallback to the random partition selection scheme when the consistent partition scheme is being used but no partition key is available for the message. When enabled a random partition will be selected for each unkeyed messages, otherwise some partition will be selected for groups of unkeyed messages. Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `true`.
 - `partition_scheme` (String) The partitioning scheme used to select a partition of the topic on the Kafka cluster to send messages to.
 
 This corresponds to the Kafka producer API `partitioner.class` configuration setting.
 
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"consistent"`. The allowed values and their meaning are:
+Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `"consistent"`. The allowed values and their meaning are:
 
 <pre>
 "consistent" - Select a consistent partition for each key value. A hash of the key will be used to select the partition number.
@@ -84,9 +70,9 @@ The minimum access scope/level required to retrieve this attribute is "vpn/read-
 
 If empty, no key is included for each message as it is published into Kafka.
 
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
+Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
 - `remote_topic` (String) The Kafka Topic on the Kafka Cluster to send each message taken from the Solace Queue to.
 
 If empty, the Queue Binding will not be operational.
 
-The minimum access scope/level required to retrieve this attribute is "vpn/read-only". The minimum access scope/level required to change this attribute is "vpn/read-write". Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
+Modifying this attribute while the object (or the relevant part of the object) is administratively enabled may be service impacting as enabled will be temporarily set to false to apply the change. Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `""`.
