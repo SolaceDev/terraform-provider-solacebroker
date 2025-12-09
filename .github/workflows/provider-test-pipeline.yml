@@ -4,8 +4,15 @@ on: workflow_call
 
 jobs:
   test:
-    name: Run Provider setup and tests
+    name: Run Provider setup and tests (Terraform ${{ matrix.terraform-version }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false  # Continue testing other versions even if one fails
+      matrix:
+        terraform-version:
+          - '1.0.11'  # Minimum supported version
+          - '1.5.7'   # Mid-range version
+          - '1.9.8'   # Latest stable version
     steps:
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -15,8 +22,10 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Set up Terraform latest
+      - name: Set up Terraform ${{ matrix.terraform-version }}
         uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ matrix.terraform-version }}
 
       - name: Setup test broker - using edge docker image for latest release
         run: |
