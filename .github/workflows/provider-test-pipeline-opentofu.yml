@@ -1,4 +1,4 @@
-name: Provider Test Pipeline (OpenTF)
+name: OpenTF Provider Test Pipeline
 
 on: workflow_call
 
