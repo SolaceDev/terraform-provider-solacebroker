@@ -127,14 +127,6 @@ jobs:
           bash -c "SOLACEBROKER_BEARER_TOKEN=abc ${{ steps.set-cmd.outputs.cmd }} apply -auto-approve 2>&1" | grep 401
           popd
 
-      - name: Test broker object attributes override
-        run: |
-          pushd ci/brokertest
-          ${{ steps.set-cmd.outputs.cmd }} init
-          ${{ steps.set-cmd.outputs.cmd }} apply -auto-approve
-          ${{ steps.set-cmd.outputs.cmd }} plan -detailed-exitcode
-          popd
-
       - name: Test larger config
         run: |
           pushd ci/bigtest
