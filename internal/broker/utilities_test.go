@@ -44,7 +44,7 @@ func TestClient(t *testing.T) {
 		// New test cases for URL environment variable
 		{"testuser", "testpassword", "", "", "", "", "", "https://env.example.com", ""},                           // URL from env var
 		{"testuser", "testpassword", "", "https://config.example.com", "", "", "", "https://env.example.com", ""}, // Config URL takes precedence
-		{"testuser", "testpassword", "", "", "", "", "", "", "Missing required provider attribute"},                // No URL provided
+		{"testuser", "testpassword", "", "", "", "", "", "", "Missing required provider attribute"},               // No URL provided
 		{"", "", "", "", "", "", "testbearertoken", "https://env.example.com", ""},                                // Bearer token with URL from env
 	}
 
