@@ -132,7 +132,7 @@ jobs:
           pushd ci/brokertest
           ${{ steps.set-cmd.outputs.cmd }} init
           ${{ steps.set-cmd.outputs.cmd }} apply -auto-approve
-          ${{ steps.set-cmd.outputs.cmd }} plan | grep "No changes"
+          ${{ steps.set-cmd.outputs.cmd }} plan -detailed-exitcode
           popd
 
       - name: Test larger config
