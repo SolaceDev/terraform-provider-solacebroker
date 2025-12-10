@@ -47,7 +47,7 @@ func (p *BrokerProvider) Schema(_ context.Context, _ provider.SchemaRequest, res
 		Attributes: map[string]schema.Attribute{
 			"url": schema.StringAttribute{
 				MarkdownDescription: "The base URL of the event broker, for example `https://mybroker.example.org:<semp-service-port>/`. The trailing / can be omitted.",
-				Required:            true,
+				Optional:            true,
 			},
 			"username": schema.StringAttribute{
 				MarkdownDescription: "The username to connect to the broker with.  Requires password and conflicts with bearer_token.",

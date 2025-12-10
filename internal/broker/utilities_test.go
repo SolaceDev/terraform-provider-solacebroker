@@ -12,31 +12,40 @@ func TestClient(t *testing.T) {
 		ParamUsername    string
 		ParamPassword    string
 		ParamBearertoken string
+		ParamURL         string
 		EnvUsername      string
 		EnvPassword      string
 		EnvBearertoken   string
+		EnvURL           string
 		Expected         string
 	}{
-		{"testuser", "testpassword", "testbearertoken", "", "", "", "Cannot use Bearer token with basic authentication credentials"},
-		{"", "testpassword", "testbearertoken", "", "", "", "Cannot use Bearer token with basic authentication credentials"},
-		{"testuser", "", "testbearertoken", "", "", "", "Cannot use Bearer token with basic authentication credentials"},
-		{"", "", "", "testuser", "testpassword", "testbearertoken", "Cannot use Bearer token with basic authentication credentials"},
-		{"", "", "", "testuser", "", "testbearertoken", "Cannot use Bearer token with basic authentication credentials"},
-		{"", "", "", "", "testpassword", "testbearertoken", "Cannot use Bearer token with basic authentication credentials"},
-		{"", "", "", "", "", "", "Bearer token or basic authentication credentials must be provided"},
-		{"testuser", "testpassword", "", "", "", "", ""},
-		{"", "", "testbearertoken", "", "", "", ""},
-		{"", "", "testbearertoken", "", "", "testbearertoken", ""},
-		{"testuser", "testpassword", "", "", "", "testbearertoken", ""},
-		{"testuser", "testpassword", "", "testuser", "testpassword", "testbearertoken", ""},
-		{"", "", "testbearertoken", "testuser", "testpassword", "", ""},
-		{"", "", "testbearertoken", "testuser", "testpassword", "testbearertoken", ""},
-		{"", "", "", "", "", "testbearertoken", ""},
-		{"", "", "", "testuser", "testpassword", "", ""},
-		{"testuser", "", "", "", "", "", "Both username and password must be provided for basic authentication and cannot mix params and env vars"},
-		{"", "testpassword", "", "", "", "", "Both username and password must be provided for basic authentication and cannot mix params and env vars"},
-		{"testuser", "", "", "", "testpassword", "", "Both username and password must be provided for basic authentication and cannot mix params and env vars"},
-		{"", "testpassword", "", "testuser", "", "", "Both username and password must be provided for basic authentication and cannot mix params and env vars"},
+		// Original test cases - URL always provided in config
+		{"testuser", "testpassword", "testbearertoken", "https://example.com", "", "", "", "", "Cannot use Bearer token with basic authentication credentials"},
+		{"", "testpassword", "testbearertoken", "https://example.com", "", "", "", "", "Cannot use Bearer token with basic authentication credentials"},
+		{"testuser", "", "testbearertoken", "https://example.com", "", "", "", "", "Cannot use Bearer token with basic authentication credentials"},
+		{"", "", "", "https://example.com", "testuser", "testpassword", "testbearertoken", "", "Cannot use Bearer token with basic authentication credentials"},
+		{"", "", "", "https://example.com", "testuser", "", "testbearertoken", "", "Cannot use Bearer token with basic authentication credentials"},
+		{"", "", "", "https://example.com", "", "testpassword", "testbearertoken", "", "Cannot use Bearer token with basic authentication credentials"},
+		{"", "", "", "https://example.com", "", "", "", "", "Bearer token or basic authentication credentials must be provided"},
+		{"testuser", "testpassword", "", "https://example.com", "", "", "", "", ""},
+		{"", "", "testbearertoken", "https://example.com", "", "", "", "", ""},
+		{"", "", "testbearertoken", "https://example.com", "", "", "testbearertoken", "", ""},
+		{"testuser", "testpassword", "", "https://example.com", "", "", "testbearertoken", "", ""},
+		{"testuser", "testpassword", "", "https://example.com", "testuser", "testpassword", "testbearertoken", "", ""},
+		{"", "", "testbearertoken", "https://example.com", "testuser", "testpassword", "", "", ""},
+		{"", "", "testbearertoken", "https://example.com", "testuser", "testpassword", "testbearertoken", "", ""},
+		{"", "", "", "https://example.com", "", "", "testbearertoken", "", ""},
+		{"", "", "", "https://example.com", "testuser", "testpassword", "", "", ""},
+		{"testuser", "", "", "https://example.com", "", "", "", "", "Both username and password must be provided for basic authentication and cannot mix params and env vars"},
+		{"", "testpassword", "", "https://example.com", "", "", "", "", "Both username and password must be provided for basic authentication and cannot mix params and env vars"},
+		{"testuser", "", "", "https://example.com", "", "testpassword", "", "", "Both username and password must be provided for basic authentication and cannot mix params and env vars"},
+		{"", "testpassword", "", "https://example.com", "testuser", "", "", "", "Both username and password must be provided for basic authentication and cannot mix params and env vars"},
+
+		// New test cases for URL environment variable
+		{"testuser", "testpassword", "", "", "", "", "", "https://env.example.com", ""},                           // URL from env var
+		{"testuser", "testpassword", "", "https://config.example.com", "", "", "", "https://env.example.com", ""}, // Config URL takes precedence
+		{"testuser", "testpassword", "", "", "", "", "", "", "Missing required provider attribute"},                // No URL provided
+		{"", "", "", "", "", "", "testbearertoken", "https://env.example.com", ""},                                // Bearer token with URL from env
 	}
 
 	// Iterate over the test matrix
@@ -45,9 +54,10 @@ func TestClient(t *testing.T) {
 		os.Setenv("SOLACEBROKER_USERNAME", test.EnvUsername)
 		os.Setenv("SOLACEBROKER_PASSWORD", test.EnvPassword)
 		os.Setenv("SOLACEBROKER_BEARER_TOKEN", test.EnvBearertoken)
+		os.Setenv("SOLACEBROKER_URL", test.EnvURL)
 
 		// Create a providerData struct from the test matrix
-		var username, password, bearertoken types.String
+		var username, password, bearertoken, url types.String
 		if test.ParamUsername != "" {
 			username = types.StringValue(test.ParamUsername)
 		} else {
@@ -63,11 +73,16 @@ func TestClient(t *testing.T) {
 		} else {
 			bearertoken = types.StringNull()
 		}
+		if test.ParamURL != "" {
+			url = types.StringValue(test.ParamURL)
+		} else {
+			url = types.StringNull()
+		}
 		providerData := &providerData{
 			Username:    username,
 			Password:    password,
 			BearerToken: bearertoken,
-			Url:         types.StringValue("https://example.com"),
+			Url:         url,
 		}
 		_, diag := client(providerData)
 		// Check if the actual value is equal to the expected value
