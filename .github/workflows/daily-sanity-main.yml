@@ -99,6 +99,7 @@ jobs:
       - name: Test provider on test broker - create/modify/delete/import
         run: |
           pushd ci/broker_vpn_q
+          ${{ steps.set-cmd.outputs.cmd }} init
           # Create
           ${{ steps.set-cmd.outputs.cmd }} plan
           ${{ steps.set-cmd.outputs.cmd }} apply -auto-approve
@@ -121,6 +122,7 @@ jobs:
       - name: Test provider params from env
         run: |
           pushd ci/broker_vpn_test2
+          ${{ steps.set-cmd.outputs.cmd }} init
           SOLACEBROKER_USERNAME=admin SOLACEBROKER_PASSWORD=admin ${{ steps.set-cmd.outputs.cmd }} apply -auto-approve
           bash -c "SOLACEBROKER_BEARER_TOKEN=abc ${{ steps.set-cmd.outputs.cmd }} apply -auto-approve 2>&1" | grep 401
           popd
@@ -128,6 +130,7 @@ jobs:
       - name: Test broker object attributes override
         run: |
           pushd ci/brokertest
+          ${{ steps.set-cmd.outputs.cmd }} init
           ${{ steps.set-cmd.outputs.cmd }} apply -auto-approve
           ${{ steps.set-cmd.outputs.cmd }} plan | grep "No changes"
           popd
@@ -135,6 +138,7 @@ jobs:
       - name: Test larger config
         run: |
           pushd ci/bigtest
+          ${{ steps.set-cmd.outputs.cmd }} init
           ${{ steps.set-cmd.outputs.cmd }} plan
           ${{ steps.set-cmd.outputs.cmd }} apply -auto-approve
           ${{ steps.set-cmd.outputs.cmd }} plan
@@ -152,6 +156,7 @@ jobs:
       - name: Test state upgrade
         run: |
           pushd ci/state_upgrade
+          ${{ steps.set-cmd.outputs.cmd }} init
           bash -c "${{ steps.set-cmd.outputs.cmd }} plan &> results.out" || echo "Expecting plan to fail"
           cat results.out | grep "Found deprecated state key 'deprecated_att"
           cp terraform.tfstate terraform.tfstate.bak
