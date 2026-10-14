@@ -6645,8 +6645,8 @@
         "queueDeadMsgQueue": {
           "description": "The name of the Dead Message Queue (DMQ) used by the Queue for discarded messages.\n\nThe minimum access scope/level required to retrieve this attribute is \"global/read-only\". The minimum access scope/level required to change this attribute is \"global/mesh-manager\". Changes to this attribute are synchronized to HA mates via config-sync. The default value is `\"#DEAD_MSG_QUEUE\"`.",
           "maxLength": 200,
-          "minLength": 0,
-          "pattern": "^[^*?'<>&;]*$",
+          "minLength": 1,
+          "pattern": "^[^*?'<>&;]+$",
           "type": "string",
           "x-accessLevels": {
             "get": "global/read-only",
@@ -6666,7 +6666,7 @@
           "x-requiredPost": false,
           "x-requiresDisable": [],
           "x-sensitive": false,
-          "x-type": "qendpt_NameQueueNoMinLength_param",
+          "x-type": "qendpt_NameQueue_param",
           "x-writeOnly": false
         },
         "queueEventSpoolUsageThreshold": {
@@ -6807,30 +6807,6 @@
           "x-requiresDisable": [],
           "x-sensitive": false,
           "x-type": "qendpt_Discard_param",
-          "x-writeOnly": false
-        },
-        "queueRespectDmqEligibleEnabled": {
-          "description": "Enable or disable the respecting of DMQ Eligible for messages in the Queue.\n\nThe minimum access scope/level required to retrieve this attribute is \"global/read-only\". The minimum access scope/level required to change this attribute is \"global/mesh-manager\". Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`. Available since 2.49.",
-          "type": "boolean",
-          "x-accessLevels": {
-            "get": "global/read-only",
-            "patch": "global/mesh-manager"
-          },
-          "x-autoDisable": [],
-          "x-configSyncDefault": false,
-          "x-configSyncTableType": "router",
-          "x-default": false,
-          "x-deprecated": false,
-          "x-identifying": false,
-          "x-identifyingDirect": false,
-          "x-opaque": false,
-          "x-readOnlyOther": false,
-          "x-readOnlyPost": false,
-          "x-readOptional": false,
-          "x-requiredPost": false,
-          "x-requiresDisable": [],
-          "x-sensitive": false,
-          "x-type": "BOOL_PARAM",
           "x-writeOnly": false
         },
         "queueRespectTtlEnabled": {
@@ -7767,30 +7743,6 @@
           "x-requiresDisable": [],
           "x-sensitive": false,
           "x-type": "msgSvc_NameConfigAllowEmptyAllowInternal_param",
-          "x-writeOnly": false
-        },
-        "allowDmqEligibleEndpointOverrideEnabled": {
-          "description": "Enable or disable allowing endpoints to override the DMQ Eligible flag provided by the publisher.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"vpn/read-write\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `true`. Available since 2.49.",
-          "type": "boolean",
-          "x-accessLevels": {
-            "get": "vpn/read-only",
-            "patch": "vpn/read-write"
-          },
-          "x-autoDisable": [],
-          "x-configSyncDefault": false,
-          "x-configSyncTableType": "vpn",
-          "x-default": true,
-          "x-deprecated": false,
-          "x-identifying": false,
-          "x-identifyingDirect": false,
-          "x-opaque": false,
-          "x-readOnlyOther": false,
-          "x-readOnlyPost": false,
-          "x-readOptional": false,
-          "x-requiredPost": false,
-          "x-requiresDisable": [],
-          "x-sensitive": false,
-          "x-type": "BOOL_PARAM",
           "x-writeOnly": false
         },
         "authenticationBasicEnabled": {
@@ -27373,8 +27325,8 @@
         "queueDeadMsgQueue": {
           "description": "The name of the Dead Message Queue (DMQ) used by the MQTT Session Queue.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"vpn/read-write\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"#DEAD_MSG_QUEUE\"`. Available since 2.14.",
           "maxLength": 200,
-          "minLength": 0,
-          "pattern": "^[^*?'<>&;]*$",
+          "minLength": 1,
+          "pattern": "^[^*?'<>&;]+$",
           "type": "string",
           "x-accessLevels": {
             "get": "vpn/read-only",
@@ -27394,7 +27346,7 @@
           "x-requiredPost": false,
           "x-requiresDisable": [],
           "x-sensitive": false,
-          "x-type": "qendpt_NameQueueNoMinLength_param",
+          "x-type": "qendpt_NameQueue_param",
           "x-writeOnly": false
         },
         "queueEventBindCountThreshold": {
@@ -27648,30 +27600,6 @@
           "x-requiresDisable": [],
           "x-sensitive": false,
           "x-type": "qendpt_Discard_param",
-          "x-writeOnly": false
-        },
-        "queueRespectDmqEligibleEnabled": {
-          "description": "Enable or disable the respecting of DMQ Eligible for messages in the MQTT Session Queue.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"vpn/read-write\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`. Available since 2.49.",
-          "type": "boolean",
-          "x-accessLevels": {
-            "get": "vpn/read-only",
-            "patch": "vpn/read-write"
-          },
-          "x-autoDisable": [],
-          "x-configSyncDefault": false,
-          "x-configSyncTableType": "vpn",
-          "x-default": false,
-          "x-deprecated": false,
-          "x-identifying": false,
-          "x-identifyingDirect": false,
-          "x-opaque": false,
-          "x-readOnlyOther": false,
-          "x-readOnlyPost": false,
-          "x-readOptional": false,
-          "x-requiredPost": false,
-          "x-requiresDisable": [],
-          "x-sensitive": false,
-          "x-type": "BOOL_PARAM",
           "x-writeOnly": false
         },
         "queueRespectTtlEnabled": {
@@ -28712,8 +28640,8 @@
         "deadMsgQueue": {
           "description": "The name of the Dead Message Queue (DMQ) used by the Queue.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"vpn/read-write\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"#DEAD_MSG_QUEUE\"`. Available since 2.2.",
           "maxLength": 200,
-          "minLength": 0,
-          "pattern": "^[^*?'<>&;]*$",
+          "minLength": 1,
+          "pattern": "^[^*?'<>&;]+$",
           "type": "string",
           "x-accessLevels": {
             "get": "vpn/read-only",
@@ -28733,7 +28661,7 @@
           "x-requiredPost": false,
           "x-requiresDisable": [],
           "x-sensitive": false,
-          "x-type": "qendpt_NameQueueNoMinLength_param",
+          "x-type": "qendpt_NameQueue_param",
           "x-writeOnly": false
         },
         "deliveryCountEnabled": {
@@ -29411,30 +29339,6 @@
           "x-requiresDisable": [],
           "x-sensitive": false,
           "x-type": "qendpt_Discard_param",
-          "x-writeOnly": false
-        },
-        "respectDmqEligibleEnabled": {
-          "description": "Enable or disable the respecting of DMQ Eligible for messages in the Queue.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"vpn/read-write\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`. Available since 2.49.",
-          "type": "boolean",
-          "x-accessLevels": {
-            "get": "vpn/read-only",
-            "patch": "vpn/read-write"
-          },
-          "x-autoDisable": [],
-          "x-configSyncDefault": false,
-          "x-configSyncTableType": "vpn",
-          "x-default": false,
-          "x-deprecated": false,
-          "x-identifying": false,
-          "x-identifyingDirect": false,
-          "x-opaque": false,
-          "x-readOnlyOther": false,
-          "x-readOnlyPost": false,
-          "x-readOptional": false,
-          "x-requiredPost": false,
-          "x-requiresDisable": [],
-          "x-sensitive": false,
-          "x-type": "BOOL_PARAM",
           "x-writeOnly": false
         },
         "respectMsgPriorityEnabled": {
@@ -30136,8 +30040,8 @@
         "deadMsgQueue": {
           "description": "The name of the Dead Message Queue (DMQ).\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"vpn/read-write\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"#DEAD_MSG_QUEUE\"`.",
           "maxLength": 200,
-          "minLength": 0,
-          "pattern": "^[^*?'<>&;]*$",
+          "minLength": 1,
+          "pattern": "^[^*?'<>&;]+$",
           "type": "string",
           "x-accessLevels": {
             "get": "vpn/read-only",
@@ -30157,7 +30061,7 @@
           "x-requiredPost": false,
           "x-requiresDisable": [],
           "x-sensitive": false,
-          "x-type": "qendpt_NameQueueNoMinLength_param",
+          "x-type": "qendpt_NameQueue_param",
           "x-writeOnly": false
         },
         "deliveryDelay": {
@@ -30696,30 +30600,6 @@
           "x-requiresDisable": [],
           "x-sensitive": false,
           "x-type": "qendpt_Discard_param",
-          "x-writeOnly": false
-        },
-        "respectDmqEligibleEnabled": {
-          "description": "Enable or disable the respecting of DMQ Eligible for messages in the Queue.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"vpn/read-write\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`. Available since 2.49.",
-          "type": "boolean",
-          "x-accessLevels": {
-            "get": "vpn/read-only",
-            "patch": "vpn/read-write"
-          },
-          "x-autoDisable": [],
-          "x-configSyncDefault": false,
-          "x-configSyncTableType": "vpn",
-          "x-default": false,
-          "x-deprecated": false,
-          "x-identifying": false,
-          "x-identifyingDirect": false,
-          "x-opaque": false,
-          "x-readOnlyOther": false,
-          "x-readOnlyPost": false,
-          "x-readOptional": false,
-          "x-requiredPost": false,
-          "x-requiresDisable": [],
-          "x-sensitive": false,
-          "x-type": "qendpt_respectDmqEligible_type_param",
           "x-writeOnly": false
         },
         "respectMsgPriorityEnabled": {
@@ -35437,8 +35317,8 @@
         "deadMsgQueue": {
           "description": "The name of the Dead Message Queue (DMQ) used by the Topic Endpoint.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"vpn/read-write\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"#DEAD_MSG_QUEUE\"`. Available since 2.2.",
           "maxLength": 200,
-          "minLength": 0,
-          "pattern": "^[^*?'<>&;]*$",
+          "minLength": 1,
+          "pattern": "^[^*?'<>&;]+$",
           "type": "string",
           "x-accessLevels": {
             "get": "vpn/read-only",
@@ -35458,7 +35338,7 @@
           "x-requiredPost": false,
           "x-requiresDisable": [],
           "x-sensitive": false,
-          "x-type": "qendpt_NameQueueNoMinLength_param",
+          "x-type": "qendpt_NameQueue_param",
           "x-writeOnly": false
         },
         "deliveryCountEnabled": {
@@ -36032,30 +35912,6 @@
           "x-requiresDisable": [],
           "x-sensitive": false,
           "x-type": "qendpt_DiscardTopicEndpoint_param",
-          "x-writeOnly": false
-        },
-        "respectDmqEligibleEnabled": {
-          "description": "Enable or disable the respecting of DMQ Eligible for messages in the Topic Endpoint.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"vpn/read-write\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`. Available since 2.49.",
-          "type": "boolean",
-          "x-accessLevels": {
-            "get": "vpn/read-only",
-            "patch": "vpn/read-write"
-          },
-          "x-autoDisable": [],
-          "x-configSyncDefault": false,
-          "x-configSyncTableType": "vpn",
-          "x-default": false,
-          "x-deprecated": false,
-          "x-identifying": false,
-          "x-identifyingDirect": false,
-          "x-opaque": false,
-          "x-readOnlyOther": false,
-          "x-readOnlyPost": false,
-          "x-readOptional": false,
-          "x-requiredPost": false,
-          "x-requiresDisable": [],
-          "x-sensitive": false,
-          "x-type": "qendpt_respectDmqEligible_type_param",
           "x-writeOnly": false
         },
         "respectMsgPriorityEnabled": {
@@ -36649,8 +36505,8 @@
         "deadMsgQueue": {
           "description": "The name of the Dead Message Queue (DMQ).\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"vpn/read-write\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `\"#DEAD_MSG_QUEUE\"`.",
           "maxLength": 200,
-          "minLength": 0,
-          "pattern": "^[^*?'<>&;]*$",
+          "minLength": 1,
+          "pattern": "^[^*?'<>&;]+$",
           "type": "string",
           "x-accessLevels": {
             "get": "vpn/read-only",
@@ -36670,7 +36526,7 @@
           "x-requiredPost": false,
           "x-requiresDisable": [],
           "x-sensitive": false,
-          "x-type": "qendpt_NameQueueNoMinLength_param",
+          "x-type": "qendpt_NameQueue_param",
           "x-writeOnly": false
         },
         "deliveryDelay": {
@@ -37132,30 +36988,6 @@
           "x-requiresDisable": [],
           "x-sensitive": false,
           "x-type": "qendpt_DiscardTopicEndpoint_param",
-          "x-writeOnly": false
-        },
-        "respectDmqEligibleEnabled": {
-          "description": "Enable or disable the respecting of DMQ Eligible for messages in the Topic Endpoint.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"vpn/read-write\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `false`. Available since 2.49.",
-          "type": "boolean",
-          "x-accessLevels": {
-            "get": "vpn/read-only",
-            "patch": "vpn/read-write"
-          },
-          "x-autoDisable": [],
-          "x-configSyncDefault": false,
-          "x-configSyncTableType": "vpn",
-          "x-default": false,
-          "x-deprecated": false,
-          "x-identifying": false,
-          "x-identifyingDirect": false,
-          "x-opaque": false,
-          "x-readOnlyOther": false,
-          "x-readOnlyPost": false,
-          "x-readOptional": false,
-          "x-requiredPost": false,
-          "x-requiresDisable": [],
-          "x-sensitive": false,
-          "x-type": "qendpt_respectDmqEligible_type_param",
           "x-writeOnly": false
         },
         "respectMsgPriorityEnabled": {
@@ -40556,7 +40388,7 @@
     },
     "description": "SEMP (starting in `v2`) is a RESTful API for configuring, monitoring, and administering a Solace PubSub+ broker. This specification defines the following API:\n\n\nAPI|Base Path|Purpose\n:---|:---|:---\nConfiguration|/SEMP/v2/config|Reading and writing configuration\n\n\n\nThe following APIs are also available:\n\n\nAPI|Base Path|Purpose\n:---|:---|:---\nAction|/SEMP/v2/action|Performing actions\nMonitoring|/SEMP/v2/monitor|Querying operational state\n\n\n\nFor tutorials, architectural and protocol design documentation, and other information about the SEMP API, consult the [SEMP documentation](https://docs.solace.com/Admin/SEMP/Using-SEMP.htm) on the Solace website. The SEMP API specifications are also [available for download](https://solace.com/downloads/).\n\nIf you need additional support, please contact us at [support@solace.com](mailto:support@solace.com).",
     "title": "SEMP (Solace Element Management Protocol)",
-    "version": "2.49"
+    "version": "2.48"
   },
   "parameters": {
     "countQuery": {
