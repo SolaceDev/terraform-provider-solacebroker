@@ -52,16 +52,6 @@ func init() {
 			},
 			{
 				BaseType:            broker.Bool,
-				SempName:            "allowDmqEligibleEndpointOverrideEnabled",
-				TerraformName:       "allow_dmq_eligible_endpoint_override_enabled",
-				MarkdownDescription: "Enable or disable allowing endpoints to override the DMQ Eligible flag provided by the publisher.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"vpn/read-write\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `true`. Available since SEMP API version 2.49.",
-				Type:                types.BoolType,
-				TerraformType:       tftypes.Bool,
-				Converter:           broker.SimpleConverter[bool]{TerraformType: tftypes.Bool},
-				Default:             true,
-			},
-			{
-				BaseType:            broker.Bool,
 				SempName:            "authenticationBasicEnabled",
 				TerraformName:       "authentication_basic_enabled",
 				MarkdownDescription: "Enable or disable basic authentication for clients connecting to the Message VPN. Basic authentication is authentication that involves the use of a username and password to prove identity. If a user provides credentials for a different authentication scheme, this setting is not applicable.\n\nThe minimum access scope/level required to retrieve this attribute is \"vpn/read-only\". The minimum access scope/level required to change this attribute is \"global/mesh-manager\". Changes to this attribute are synchronized to HA mates and replication sites via config-sync. The default value is `true`.",

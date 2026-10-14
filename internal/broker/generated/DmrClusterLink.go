@@ -359,8 +359,8 @@ func init() {
 				TerraformType:       tftypes.String,
 				Converter:           broker.SimpleConverter[string]{TerraformType: tftypes.String},
 				StringValidators: []validator.String{
-					stringvalidator.LengthBetween(0, 200),
-					stringvalidator.RegexMatches(regexp.MustCompile("^[^*?'<>&;]*$"), ""),
+					stringvalidator.LengthBetween(1, 200),
+					stringvalidator.RegexMatches(regexp.MustCompile("^[^*?'<>&;]+$"), ""),
 				},
 				Default: "#DEAD_MSG_QUEUE",
 			},
@@ -522,16 +522,6 @@ func init() {
 					stringvalidator.OneOf("never", "when-queue-enabled", "always"),
 				},
 				Default: "always",
-			},
-			{
-				BaseType:            broker.Bool,
-				SempName:            "queueRespectDmqEligibleEnabled",
-				TerraformName:       "queue_respect_dmq_eligible_enabled",
-				MarkdownDescription: "Enable or disable the respecting of DMQ Eligible for messages in the Queue.\n\nThe minimum access scope/level required to retrieve this attribute is \"global/read-only\". The minimum access scope/level required to change this attribute is \"global/mesh-manager\". Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`. Available since SEMP API version 2.49.",
-				Type:                types.BoolType,
-				TerraformType:       tftypes.Bool,
-				Converter:           broker.SimpleConverter[bool]{TerraformType: tftypes.Bool},
-				Default:             false,
 			},
 			{
 				BaseType:            broker.Bool,

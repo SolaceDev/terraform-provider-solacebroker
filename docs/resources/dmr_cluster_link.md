@@ -145,9 +145,6 @@ The minimum access scope/level required to retrieve this attribute is "global/re
 "when-queue-enabled" - NACK each message discard back to the client, except messages that are discarded because an endpoint is administratively disabled.
 "always" - NACK each message discard back to the client, including messages that are discarded because an endpoint is administratively disabled.
 </pre>
-- `queue_respect_dmq_eligible_enabled` (Boolean) Enable or disable the respecting of DMQ Eligible for messages in the Queue.
-
-The minimum access scope/level required to retrieve this attribute is "global/read-only". The minimum access scope/level required to change this attribute is "global/mesh-manager". Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`. Available since SEMP API version 2.49.
 - `queue_respect_ttl_enabled` (Boolean) Enable or disable the respecting of the time-to-live (TTL) for messages in the Queue. When enabled, expired messages are discarded or moved to the DMQ.
 
 The minimum access scope/level required to retrieve this attribute is "global/read-only". The minimum access scope/level required to change this attribute is "global/mesh-manager". Changes to this attribute are synchronized to HA mates via config-sync. The default value is `false`.
